@@ -1,7 +1,3 @@
-Anladım Furkan 👍 Sen bana **Ardalis Clean Architecture** README’sini verdin ve bunu **OpenIddict + User Management** odaklı bir proje için yeniden yazmamı istiyorsun. Yani Clean Architecture şablonunu kullanarak kimlik doğrulama (OpenIddict) ve kullanıcı yönetimi (register, login, role management) üzerine kurulu bir başlangıç noktası README hazırlayalım. İşte sana uyarlanmış versiyon:
-
----
-
 # 🔐 Clean Architecture + OpenIddict & User Management
 
 Bu proje, **ASP.NET Core Clean Architecture** yaklaşımını temel alarak **OpenIddict tabanlı kimlik doğrulama** ve **kullanıcı yönetimi** için başlangıç noktası sağlar.  
