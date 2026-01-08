@@ -1,8 +1,9 @@
+using ShoppingProject.Core.Common;
+
 namespace ShoppingProject.Core.UserAggregate;
 
-public class ApplicationUser
+public class ApplicationUser : BaseEntity<Guid>, Ardalis.SharedKernel.IAggregateRoot
 {
-    public Guid Id { get; set; }
     public string UserName { get; set; } = default!;
     public string DisplayName { get; set; } = String.Empty;
     public string Email { get; set; } = default!;
