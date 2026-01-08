@@ -1,7 +1,6 @@
 ﻿using Bogus;
-using Microsoft.AspNetCore.Identity;
-using ShoppingProject.Infrastructure.Identity;
 using ShoppingProject.Core.ContributorAggregate;
+using ShoppingProject.Core.UserAggregate;
 
 namespace ShoppingProject.Infrastructure.Data;
 
@@ -33,19 +32,19 @@ public static class SeedData
         await dbContext.SaveChangesAsync();
     }
 
-    public static async Task PopulateFakeUsersAsync(UserManager<ApplicationUser> userManager)
-    {
-        var faker = new Faker<ApplicationUser>()
-            .RuleFor(u => u.UserName, f => f.Internet.UserName())
-            .RuleFor(u => u.Email, f => f.Internet.Email())
-            .RuleFor(u => u.FirstName, f => f.Name.FirstName())
-            .RuleFor(u => u.LastName, f => f.Name.LastName());
+    // public static async Task PopulateFakeUsersAsync(UserManager<ApplicationUser> userManager)
+    // {
+    //     var faker = new Faker<ApplicationUser>()
+    //         .RuleFor(u => u.UserName, f => f.Internet.UserName())
+    //         .RuleFor(u => u.Email, f => f.Internet.Email())
+    //         .RuleFor(u => u.FirstName, f => f.Name.FirstName())
+    //         .RuleFor(u => u.LastName, f => f.Name.LastName());
 
-        for (int i = 0; i < NUMBER_OF_USERS; i++)
-        {
-            var user = faker.Generate();
-            // Default password
-            await userManager.CreateAsync(user, "Pass123!");
-        }
-    }
+    //     for (int i = 0; i < NUMBER_OF_USERS; i++)
+    //     {
+    //         var user = faker.Generate();
+    //         // Default password
+    //         await userManager.CreateAsync(user, "Pass123!");
+    //     }
+    // }
 }

@@ -4,7 +4,7 @@ using ShoppingProject.Infrastructure.Data;
 using ShoppingProject.Infrastructure.Data.Queries;
 using ShoppingProject.UseCases.Contributors.List;
 using Microsoft.AspNetCore.Identity;
-using ShoppingProject.Infrastructure.Identity;
+using ShoppingProject.Core.UserAggregate;
 
 namespace ShoppingProject.Infrastructure;
 public static class InfrastructureServiceExtensions
