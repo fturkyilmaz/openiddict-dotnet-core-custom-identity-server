@@ -1,6 +1,8 @@
+using ShoppingProject.Core.Common;
+
 namespace ShoppingProject.Core.UserAggregate;
 
-public class UserRole
+public class UserRole:BaseEntity<Guid>
 {
     public Guid UserId { get; set; }
     public ApplicationUser User { get; set; } = default!;

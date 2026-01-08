@@ -1,6 +1,8 @@
+using ShoppingProject.Core.Common;
+
 namespace ShoppingProject.Core.OpenIdAggregate;
 
-public class ClientScope
+public class ClientScope:BaseEntity<Guid>
 {
     public Guid ClientId { get; set; }
     public Client Client { get; set; } = default!;

@@ -3,7 +3,6 @@ using ShoppingProject.Core.Services;
 using ShoppingProject.Infrastructure.Data;
 using ShoppingProject.Infrastructure.Data.Queries;
 using ShoppingProject.UseCases.Contributors.List;
-using Microsoft.AspNetCore.Identity;
 using ShoppingProject.Core.UserAggregate;
 
 namespace ShoppingProject.Infrastructure;
@@ -35,10 +34,6 @@ public static class InfrastructureServiceExtensions
            .AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>))
            .AddScoped<IListContributorsQueryService, ListContributorsQueryService>()
            .AddScoped<IDeleteContributorService, DeleteContributorService>();
-
-    services.AddIdentity<ApplicationUser, IdentityRole<Guid>>() 
-    .AddEntityFrameworkStores<AppDbContext>() 
-    .AddDefaultTokenProviders();
 
     services.AddOpenIddict()
     .AddServer(options =>

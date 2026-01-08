@@ -1,8 +1,9 @@
+using ShoppingProject.Core.Common;
+
 namespace ShoppingProject.Core.OpenIdAggregate;
 
-public class Client
+public class Client:BaseEntity<Guid>
 {
-    public Guid Id { get; set; }
     public string ClientId { get; set; } = default!;
     public string ClientSecretHash { get; set; } = default!;
     public string RedirectUrisJson { get; set; } = default!;
