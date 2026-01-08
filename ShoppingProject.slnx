@@ -1,0 +1,33 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".template.config/template.json" />
+    <File Path="CleanArchitecture.nuspec" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/ShoppingProject.Core/ShoppingProject.Core.csproj" />
+    <Project Path="src/ShoppingProject.Infrastructure/ShoppingProject.Infrastructure.csproj" />
+    <Project Path="src/ShoppingProject.UseCases/ShoppingProject.UseCases.csproj" />
+    <Project Path="src/ShoppingProject.Web/ShoppingProject.Web.csproj" />
+  </Folder>
+  <Folder Name="/src/_aspire/">
+    <Project Path="src/ShoppingProject.AspireHost/ShoppingProject.AspireHost.csproj" />
+    <Project Path="src/ShoppingProject.ServiceDefaults/ShoppingProject.ServiceDefaults.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ShoppingProject.FunctionalTests/ShoppingProject.FunctionalTests.csproj">
+      <BuildDependency Project="src/ShoppingProject.Web/ShoppingProject.Web.csproj" />
+    </Project>
+    <Project Path="tests/ShoppingProject.IntegrationTests/ShoppingProject.IntegrationTests.csproj">
+      <BuildDependency Project="src/ShoppingProject.Infrastructure/ShoppingProject.Infrastructure.csproj" />
+    </Project>
+    <Project Path="tests/ShoppingProject.UnitTests/ShoppingProject.UnitTests.csproj" />
+  </Folder>
+</Solution>

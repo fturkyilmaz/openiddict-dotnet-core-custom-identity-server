@@ -1,0 +1,59 @@
+# Build output
+bin/
+obj/
+out/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code
+.vscode/
+.history/
+*.code-workspace
+
+# Rider
+.idea/
+
+# Logs
+*.log
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+project.lock.json
+
+# Dotnet tools
+.dotnet-tools/
+
+# Coverage & test results
+*.coverage
+*.coveragexml
+TestResult.xml
+TestResults/
+coverage.info
+coverage.opencover.xml
+coverage.cobertura.xml
+
+# Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Entity Framework migrations snapshots
+Migrations/*Designer.cs
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Others
+*.swp
+*.bak
+*.tmp
+*.pid
+*.seed
