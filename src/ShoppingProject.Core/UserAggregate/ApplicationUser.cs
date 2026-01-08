@@ -4,6 +4,7 @@ public class ApplicationUser
 {
     public Guid Id { get; set; }
     public string UserName { get; set; } = default!;
+    public string DisplayName { get; set; } = String.Empty;
     public string Email { get; set; } = default!;
     public string PasswordHash { get; set; } = default!;
     public string PasswordSalt { get; set; } = default!;

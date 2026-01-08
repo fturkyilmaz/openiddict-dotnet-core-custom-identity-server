@@ -14,11 +14,6 @@ builder.Services.AddOptionConfigs(builder.Configuration, startupLogger, builder)
 builder.Services.AddServiceConfigs(startupLogger, builder);
 builder.Services.AddControllers(); 
 
-builder.Services.AddFastEndpoints()
-                .SwaggerDocument(o =>
-                {
-                  o.ShortSchemaNames = true;
-                });
 
 var app = builder.Build();
 app.MapControllers();
@@ -27,6 +22,19 @@ app.UseRouting();
 app.UseAuthentication(); 
 app.UseAuthorization(); 
 app.UseCors();
+
+// if (app.Environment.IsDevelopment())
+//   {
+//       app.UseSwagger();
+//       app.UseSwaggerUI(c =>
+//       {
+//           c.SwaggerEndpoint("/openapi/v1.json", "ShoppingProject API v1");
+//           c.RoutePrefix = string.Empty;
+//       });
+
+//       // Scalar UI
+//       app.MapScalarApiReference();
+//   }
 
 
 await app.UseAppMiddlewareAndSeedDatabase();
