@@ -45,7 +45,8 @@ public static class InfrastructureServiceExtensions
                .AddDevelopmentSigningCertificate();
 
         options.UseAspNetCore()
-               .EnableTokenEndpointPassthrough();
+               .EnableTokenEndpointPassthrough()
+               .DisableTransportSecurityRequirement(); // dev environment
     });
 
     logger.LogInformation("{Project} services registered", "Infrastructure");
