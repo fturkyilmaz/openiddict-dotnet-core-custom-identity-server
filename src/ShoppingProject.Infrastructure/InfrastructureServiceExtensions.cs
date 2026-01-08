@@ -4,6 +4,8 @@ using ShoppingProject.Infrastructure.Data;
 using ShoppingProject.Infrastructure.Data.Queries;
 using ShoppingProject.UseCases.Contributors.List;
 using ShoppingProject.Core.UserAggregate;
+using ShoppingProject.UseCases.Users.Interfaces;
+using ShoppingProject.Infrastructure.Auth;
 
 namespace ShoppingProject.Infrastructure;
 public static class InfrastructureServiceExtensions
@@ -34,8 +36,13 @@ public static class InfrastructureServiceExtensions
            .AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>))
            .AddScoped<IListContributorsQueryService, ListContributorsQueryService>()
            .AddScoped<IDeleteContributorService, DeleteContributorService>();
+    
+    services.AddScoped<ITokenService, TokenService>(); 
+    services.AddScoped<IPasswordHasher, PasswordHasher>();
+    services.AddScoped<IRevokeTokenService, RevokeTokenService>();
 
     services.AddOpenIddict()
+    .AddCore(options => { options.UseEntityFrameworkCore() .UseDbContext<AppDbContext>(); })
     .AddServer(options =>
     {
         options.SetTokenEndpointUris("connect/token");

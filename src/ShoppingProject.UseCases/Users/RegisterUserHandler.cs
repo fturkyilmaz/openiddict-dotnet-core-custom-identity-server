@@ -1,14 +1,14 @@
-using System.Security.Claims;
-using MediatR;
-using Ardalis.SharedKernel;
 using ShoppingProject.Core.UserAggregate;
+using ShoppingProject.UseCases.Users.Interfaces;
+using ShoppingProject.UseCases.Users.Specifications;
 
 namespace ShoppingProject.UseCases.Users
 {
-  // Command
-  public record RegisterUserCommand(string Email, string Password) : IRequest<Guid>;
+  // Command object carrying registration data
+  public record RegisterUserCommand(string Email, string Password, string UserName, string DisplayName)
+      : IRequest<Guid>;
 
-  // Handler
+  // Handler for user registration
   public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, Guid>
   {
     private readonly IRepository<ApplicationUser> _userRepository;
@@ -27,47 +27,35 @@ namespace ShoppingProject.UseCases.Users
 
     public async ValueTask<Guid> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
     {
-      // Existing user 
-      var existing = await _userRepository
-          .FirstOrDefaultAsync(u => u.Email == request.Email, cancellationToken);
+      // Check if user already exists by email
+      var existing = await _userRepository.FirstOrDefaultAsync(new UserByEmailSpec(request.Email), cancellationToken);
+
 
       if (existing is not null)
         throw new InvalidOperationException("User already exists");
 
-      var (salt, hash) = PasswordHasher.Hash(request.Password);
+      // Hash the provided password
+      var hashedPassword = _passwordHasher.HashPassword(request.Password);
 
+      // Create new ApplicationUser entity
       var user = new ApplicationUser
       {
         Id = Guid.NewGuid(),
         UserName = request.UserName,
         Email = request.Email,
         DisplayName = request.DisplayName,
-        PasswordSalt = salt,
-        PasswordHash = hash
+        PasswordHash = hashedPassword,
+        CreatedAt = DateTime.UtcNow
       };
 
-      //  Hash password
-      var (salt, hash) = PasswordHasher.Hash(request.Password);
-
-      // Create user
-      var user = new ApplicationUser
-      {
-        Id = Guid.NewGuid(),
-        UserName = request.UserName,
-        Email = request.Email,
-        DisplayName = request.DisplayName,
-        PasswordSalt = salt,
-        PasswordHash = hash
-      };
-
+      // Save user to repository
       await _userRepository.AddAsync(user, cancellationToken);
 
-      // Generate tokens
+      // Generate tokens (optional: auto-login after registration)
       var accessToken = await _tokenService.CreateAccessToken(user, cancellationToken);
       var refreshToken = await _tokenService.CreateRefreshToken(user, cancellationToken);
 
-      // Audit log can be added here for user registration create event
-
+      // Return the new user's Id
       return user.Id;
     }
   }

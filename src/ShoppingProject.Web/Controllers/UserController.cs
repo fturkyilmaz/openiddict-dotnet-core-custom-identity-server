@@ -2,7 +2,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShoppingProject.Infrastructure.Data;
-using ShoppingProject.Infrastructure.Auth;
+using ShoppingProject.Infrastructure.Common;
+using ShoppingProject.Core.UserAggregate;
 
 namespace ShoppingProject.WebApi.Controllers;
 

@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MediatR;
-using ShoppingProject.UseCases.Users.Register;
-using ShoppingProject.UseCases.Users.Login;
-using ShoppingProject.UseCases.Auth;
+using ShoppingProject.UseCases.Users;
 
 namespace ShoppingProject.Web.Controllers;
 

@@ -1,4 +1,4 @@
-namespace ShoppingProject.Infrastructure.Auth.Interfaces
+namespace ShoppingProject.UseCases.Users.Interfaces
 {
     public interface IPasswordHasher
     {

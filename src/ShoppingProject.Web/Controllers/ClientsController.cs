@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using ShoppingProject.Infrastructure.Data;
 
 namespace ShoppingProject.WebApi.Controllers;
 
@@ -10,17 +8,24 @@ namespace ShoppingProject.WebApi.Controllers;
 [ApiVersion("1.0")]
 public class ClientsController : ControllerBase
 {
-    private readonly AppDbContext _db;
-
-    public ClientsController(AppDbContext db) => _db = db;
+    public ClientsController()
+    {
+    }
 
     [HttpGet]
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> GetAll()
     {
-        var clients = await _db.Clients
-            .Select(c => new { c.Id, c.ClientId, c.DisplayName })
-            .ToListAsync();
+        // Mock data list
+        var clients = new List<object>
+        {
+            new { Id = Guid.NewGuid(), ClientId = "client-001", DisplayName = "Alpha Corp" },
+            new { Id = Guid.NewGuid(), ClientId = "client-002", DisplayName = "Beta Solutions" },
+            new { Id = Guid.NewGuid(), ClientId = "client-003", DisplayName = "Gamma Tech" }
+        };
+
+        // Simulate async
+        await Task.Delay(50);
 
         return Ok(clients);
     }
