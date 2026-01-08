@@ -26,8 +26,5 @@ For mutable access, Aggregates should be accessed through a Repository interface
 
 Read-only ad hoc queries can use separate Query Services that don't use the Domain Model.
 
-Need help? Check out the sample here:
-https://github.com/ardalis/CleanArchitecture/tree/main/sample
 
-Still need help?
-Contact us at https://nimblepros.com
+Still need help? 
