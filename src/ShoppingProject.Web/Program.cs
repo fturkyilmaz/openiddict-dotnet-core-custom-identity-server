@@ -32,8 +32,10 @@ builder.Services.AddVersionedApiExplorer(options =>
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme;
 });
 
+builder.Services.AddAuthorization();
 
 
 
