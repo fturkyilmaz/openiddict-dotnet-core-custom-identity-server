@@ -8,6 +8,8 @@ namespace ShoppingProject.UseCases.Users.Interfaces
   {
     ValueTask<string> CreateAccessToken(ApplicationUser user, CancellationToken cancellationToken);
     ValueTask<string> CreateRefreshToken(ApplicationUser user, CancellationToken cancellationToken);
-    ValueTask<Guid> ValidateRefreshToken(string refreshToken, CancellationToken cancellationToken);
+    ValueTask<Guid>   ValidateRefreshToken(string refreshToken, CancellationToken cancellationToken);
+    ValueTask RevokeTokenAsync(string tokenId, CancellationToken cancellationToken); 
+    ValueTask LogoutEverywhereAsync(Guid userId, CancellationToken cancellationToken);
   }
 }

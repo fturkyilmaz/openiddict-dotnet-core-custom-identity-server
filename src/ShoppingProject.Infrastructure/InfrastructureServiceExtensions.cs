@@ -45,7 +45,8 @@ public static class InfrastructureServiceExtensions
     .AddCore(options => { options.UseEntityFrameworkCore() .UseDbContext<AppDbContext>(); })
     .AddServer(options =>
     {
-        options.SetTokenEndpointUris("auth/token");
+        options.SetTokenEndpointUris("/auth/token");
+        options.SetRevocationEndpointUris("/auth/revoke");
         options.AllowPasswordFlow();
         options.AllowRefreshTokenFlow();
         options.AllowClientCredentialsFlow();
@@ -54,6 +55,9 @@ public static class InfrastructureServiceExtensions
 
         options.AddDevelopmentEncryptionCertificate()
                .AddDevelopmentSigningCertificate();
+
+        options.SetIssuer("ShoppingProject");
+
 
         options.UseAspNetCore()
                .EnableTokenEndpointPassthrough()
