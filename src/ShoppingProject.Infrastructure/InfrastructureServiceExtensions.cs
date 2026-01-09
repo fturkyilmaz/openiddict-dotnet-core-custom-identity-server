@@ -46,7 +46,11 @@ public static class InfrastructureServiceExtensions
     .AddServer(options =>
     {
         options.SetTokenEndpointUris("connect/token");
+        options.AllowPasswordFlow();
+        options.AllowRefreshTokenFlow();
         options.AllowClientCredentialsFlow();
+
+        options.AcceptAnonymousClients();
 
         options.AddDevelopmentEncryptionCertificate()
                .AddDevelopmentSigningCertificate();
@@ -54,6 +58,14 @@ public static class InfrastructureServiceExtensions
         options.UseAspNetCore()
                .EnableTokenEndpointPassthrough()
                .DisableTransportSecurityRequirement(); // dev environment
+        
+        options.RegisterScopes("api", "openid", "profile");
+    })
+    .AddValidation(options =>
+    {
+        // Token doğrulama için local server 
+        options.UseLocalServer();
+        options.UseAspNetCore();
     });
 
     logger.LogInformation("{Project} services registered", "Infrastructure");

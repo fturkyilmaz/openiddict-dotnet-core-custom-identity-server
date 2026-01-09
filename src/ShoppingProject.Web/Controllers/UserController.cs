@@ -26,28 +26,4 @@ public class UsersController : ControllerBase
 
         return Ok(users);
     }
-
-    [HttpPost("register")]
-    [AllowAnonymous]
-    public async Task<IActionResult> Register([FromBody] RegisterDto dto)
-    {
-        var (salt, hash) = PasswordHasher.Hash(dto.Password);
-
-        var user = new ApplicationUser
-        {
-            Id = Guid.NewGuid(),
-            UserName = dto.UserName,
-            Email = dto.Email,
-            DisplayName = dto.DisplayName,
-            PasswordSalt = salt,
-            PasswordHash = hash
-        };
-
-        _db.Users.Add(user);
-        await _db.SaveChangesAsync();
-
-        return Ok(new { user.Id, user.UserName });
-    }
 }
-
-public record RegisterDto(string UserName, string Email, string DisplayName, string Password);
