@@ -43,4 +43,13 @@ public class AuthorizationController : ControllerBase
         var result = await _mediator.Send(new MeQuery(User));
         return Ok(result);
     }
+
+    [HttpPost("refresh")]
+    [AllowAnonymous]
+    public async Task<IActionResult> Refresh([FromBody] RefreshTokenCommand command)
+    {
+        var result = await _mediator.Send(command);
+        return Ok(result);
+    }
+
 }

@@ -3,14 +3,16 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using ShoppingProject.Core.UserAggregate;
+using ShoppingProject.Core.SecurityAggregate;
+using System.Security.Cryptography;
 using ShoppingProject.UseCases.Users.Interfaces;
-
 
 namespace ShoppingProject.Infrastructure.Auth
 {
     public class TokenService : ITokenService
     {
         private readonly IConfiguration _config;
+        private static readonly Dictionary<string, Guid> _refreshTokens = new();
 
         public TokenService(IConfiguration config)
         {
@@ -38,11 +40,32 @@ namespace ShoppingProject.Infrastructure.Auth
             return ValueTask.FromResult(new JwtSecurityTokenHandler().WriteToken(token));
         }
 
-        public ValueTask<string> CreateRefreshToken(ApplicationUser user, CancellationToken cancellationToken)
-        {
-            // Basic refresh token generation logic
-            var refreshToken = Guid.NewGuid().ToString("N");
-            return ValueTask.FromResult(refreshToken);
+    public ValueTask<string> CreateRefreshToken(ApplicationUser user, CancellationToken cancellationToken)
+    {
+    
+      var randomBytes = new byte[64]; 
+      using var rng = RandomNumberGenerator.Create(); 
+      rng.GetBytes(randomBytes); 
+      var refreshToken = Convert.ToBase64String(randomBytes); 
+      var tokenEntity = new RefreshToken { 
+            UserId = user.Id,
+            Token = refreshToken,
+            ExpiresAt = DateTime.UtcNow.AddDays( int.Parse(_config["Jwt:RefreshTokenLifetimeDays"] ?? "7")) 
+        }; 
+         _refreshTokens[refreshToken] = user.Id;
+
+        // TODO: DB’ye kaydet (örnek: EF repository)
+        // _dbContext.RefreshTokens.Add(tokenEntity);
+        // await _dbContext.SaveChangesAsync(cancellationToken);
+
+        return ValueTask.FromResult(refreshToken);
+    }
+
+        public ValueTask<Guid> ValidateRefreshToken(string refreshToken, CancellationToken cancellationToken) { 
+            if (_refreshTokens.TryGetValue(refreshToken, out var userId)) { 
+                return ValueTask.FromResult(userId); 
+            } 
+            return ValueTask.FromResult(Guid.Empty); 
         }
     }
 }

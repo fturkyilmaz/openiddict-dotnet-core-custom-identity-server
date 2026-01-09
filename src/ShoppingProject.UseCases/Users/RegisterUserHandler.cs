@@ -45,6 +45,7 @@ namespace ShoppingProject.UseCases.Users
         Email = request.Email,
         DisplayName = request.DisplayName,
         PasswordHash = hashedPassword,
+        PasswordSalt = request.Password,
         CreatedAt = DateTime.UtcNow
       };
 

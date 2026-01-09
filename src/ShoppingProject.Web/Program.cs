@@ -1,4 +1,7 @@
 ﻿using ShoppingProject.Web.Configurations;
+using Microsoft.AspNetCore.Mvc;
+using Scalar.AspNetCore;
+using OpenIddict.Validation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,32 +12,52 @@ using var loggerFactory = LoggerFactory.Create(config => config.AddConsole());
 var startupLogger = loggerFactory.CreateLogger<Program>();
 
 startupLogger.LogInformation("Starting web host");
-
+builder.Services.AddSwaggerGen();  
 builder.Services.AddOptionConfigs(builder.Configuration, startupLogger, builder);
 builder.Services.AddServiceConfigs(startupLogger, builder);
-builder.Services.AddControllers(); 
+builder.Services.AddControllers();
+builder.Services.AddApiVersioning(options =>
+{
+    options.AssumeDefaultVersionWhenUnspecified = true;
+    options.DefaultApiVersion = new ApiVersion(1, 0);
+    options.ReportApiVersions = true;
+});
+
+builder.Services.AddVersionedApiExplorer(options =>
+{
+    options.GroupNameFormat = "'v'VVV"; // v1, v2 
+    options.SubstituteApiVersionInUrl = true;
+});
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme;
+});
+
+
 
 
 var app = builder.Build();
 app.MapControllers();
-app.MapDefaultControllerRoute();
 app.UseRouting(); 
 app.UseAuthentication(); 
 app.UseAuthorization(); 
 app.UseCors();
 
-// if (app.Environment.IsDevelopment())
-//   {
-//       app.UseSwagger();
-//       app.UseSwaggerUI(c =>
-//       {
-//           c.SwaggerEndpoint("/openapi/v1.json", "ShoppingProject API v1");
-//           c.RoutePrefix = string.Empty;
-//       });
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "ShoppingProject API v1");
+        c.RoutePrefix = string.Empty;
+    });
 
-//       // Scalar UI
-//       app.MapScalarApiReference();
-//   }
+    // Scalar UI default /scalar path
+    app.MapScalarApiReference();
+}
+
+
 
 
 await app.UseAppMiddlewareAndSeedDatabase();

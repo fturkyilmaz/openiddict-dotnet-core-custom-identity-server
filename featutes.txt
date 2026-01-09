@@ -1,9 +1,3 @@
-# OpenId flow design with refresh, grant types, consent, and client secrets
-
-İyi ki söyledin Furkan. Aşağıda OpenIddict tabanlı tam akışı; Authorization Code + PKCE, Client Credentials, Refresh Token, Revoke ve Consent adımlarını netleştirdim. Her bir akışın endpoint’leri, veri modelleri, konfigürasyonu ve önerilen repository/service yapısı var. Sonunda hazır bir commit mesajı da ekledim.
-
----
-
 ## Grant types and endpoints
 
 - **Authorization Code + PKCE (public SPA/native apps)**
