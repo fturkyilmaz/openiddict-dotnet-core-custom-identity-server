@@ -1,5 +1,4 @@
 using System.Security.Claims;
-using Mediator;
 using ShoppingProject.Core.UserAggregate;
 using ShoppingProject.UseCases.Users.Interfaces;
 using ShoppingProject.UseCases.Users.Specifications;
@@ -115,6 +114,20 @@ namespace ShoppingProject.UseCases.Users
             return new LoginResultDto(user.Id, newAccessToken, newRefreshToken);
         }
     }
+
+    public record LogoutEverywhereCommand(string UserId) : IRequest<Unit>;
+    public class LogoutEverywhereHandler : IRequestHandler<LogoutEverywhereCommand, Unit> { 
+        private readonly ITokenService _tokenService; 
+        
+        public LogoutEverywhereHandler(ITokenService tokenService) {
+            _tokenService = tokenService; 
+        } 
+        public async ValueTask<Unit> Handle(LogoutEverywhereCommand request, CancellationToken cancellationToken) { 
+            await _tokenService.LogoutEverywhereAsync(Guid.Parse(request.UserId), cancellationToken); 
+            return Unit.Value; 
+        } 
+    }
+
 }
 
 

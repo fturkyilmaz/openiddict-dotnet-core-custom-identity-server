@@ -55,4 +55,12 @@ public class AuthorizationController : ControllerBase
         return Ok(result);
     }
 
+    [HttpPost("logout-everywhere")] 
+    [Authorize] 
+    public async Task<IActionResult> LogoutEverywhere(string userId) 
+    { 
+        await _mediator.Send(new LogoutEverywhereCommand(userId)); 
+        return Ok(new { message = "Tüm cihazlardan başarıyla çıkış yapıldı." }); 
+    }
+
 }

@@ -46,6 +46,7 @@ public static class InfrastructureServiceExtensions
     .AddServer(options =>
     {
         options.SetTokenEndpointUris("auth/token");
+        options.SetRevocationEndpointUris("auth/revoke");
         options.AllowPasswordFlow();
         options.AllowRefreshTokenFlow();
         options.AllowClientCredentialsFlow();

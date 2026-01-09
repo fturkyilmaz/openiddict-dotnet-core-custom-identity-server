@@ -1512,3 +1512,62 @@ LIMIT 1
 2026-01-09 17:15:49.925 +03:00 [INF] Executed action ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web) in 4.9296ms
 2026-01-09 17:15:49.925 +03:00 [INF] Executed endpoint 'ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web)'
 2026-01-09 17:15:49.925 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 200 null application/json; charset=utf-8 12.6503ms
+2026-01-09 20:33:38.257 +03:00 [INF] Applying database migrations...
+2026-01-09 20:33:38.627 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-01-09 20:33:38.648 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2026-01-09 20:33:38.651 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2026-01-09 17:33:38.650809+00:00');
+SELECT changes();
+2026-01-09 20:33:38.677 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2026-01-09 20:33:38.682 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2026-01-09 20:33:38.684 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-01-09 20:33:38.687 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-01-09 20:33:38.688 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2026-01-09 20:33:38.689 +03:00 [INF] Database migrations applied successfully
+2026-01-09 20:33:38.690 +03:00 [INF] Seeding database...
+2026-01-09 20:33:38.791 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2026-01-09 20:33:38.795 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS "u")
+2026-01-09 20:33:38.798 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Clients" AS "c")
+2026-01-09 20:33:38.801 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Scopes" AS "s")
+2026-01-09 20:33:38.802 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Roles" AS "r")
+2026-01-09 20:33:38.843 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@name='?' (Size = 3)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ConcurrencyToken", "o"."Description", "o"."Descriptions", "o"."DisplayName", "o"."DisplayNames", "o"."Name", "o"."Properties", "o"."Resources"
+FROM "OpenIddictScopes" AS "o"
+WHERE "o"."Name" = @name
+LIMIT 1
+2026-01-09 20:33:38.871 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-09 20:33:38.889 +03:00 [INF] Database seeded successfully
+2026-01-09 20:33:38.894 +03:00 [INF] User profile is available. Using '/Users/fturkyilmaz/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-01-09 20:33:39.156 +03:00 [INF] Now listening on: https://localhost:57679
+2026-01-09 20:33:39.156 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-01-09 20:33:39.156 +03:00 [INF] Hosting environment: Development
+2026-01-09 20:33:39.156 +03:00 [INF] Content root path: /Users/fturkyilmaz/Documents/ShoppingProject/src/ShoppingProject.Web
