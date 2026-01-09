@@ -20,8 +20,6 @@ Value Objects should be immutable and should implement equality based on their p
 
 Value Objects help eliminate primitive obsession in your Entities.
 
-Follow Parse, Don't Validate principle. https://www.youtube.com/watch?v=KQVy0CaB7ds
-
 For mutable access, Aggregates should be accessed through a Repository interface.
 
 Read-only ad hoc queries can use separate Query Services that don't use the Domain Model.

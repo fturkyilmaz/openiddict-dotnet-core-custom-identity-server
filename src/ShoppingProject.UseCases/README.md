@@ -13,10 +13,4 @@ Queries fetch data but do not mutate state. Commands mutate state but do not ret
 Having Use Cases as a separate project can reduce the amount of logic in UI and Infrastructure projects.
 
 Using Use Case handlers combined with behavior can consolidate cross-cutting concerns like logging, validation, and error handling.
-See: https://www.youtube.com/watch?v=vagyJdrWLr0
 
-Need help? Check out the sample here:
-https://github.com/ardalis/CleanArchitecture/tree/main/sample
-
-Still need help?
-Contact us at https://nimblepros.com

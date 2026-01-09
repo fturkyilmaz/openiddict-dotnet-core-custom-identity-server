@@ -21,8 +21,3 @@ This project supports both **SQL Server** and **SQLite**:
 
 The `InfrastructureServiceExtensions.AddInfrastructureServices()` method automatically detects which connection string is available and configures the appropriate database provider.
 
-Need help? Check out the larger sample here:
-https://github.com/ardalis/CleanArchitecture/tree/main/sample
-
-Still need help?
-Contact us at https://nimblepros.com

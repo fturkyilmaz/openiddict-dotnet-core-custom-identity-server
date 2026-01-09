@@ -20,21 +20,13 @@ Amaç, modern uygulamalarda **loosely-coupled**, **DDD uyumlu** ve **SOLID prens
 
 ## 📦 Başlangıç
 
-### 1. Template Kurulumu
+### 1. Proje Kurulumu
 ```bash
-dotnet new install Ardalis.CleanArchitecture.Template
-dotnet new clean-arch -o AuthProject
+dotnet new webapi -o AuthProject
 cd AuthProject
 ```
 
-### 2. OpenIddict Paketleri
-```bash
-dotnet add AuthProject.Infrastructure package OpenIddict.AspNetCore
-dotnet add AuthProject.Infrastructure package OpenIddict.EntityFrameworkCore
-dotnet add AuthProject.Infrastructure package Microsoft.AspNetCore.Identity.EntityFrameworkCore
-```
-
-### 3. DbContext Entegrasyonu
+### 2. DbContext Entegrasyonu
 📂 `Infrastructure/AppDbContext.cs`
 ```csharp
 public class AppDbContext : IdentityDbContext<ApplicationUser>
