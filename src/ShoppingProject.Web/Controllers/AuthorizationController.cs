@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingProject.UseCases.Users;
+using System.Security.Claims; 
+using OpenIddict.Abstractions;
 
 namespace ShoppingProject.Web.Controllers;
 
@@ -43,7 +45,9 @@ public class AuthorizationController : ControllerBase
     [Authorize]
     public async Task<IActionResult> Me()
     {
-        var result = await _mediator.Send(new MeQuery(User));
+      var userId = User.FindFirstValue(OpenIddictConstants.Claims.Subject); 
+      if (string.IsNullOrEmpty(userId)) return Unauthorized();
+        var result = await _mediator.Send(new MeQuery(userId));
         return Ok(result);
     }
 
@@ -61,6 +65,62 @@ public class AuthorizationController : ControllerBase
     { 
         await _mediator.Send(new LogoutEverywhereCommand(userId)); 
         return Ok(new { message = "Tüm cihazlardan başarıyla çıkış yapıldı." }); 
+    }
+
+    // Şifre değiştirme 
+    [HttpPost("change-password")] 
+    [Authorize] 
+    public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordCommand command) { 
+        await _mediator.Send(command); 
+        return Ok(new { message = "Şifre başarıyla değiştirildi." }); 
+    } 
+    
+    // Şifre sıfırlama link/token üretme 
+    [HttpPost("forgot-password")] 
+    [AllowAnonymous] 
+    public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordCommand command) { 
+        await _mediator.Send(command); 
+        return Ok(new { message = "Şifre sıfırlama linki/tokeni gönderildi." }); 
+    } 
+    
+    // Reset token ile yeni şifre belirleme 
+    [HttpPost("reset-password")] 
+    [AllowAnonymous] 
+    public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordCommand command) { 
+        await _mediator.Send(command); 
+        return Ok(new { message = "Şifre başarıyla sıfırlandı." }); 
+    } 
+    
+    // E‑mail doğrulama 
+    [HttpPost("verify-email")] 
+    [AllowAnonymous] 
+    public async Task<IActionResult> VerifyEmail([FromBody] VerifyEmailCommand command) { 
+        await _mediator.Send(command); 
+        return Ok(new { message = "E‑mail doğrulandı." }); 
+    } 
+    
+    // Doğrulama mailini tekrar gönderme 
+    [HttpPost("resend-verification")] 
+    [AllowAnonymous] 
+    public async Task<IActionResult> ResendVerification([FromBody] ResendVerificationCommand command) { 
+        await _mediator.Send(command); 
+        return Ok(new { message = "Doğrulama maili tekrar gönderildi." }); 
+    } 
+    
+    // İki faktörlü kimlik doğrulamayı aktif etme 
+    [HttpPost("enable-2fa")] 
+    [Authorize] 
+    public async Task<IActionResult> Enable2FA([FromBody] Enable2FACommand command) { 
+        await _mediator.Send(command); 
+        return Ok(new { message = "İki faktörlü kimlik doğrulama aktif edildi." }); 
+    } 
+    
+    // İki faktörlü kimlik doğrulamayı devre dışı bırakma 
+    [HttpPost("disable-2fa")] 
+    [Authorize] 
+    public async Task<IActionResult> Disable2FA([FromBody] Disable2FACommand command) { 
+        await _mediator.Send(command); 
+        return Ok(new { message = "İki faktörlü kimlik doğrulama devre dışı bırakıldı." }); 
     }
 
 }

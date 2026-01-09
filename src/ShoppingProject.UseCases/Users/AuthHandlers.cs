@@ -2,24 +2,37 @@ using System.Security.Claims;
 using ShoppingProject.Core.UserAggregate;
 using ShoppingProject.UseCases.Users.Interfaces;
 using ShoppingProject.UseCases.Users.Specifications;
+using ShoppingProject.Core.Interfaces;
 
 namespace ShoppingProject.UseCases.Users
 {
     // Query: Me (returns current user info)
-    public record MeQuery(ClaimsPrincipal Principal) : IRequest<UserInfoDto>;
+    public record MeQuery(string UserId) : IRequest<MeDto>;
 
-    public record UserInfoDto(Guid UserId, string Email, IEnumerable<string> Roles);
+    public record MeDto(Guid Id, string UserName, string Email, bool EmailVerified, bool TwoFactorEnabled);
 
-    public class MeHandler : IRequestHandler<MeQuery, UserInfoDto>
+    public class MeQueryHandler : IRequestHandler<MeQuery, MeDto>
     {
-        public ValueTask<UserInfoDto> Handle(MeQuery request, CancellationToken cancellationToken)
-        {
-            var userId = Guid.Parse(request.Principal.FindFirst(ClaimTypes.NameIdentifier)!.Value);
-            var email = request.Principal.FindFirst(ClaimTypes.Email)!.Value;
-            var roles = request.Principal.FindAll(ClaimTypes.Role).Select(r => r.Value);
+        private readonly IRepository<ApplicationUser> _userRepository;
 
-            var dto = new UserInfoDto(userId, email, roles);
-            return ValueTask.FromResult(dto);
+        public MeQueryHandler(IRepository<ApplicationUser> userRepository)
+        {
+            _userRepository = userRepository;
+        }
+
+        public async ValueTask<MeDto> Handle(MeQuery request, CancellationToken cancellationToken)
+        {
+            var user = await _userRepository.GetByIdAsync(Guid.Parse(request.UserId), cancellationToken);
+            if (user == null)
+                throw new UnauthorizedAccessException("Kullanıcı bulunamadı.");
+
+            return new MeDto(
+                user.Id,
+                user.UserName,
+                user.Email,
+                true,
+                true
+            );
         }
     }
 
@@ -55,6 +68,17 @@ namespace ShoppingProject.UseCases.Users
 
             if (!_passwordHasher.VerifyHashedPassword(user.PasswordHash, request.Password))
                 throw new InvalidOperationException($"Invalid credentials , please try again {request.Email} {request.Password} {user.PasswordHash}");
+
+            var claims = new List<Claim>
+            {
+                new(OpenIddictConstants.Claims.Subject, user.Id.ToString()),
+                new(OpenIddictConstants.Claims.Email, user.Email),
+                new(OpenIddictConstants.Claims.Name, user.Email)
+            };
+
+            var identity = new ClaimsIdentity(
+                claims,
+                OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
 
             var accessToken = await _tokenService.CreateAccessToken(user, cancellationToken);
             var refreshToken = await _tokenService.CreateRefreshToken(user, cancellationToken);
@@ -127,6 +151,117 @@ namespace ShoppingProject.UseCases.Users
             return Unit.Value; 
         } 
     }
+
+    public record ChangePasswordCommand(string UserId, string CurrentPassword, string NewPassword) : IRequest<Unit>; 
+    public class ChangePasswordHandler : IRequestHandler<ChangePasswordCommand, Unit> { 
+        private readonly  IRepository<ApplicationUser> _userRepository; 
+        public ChangePasswordHandler( IRepository<ApplicationUser> userRepository) { 
+            _userRepository = userRepository; 
+        } 
+        public async ValueTask<Unit> Handle(ChangePasswordCommand request, CancellationToken cancellationToken) { 
+            var user = await _userRepository.GetByIdAsync(Guid.Parse(request.UserId), cancellationToken); 
+            if (user == null ) throw new UnauthorizedAccessException("Kullanıcı bulunamadı"); 
+            await _userRepository.UpdateAsync(user, cancellationToken); 
+            return Unit.Value; 
+        } 
+    }
+
+    public record ForgotPasswordCommand(string Email) : IRequest<Unit>; 
+    public class ForgotPasswordHandler : IRequestHandler<ForgotPasswordCommand, Unit> { 
+        private readonly  IRepository<ApplicationUser> _userRepository; 
+        public ForgotPasswordHandler( IRepository<ApplicationUser> userRepository) { _userRepository = userRepository; } 
+        public async ValueTask<Unit> Handle(ForgotPasswordCommand request, CancellationToken cancellationToken) { 
+               var user = await _userRepository.FirstOrDefaultAsync(
+                new UserByEmailSpec(request.Email), cancellationToken);
+
+            if (user == null) throw new UnauthorizedAccessException("Kullanıcı bulunamadı."); 
+            await _userRepository.UpdateAsync(user, cancellationToken); 
+            return Unit.Value; 
+        } 
+    }
+
+    public record ResetPasswordCommand(string Email, string ResetToken, string NewPassword) : IRequest<Unit>; 
+    public class ResetPasswordHandler : IRequestHandler<ResetPasswordCommand, Unit> { 
+        private readonly  IRepository<ApplicationUser> _userRepository; 
+        public ResetPasswordHandler( 
+            IRepository<ApplicationUser> userRepository) { 
+            _userRepository = userRepository; 
+        } 
+
+        public async ValueTask<Unit> Handle(ResetPasswordCommand request, CancellationToken cancellationToken) { 
+              var user = await _userRepository.FirstOrDefaultAsync(
+                new UserByEmailSpec(request.Email), cancellationToken);
+
+            if (user == null) throw new UnauthorizedAccessException("Kullanıcı bulunamadı."); 
+            await _userRepository.UpdateAsync(user, cancellationToken); 
+            return Unit.Value; 
+        } 
+    }
+
+    public record VerifyEmailCommand(string UserId, string VerificationCode) : IRequest<Unit>; 
+    public class VerifyEmailHandler : IRequestHandler<VerifyEmailCommand, Unit> { 
+        private readonly  IRepository<ApplicationUser> _userRepository; 
+        public VerifyEmailHandler( IRepository<ApplicationUser> userRepository) { _userRepository = userRepository; } 
+        public async ValueTask<Unit> Handle(VerifyEmailCommand request, CancellationToken cancellationToken) { 
+            var user = await _userRepository.GetByIdAsync(Guid.Parse(request.UserId), cancellationToken); 
+            if (user == null ) throw new UnauthorizedAccessException("Kullanıcı bulunamadı."); 
+            await _userRepository.UpdateAsync(user, cancellationToken); 
+            return Unit.Value; 
+        } 
+    }
+
+    public record ResendVerificationCommand(string Email) : IRequest<Unit>;
+
+public class ResendVerificationHandler : IRequestHandler<ResendVerificationCommand, Unit>
+{
+    private readonly  IRepository<ApplicationUser> _userRepository;
+    private readonly IEmailSender _emailService;
+
+    public ResendVerificationHandler( IRepository<ApplicationUser> userRepository, IEmailSender emailService)
+    {
+        _userRepository = userRepository;
+        _emailService = emailService;
+    }
+
+    public async ValueTask<Unit> Handle(ResendVerificationCommand request, CancellationToken cancellationToken)
+    {
+          var user = await _userRepository.FirstOrDefaultAsync(
+                new UserByEmailSpec(request.Email), cancellationToken);
+
+        if (user == null)
+            return Unit.Value;
+
+        var code = Guid.NewGuid().ToString("N");
+        await _userRepository.UpdateAsync(user, cancellationToken);
+
+        await _emailService.SendEmailAsync(user.Email,"Test", "Email doğrulama", $"Doğrulama kodunuz: {code}");
+
+        return Unit.Value;
+    }
+}
+
+public record Enable2FACommand(string UserId) : IRequest<Unit>; 
+public record Disable2FACommand(string UserId) : IRequest<Unit>; 
+public class Enable2FAHandler : IRequestHandler<Enable2FACommand, Unit> { 
+    private readonly  IRepository<ApplicationUser> _userRepository; 
+    public Enable2FAHandler( IRepository<ApplicationUser> userRepository) { _userRepository = userRepository; } 
+    public async ValueTask<Unit> Handle(Enable2FACommand request, CancellationToken cancellationToken) { 
+        var user = await _userRepository.GetByIdAsync(Guid.Parse(request.UserId), cancellationToken); 
+        if (user == null) throw new UnauthorizedAccessException("Kullanıcı bulunamadı."); 
+        await _userRepository.UpdateAsync(user, cancellationToken); 
+        return Unit.Value; 
+    } 
+} 
+public class Disable2FAHandler : IRequestHandler<Disable2FACommand, Unit> { 
+    private readonly  IRepository<ApplicationUser> _userRepository; 
+    public Disable2FAHandler( IRepository<ApplicationUser> userRepository) { _userRepository = userRepository; } 
+    public async ValueTask<Unit> Handle(Disable2FACommand request, CancellationToken cancellationToken) { 
+        var user = await _userRepository.GetByIdAsync(Guid.Parse(request.UserId), cancellationToken); 
+        if (user == null) throw new UnauthorizedAccessException("Kullanıcı bulunamadı."); 
+        await _userRepository.UpdateAsync(user, cancellationToken); 
+        return Unit.Value; 
+    } 
+}
 
 }
 

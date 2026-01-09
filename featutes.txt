@@ -1,5 +1,34 @@
 ## Grant types and endpoints
 
+# Gelecekte Lazım Olacak Auth Endpointleri
+
+## 🔑 Kullanıcı Güvenliği ve Yönetimi
+
+### Şifre İşlemleri
+- **POST /auth/change-password**  
+  → Kullanıcının mevcut şifresini değiştirir.
+
+- **POST /auth/forgot-password**  
+  → Şifre sıfırlama linki veya token üretir.
+
+- **POST /auth/reset-password**  
+  → Reset token ile yeni şifre belirler.
+
+### E‑mail Doğrulama
+- **POST /auth/verify-email**  
+  → Kullanıcının e‑mail adresini doğrular.
+
+- **POST /auth/resend-verification**  
+  → Doğrulama mailini tekrar gönderir.
+
+### İki Faktörlü Kimlik Doğrulama (2FA)
+- **POST /auth/enable-2fa**  
+  → Kullanıcı için iki faktörlü kimlik doğrulamayı aktif eder.
+
+- **POST /auth/disable-2fa**  
+  → Kullanıcı için iki faktörlü kimlik doğrulamayı devre dışı bırakır.
+
+
 - **Authorization Code + PKCE (public SPA/native apps)**
   - **Endpoints:**
     - **GET /connect/authorize**: authorization request (scope, client_id, redirect_uri, response_type=code, code_challenge)
