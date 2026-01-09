@@ -20,12 +20,15 @@ public class AuthorizationController : ControllerBase
         return Created("/auth/register", new { user_id = id, command.UserName, command.Email });
     }
 
-    [HttpPost("token")]
-    [AllowAnonymous]
-    public async Task<IActionResult> Token([FromBody] LoginUserCommand command)
-    {
-        var result = await _mediator.Send(command);
-        return Ok(result);
+    [HttpPost("token")] 
+    [AllowAnonymous] 
+    [Consumes("application/x-www-form-urlencoded")] 
+    public async Task<IActionResult> Token([FromForm] string username, [FromForm] string password) 
+    { 
+        var command = new LoginUserCommand(username, password); 
+        var result = await _mediator.Send(command); 
+        
+        return Ok(result); 
     }
 
     [HttpPost("revoke")]

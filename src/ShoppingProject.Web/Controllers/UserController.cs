@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShoppingProject.Infrastructure.Data;
-using ShoppingProject.Infrastructure.Common;
+using ShoppingProject.Infrastructure.Auth;
 using ShoppingProject.Core.UserAggregate;
 
 namespace ShoppingProject.WebApi.Controllers;
@@ -17,7 +17,7 @@ public class UsersController : ControllerBase
     public UsersController(AppDbContext db) => _db = db;
 
     [HttpGet]
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public async Task<IActionResult> GetAll()
     {
         var users = await _db.Users

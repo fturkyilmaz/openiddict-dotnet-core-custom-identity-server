@@ -2,7 +2,7 @@
 using ShoppingProject.Core.ContributorAggregate;
 using ShoppingProject.Core.UserAggregate;
 using ShoppingProject.Core.OpenIdAggregate;
-using ShoppingProject.Infrastructure.Common;
+using ShoppingProject.Infrastructure.Auth;
 using OpenIddict.Abstractions;
 
 namespace ShoppingProject.Infrastructure.Data;
@@ -31,7 +31,8 @@ public static class SeedData
 
         if (!dbContext.Users.Any())
         {
-            var (salt, hash) = PasswordHasher.Hash("Password123!");
+            var passwordHasher = new PasswordHasher();
+            var hash = passwordHasher.HashPassword("Password123!");
 
             dbContext.Users.Add(new ApplicationUser
             {
@@ -39,7 +40,6 @@ public static class SeedData
                 UserName = "admin",
                 Email = "admin@test.com",
                 DisplayName = "Administrator",
-                PasswordSalt = salt,
                 PasswordHash = hash
             });
         }

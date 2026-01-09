@@ -24,6 +24,7 @@ namespace ShoppingProject.UseCases.Users
         }
     }
 
+
     // Command: Login
     public record LoginUserCommand(string Email, string Password) : IRequest<LoginResultDto>;
 
@@ -54,7 +55,7 @@ namespace ShoppingProject.UseCases.Users
                 throw new InvalidOperationException("User not found");
 
             if (!_passwordHasher.VerifyHashedPassword(user.PasswordHash, request.Password))
-                throw new InvalidOperationException("Invalid credentials");
+                throw new InvalidOperationException($"Invalid credentials , please try again {request.Email} {request.Password} {user.PasswordHash}");
 
             var accessToken = await _tokenService.CreateAccessToken(user, cancellationToken);
             var refreshToken = await _tokenService.CreateRefreshToken(user, cancellationToken);

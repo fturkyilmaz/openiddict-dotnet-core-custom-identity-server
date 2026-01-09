@@ -6,20 +6,25 @@ namespace ShoppingProject.Infrastructure.Auth
 {
     public class PasswordHasher : IPasswordHasher
     {
+        private const int SaltSize = 16;   // 128 bit
+        private const int KeySize = 32;    // 256 bit
+        private const int Iterations = 10000;
+
         public string HashPassword(string password)
         {
             // Salt üret
-            byte[] salt = RandomNumberGenerator.GetBytes(128 / 8);
+            byte[] salt = RandomNumberGenerator.GetBytes(SaltSize);
 
             // PBKDF2 ile hashle
-            string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+            byte[] hash = KeyDerivation.Pbkdf2(
                 password: password,
                 salt: salt,
                 prf: KeyDerivationPrf.HMACSHA256,
-                iterationCount: 10000,
-                numBytesRequested: 256 / 8));
+                iterationCount: Iterations,
+                numBytesRequested: KeySize);
 
-            return $"{Convert.ToBase64String(salt)}.{hashed}";
+            // salt.hash formatında sakla
+            return $"{Convert.ToBase64String(salt)}.{Convert.ToBase64String(hash)}";
         }
 
         public bool VerifyHashedPassword(string hashedPassword, string providedPassword)
@@ -28,16 +33,17 @@ namespace ShoppingProject.Infrastructure.Auth
             if (parts.Length != 2) return false;
 
             var salt = Convert.FromBase64String(parts[0]);
-            var expectedHash = parts[1];
+            var expectedHash = Convert.FromBase64String(parts[1]);
 
-            string providedHash = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+            byte[] providedHash = KeyDerivation.Pbkdf2(
                 password: providedPassword,
                 salt: salt,
                 prf: KeyDerivationPrf.HMACSHA256,
-                iterationCount: 10000,
-                numBytesRequested: 256 / 8));
+                iterationCount: Iterations,
+                numBytesRequested: KeySize);
 
-            return expectedHash == providedHash;
+            // Güvenli karşılaştırma
+            return CryptographicOperations.FixedTimeEquals(expectedHash, providedHash);
         }
     }
 }

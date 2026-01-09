@@ -45,7 +45,7 @@ public static class InfrastructureServiceExtensions
     .AddCore(options => { options.UseEntityFrameworkCore() .UseDbContext<AppDbContext>(); })
     .AddServer(options =>
     {
-        options.SetTokenEndpointUris("connect/token");
+        options.SetTokenEndpointUris("auth/token");
         options.AllowPasswordFlow();
         options.AllowRefreshTokenFlow();
         options.AllowClientCredentialsFlow();
