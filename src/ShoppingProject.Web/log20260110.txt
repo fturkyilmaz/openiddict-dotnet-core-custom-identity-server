@@ -1,0 +1,1091 @@
+2026-01-10 09:29:19.509 +03:00 [INF] Applying database migrations...
+2026-01-10 09:29:19.907 +03:00 [ERR] An error occurred migrating the DB. An error was generated for warning 'Microsoft.EntityFrameworkCore.Migrations.PendingModelChangesWarning': The model for context 'AppDbContext' has pending changes. Add a new migration before updating the database. See https://aka.ms/efcore-docs-pending-changes. This exception can be suppressed or logged by passing event ID 'RelationalEventId.PendingModelChangesWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+System.InvalidOperationException: An error was generated for warning 'Microsoft.EntityFrameworkCore.Migrations.PendingModelChangesWarning': The model for context 'AppDbContext' has pending changes. Add a new migration before updating the database. See https://aka.ms/efcore-docs-pending-changes. This exception can be suppressed or logged by passing event ID 'RelationalEventId.PendingModelChangesWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+   at Microsoft.EntityFrameworkCore.Diagnostics.EventDefinition`1.Log[TLoggerCategory](IDiagnosticsLogger`1 logger, TParam arg)
+   at Microsoft.EntityFrameworkCore.Diagnostics.RelationalLoggerExtensions.PendingModelChangesWarning(IDiagnosticsLogger`1 diagnostics, Type contextType)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.ValidateMigrations(Boolean useTransaction, String targetMigration)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at ShoppingProject.Web.Configurations.MiddlewareConfig.MigrateDatabaseAsync(WebApplication app) in /Users/fturkyilmaz/Documents/ShoppingProject/src/ShoppingProject.Web/Configurations/MiddlewareConfig.cs:line 52
+2026-01-10 09:30:28.152 +03:00 [INF] Applying database migrations...
+2026-01-10 09:30:28.545 +03:00 [ERR] An error occurred migrating the DB. An error was generated for warning 'Microsoft.EntityFrameworkCore.Migrations.PendingModelChangesWarning': The model for context 'AppDbContext' has pending changes. Add a new migration before updating the database. See https://aka.ms/efcore-docs-pending-changes. This exception can be suppressed or logged by passing event ID 'RelationalEventId.PendingModelChangesWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+System.InvalidOperationException: An error was generated for warning 'Microsoft.EntityFrameworkCore.Migrations.PendingModelChangesWarning': The model for context 'AppDbContext' has pending changes. Add a new migration before updating the database. See https://aka.ms/efcore-docs-pending-changes. This exception can be suppressed or logged by passing event ID 'RelationalEventId.PendingModelChangesWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+   at Microsoft.EntityFrameworkCore.Diagnostics.EventDefinition`1.Log[TLoggerCategory](IDiagnosticsLogger`1 logger, TParam arg)
+   at Microsoft.EntityFrameworkCore.Diagnostics.RelationalLoggerExtensions.PendingModelChangesWarning(IDiagnosticsLogger`1 diagnostics, Type contextType)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.ValidateMigrations(Boolean useTransaction, String targetMigration)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at ShoppingProject.Web.Configurations.MiddlewareConfig.MigrateDatabaseAsync(WebApplication app) in /Users/fturkyilmaz/Documents/ShoppingProject/src/ShoppingProject.Web/Configurations/MiddlewareConfig.cs:line 52
+2026-01-10 09:31:10.014 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-01-10 09:31:10.051 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2026-01-10 09:31:10.055 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2026-01-10 06:31:10.053747+00:00');
+SELECT changes();
+2026-01-10 09:31:10.082 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2026-01-10 09:31:10.085 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2026-01-10 09:31:10.086 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-01-10 09:31:10.092 +03:00 [INF] Applying migration '20260110063107_AutoMigration_20260110093100'.
+2026-01-10 09:31:10.105 +03:00 [WRN] The migration operation 'PRAGMA foreign_keys = 0;
+' from migration 'AutoMigration_20260110093100' cannot be executed in a transaction. If the app is terminated or an unrecoverable error occurs while this operation is being executed then the migration will be left in a partially applied state and would need to be reverted manually before it can be applied again. Create a separate migration that contains just this operation.
+2026-01-10 09:31:10.106 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP TABLE "Tokens";
+2026-01-10 09:31:10.106 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "Contributors" RENAME TO "Contributor";
+2026-01-10 09:31:10.107 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "ef_temp_Contributor" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Contributor" PRIMARY KEY,
+    "Name" TEXT NOT NULL,
+    "PhoneNumber_CountryCode" TEXT NULL,
+    "PhoneNumber_Extension" TEXT NULL,
+    "PhoneNumber_Number" TEXT NULL,
+    "Status" INTEGER NOT NULL
+);
+2026-01-10 09:31:10.107 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ef_temp_Contributor" ("Id", "Name", "PhoneNumber_CountryCode", "PhoneNumber_Extension", "PhoneNumber_Number", "Status")
+SELECT "Id", "Name", "PhoneNumber_CountryCode", "PhoneNumber_Extension", "PhoneNumber_Number", "Status"
+FROM "Contributor";
+2026-01-10 09:31:10.107 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+PRAGMA foreign_keys = 0;
+2026-01-10 09:31:10.108 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP TABLE "Contributor";
+2026-01-10 09:31:10.108 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "ef_temp_Contributor" RENAME TO "Contributor";
+2026-01-10 09:31:10.108 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+PRAGMA foreign_keys = 1;
+2026-01-10 09:31:10.109 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20260110063107_AutoMigration_20260110093100', '10.0.1');
+2026-01-10 09:31:10.109 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2026-01-10 09:31:39.033 +03:00 [INF] Applying database migrations...
+2026-01-10 09:31:39.427 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-01-10 09:31:39.449 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2026-01-10 09:31:39.453 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2026-01-10 06:31:39.451892+00:00');
+SELECT changes();
+2026-01-10 09:31:39.478 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2026-01-10 09:31:39.483 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2026-01-10 09:31:39.485 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-01-10 09:31:39.488 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-01-10 09:31:39.489 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2026-01-10 09:31:39.490 +03:00 [INF] Database migrations applied successfully
+2026-01-10 09:31:39.491 +03:00 [INF] Seeding database...
+2026-01-10 09:31:39.598 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS "u")
+2026-01-10 09:31:39.602 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Clients" AS "c")
+2026-01-10 09:31:39.603 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Scopes" AS "s")
+2026-01-10 09:31:39.604 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Roles" AS "r")
+2026-01-10 09:31:39.645 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@name='?' (Size = 3)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ConcurrencyToken", "o"."Description", "o"."Descriptions", "o"."DisplayName", "o"."DisplayNames", "o"."Name", "o"."Properties", "o"."Resources"
+FROM "OpenIddictScopes" AS "o"
+WHERE "o"."Name" = @name
+LIMIT 1
+2026-01-10 09:31:39.677 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 09:31:39.694 +03:00 [INF] Database seeded successfully
+2026-01-10 09:31:39.700 +03:00 [INF] User profile is available. Using '/Users/fturkyilmaz/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-01-10 09:31:39.971 +03:00 [INF] Now listening on: https://localhost:57679
+2026-01-10 09:31:39.972 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-01-10 09:31:39.972 +03:00 [INF] Hosting environment: Development
+2026-01-10 09:31:39.972 +03:00 [INF] Content root path: /Users/fturkyilmaz/Documents/ShoppingProject/src/ShoppingProject.Web
+2026-01-10 09:33:09.286 +03:00 [INF] Application is shutting down...
+2026-01-10 09:33:12.155 +03:00 [INF] Applying database migrations...
+2026-01-10 09:33:12.536 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-01-10 09:33:12.555 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2026-01-10 09:33:12.559 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2026-01-10 06:33:12.558127+00:00');
+SELECT changes();
+2026-01-10 09:33:12.586 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2026-01-10 09:33:12.592 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2026-01-10 09:33:12.594 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-01-10 09:33:12.597 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-01-10 09:33:12.598 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2026-01-10 09:33:12.600 +03:00 [INF] Database migrations applied successfully
+2026-01-10 09:33:12.601 +03:00 [INF] Seeding database...
+2026-01-10 09:33:12.708 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS "u")
+2026-01-10 09:33:12.712 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Clients" AS "c")
+2026-01-10 09:33:12.713 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Scopes" AS "s")
+2026-01-10 09:33:12.714 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Roles" AS "r")
+2026-01-10 09:33:12.757 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@name='?' (Size = 3)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ConcurrencyToken", "o"."Description", "o"."Descriptions", "o"."DisplayName", "o"."DisplayNames", "o"."Name", "o"."Properties", "o"."Resources"
+FROM "OpenIddictScopes" AS "o"
+WHERE "o"."Name" = @name
+LIMIT 1
+2026-01-10 09:33:12.788 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 09:33:12.805 +03:00 [INF] Database seeded successfully
+2026-01-10 09:33:12.811 +03:00 [INF] User profile is available. Using '/Users/fturkyilmaz/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-01-10 09:33:13.066 +03:00 [INF] Now listening on: https://localhost:57679
+2026-01-10 09:33:13.066 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-01-10 09:33:13.066 +03:00 [INF] Hosting environment: Development
+2026-01-10 09:33:13.066 +03:00 [INF] Content root path: /Users/fturkyilmaz/Documents/ShoppingProject/src/ShoppingProject.Web
+2026-01-10 09:33:34.130 +03:00 [INF] Application is shutting down...
+2026-01-10 09:33:38.328 +03:00 [INF] Applying database migrations...
+2026-01-10 09:33:38.687 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-01-10 09:33:38.705 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2026-01-10 09:33:46.873 +03:00 [INF] Executed DbCommand (8,165ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2026-01-10 06:33:38.708546+00:00');
+SELECT changes();
+2026-01-10 09:33:46.899 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2026-01-10 09:33:46.905 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2026-01-10 09:33:46.907 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-01-10 09:33:46.910 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-01-10 09:33:46.911 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2026-01-10 09:33:46.912 +03:00 [INF] Database migrations applied successfully
+2026-01-10 09:33:46.913 +03:00 [INF] Seeding database...
+2026-01-10 09:33:47.012 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS "u")
+2026-01-10 09:33:47.015 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Clients" AS "c")
+2026-01-10 09:33:47.016 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Scopes" AS "s")
+2026-01-10 09:33:47.018 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Roles" AS "r")
+2026-01-10 09:33:47.056 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@name='?' (Size = 3)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ConcurrencyToken", "o"."Description", "o"."Descriptions", "o"."DisplayName", "o"."DisplayNames", "o"."Name", "o"."Properties", "o"."Resources"
+FROM "OpenIddictScopes" AS "o"
+WHERE "o"."Name" = @name
+LIMIT 1
+2026-01-10 09:33:47.084 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 09:33:47.110 +03:00 [INF] Database seeded successfully
+2026-01-10 09:33:47.119 +03:00 [INF] User profile is available. Using '/Users/fturkyilmaz/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-01-10 09:33:47.366 +03:00 [INF] Now listening on: https://localhost:57679
+2026-01-10 09:33:47.366 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-01-10 09:33:47.366 +03:00 [INF] Hosting environment: Development
+2026-01-10 09:33:47.366 +03:00 [INF] Content root path: /Users/fturkyilmaz/Documents/ShoppingProject/src/ShoppingProject.Web
+2026-01-10 09:33:51.225 +03:00 [INF] Application is shutting down...
+2026-01-10 09:33:55.439 +03:00 [INF] Applying database migrations...
+2026-01-10 09:33:55.809 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-01-10 09:33:55.826 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2026-01-10 09:33:55.830 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2026-01-10 06:33:55.829301+00:00');
+SELECT changes();
+2026-01-10 09:33:55.856 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2026-01-10 09:33:55.862 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2026-01-10 09:33:55.864 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-01-10 09:33:55.867 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-01-10 09:33:55.868 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2026-01-10 09:33:55.869 +03:00 [INF] Database migrations applied successfully
+2026-01-10 09:33:55.871 +03:00 [INF] Seeding database...
+2026-01-10 09:33:55.974 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS "u")
+2026-01-10 09:33:55.978 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Clients" AS "c")
+2026-01-10 09:33:55.979 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Scopes" AS "s")
+2026-01-10 09:33:55.980 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Roles" AS "r")
+2026-01-10 09:33:56.070 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@name='?' (Size = 3)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ConcurrencyToken", "o"."Description", "o"."Descriptions", "o"."DisplayName", "o"."DisplayNames", "o"."Name", "o"."Properties", "o"."Resources"
+FROM "OpenIddictScopes" AS "o"
+WHERE "o"."Name" = @name
+LIMIT 1
+2026-01-10 09:33:56.100 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 09:33:56.120 +03:00 [INF] Database seeded successfully
+2026-01-10 09:33:56.126 +03:00 [INF] User profile is available. Using '/Users/fturkyilmaz/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-01-10 09:33:56.383 +03:00 [INF] Now listening on: https://localhost:57679
+2026-01-10 09:33:56.383 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-01-10 09:33:56.383 +03:00 [INF] Hosting environment: Development
+2026-01-10 09:33:56.383 +03:00 [INF] Content root path: /Users/fturkyilmaz/Documents/ShoppingProject/src/ShoppingProject.Web
+2026-01-10 09:34:07.767 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 173
+2026-01-10 09:34:07.811 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-10 09:34:07.817 +03:00 [INF] The token request was successfully extracted: {
+  "grant_type": "password",
+  "username": "admin@test.com",
+  "password": "[redacted]",
+  "client_id": "shopping-admin",
+  "client_secret": "[redacted]",
+  "scope": "api openid profile",
+  "email": "test@example.com"
+}.
+2026-01-10 09:34:07.848 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 09:34:07.858 +03:00 [INF] The token request was successfully validated.
+2026-01-10 09:34:07.872 +03:00 [INF] Executing endpoint 'ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web)'
+2026-01-10 09:34:07.879 +03:00 [INF] Route matched with {action = "Token", controller = "Authorization"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Token(System.String, System.String) on controller ShoppingProject.Web.Controllers.AuthorizationController (ShoppingProject.Web).
+2026-01-10 09:34:07.884 +03:00 [INF] Executing action method ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web) - Validation state: "Valid"
+2026-01-10 09:34:07.890 +03:00 [INF] Handling LoginUserCommand
+2026-01-10 09:34:07.890 +03:00 [INF] Property Email : admin@test.com
+2026-01-10 09:34:07.890 +03:00 [INF] Property Password : Password123!
+2026-01-10 09:34:07.897 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@email='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "u"."Id", "u"."CreatedAt", "u"."CreatedDate", "u"."DisplayName", "u"."Email", "u"."IsActive", "u"."IsDeleted", "u"."PasswordHash", "u"."UpdatedAt", "u"."UpdatedDate", "u"."UserName"
+FROM "Users" AS "u"
+WHERE "u"."Email" = @email
+LIMIT 1
+2026-01-10 09:34:07.911 +03:00 [INF] Handled LoginUserCommand with LoginResultDto { UserId = 00000000-0000-0000-0000-000000000000, AccessToken = , RefreshToken =  } in 20 ms
+2026-01-10 09:34:07.912 +03:00 [INF] Executed action method ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 27.027ms.
+2026-01-10 09:34:07.916 +03:00 [INF] Executing OkObjectResult, writing value of type 'ShoppingProject.UseCases.Users.LoginResultDto'.
+2026-01-10 09:34:07.923 +03:00 [INF] Executed action ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web) in 42.5805ms
+2026-01-10 09:34:07.923 +03:00 [INF] Executed endpoint 'ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web)'
+2026-01-10 09:34:07.924 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 200 null application/json; charset=utf-8 158.1995ms
+2026-01-10 09:34:08.645 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 173
+2026-01-10 09:34:08.647 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-10 09:34:08.648 +03:00 [INF] The token request was successfully extracted: {
+  "grant_type": "password",
+  "username": "admin@test.com",
+  "password": "[redacted]",
+  "client_id": "shopping-admin",
+  "client_secret": "[redacted]",
+  "scope": "api openid profile",
+  "email": "test@example.com"
+}.
+2026-01-10 09:34:08.653 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 09:34:08.655 +03:00 [INF] The token request was successfully validated.
+2026-01-10 09:34:08.656 +03:00 [INF] Executing endpoint 'ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web)'
+2026-01-10 09:34:08.656 +03:00 [INF] Route matched with {action = "Token", controller = "Authorization"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Token(System.String, System.String) on controller ShoppingProject.Web.Controllers.AuthorizationController (ShoppingProject.Web).
+2026-01-10 09:34:08.657 +03:00 [INF] Executing action method ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web) - Validation state: "Valid"
+2026-01-10 09:34:08.657 +03:00 [INF] Handling LoginUserCommand
+2026-01-10 09:34:08.657 +03:00 [INF] Property Email : admin@test.com
+2026-01-10 09:34:08.657 +03:00 [INF] Property Password : Password123!
+2026-01-10 09:34:08.658 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@email='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "u"."Id", "u"."CreatedAt", "u"."CreatedDate", "u"."DisplayName", "u"."Email", "u"."IsActive", "u"."IsDeleted", "u"."PasswordHash", "u"."UpdatedAt", "u"."UpdatedDate", "u"."UserName"
+FROM "Users" AS "u"
+WHERE "u"."Email" = @email
+LIMIT 1
+2026-01-10 09:34:08.659 +03:00 [INF] Handled LoginUserCommand with LoginResultDto { UserId = 00000000-0000-0000-0000-000000000000, AccessToken = , RefreshToken =  } in 2 ms
+2026-01-10 09:34:08.659 +03:00 [INF] Executed action method ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 2.7916ms.
+2026-01-10 09:34:08.660 +03:00 [INF] Executing OkObjectResult, writing value of type 'ShoppingProject.UseCases.Users.LoginResultDto'.
+2026-01-10 09:34:08.660 +03:00 [INF] Executed action ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web) in 3.4897ms
+2026-01-10 09:34:08.660 +03:00 [INF] Executed endpoint 'ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web)'
+2026-01-10 09:34:08.660 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 200 null application/json; charset=utf-8 14.7967ms
+2026-01-10 09:34:08.990 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 173
+2026-01-10 09:34:08.991 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-10 09:34:08.992 +03:00 [INF] The token request was successfully extracted: {
+  "grant_type": "password",
+  "username": "admin@test.com",
+  "password": "[redacted]",
+  "client_id": "shopping-admin",
+  "client_secret": "[redacted]",
+  "scope": "api openid profile",
+  "email": "test@example.com"
+}.
+2026-01-10 09:34:08.994 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 09:34:08.997 +03:00 [INF] The token request was successfully validated.
+2026-01-10 09:34:08.999 +03:00 [INF] Executing endpoint 'ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web)'
+2026-01-10 09:34:08.999 +03:00 [INF] Route matched with {action = "Token", controller = "Authorization"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Token(System.String, System.String) on controller ShoppingProject.Web.Controllers.AuthorizationController (ShoppingProject.Web).
+2026-01-10 09:34:08.999 +03:00 [INF] Executing action method ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web) - Validation state: "Valid"
+2026-01-10 09:34:09.003 +03:00 [INF] Handling LoginUserCommand
+2026-01-10 09:34:09.003 +03:00 [INF] Property Email : admin@test.com
+2026-01-10 09:34:09.003 +03:00 [INF] Property Password : Password123!
+2026-01-10 09:34:09.003 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@email='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "u"."Id", "u"."CreatedAt", "u"."CreatedDate", "u"."DisplayName", "u"."Email", "u"."IsActive", "u"."IsDeleted", "u"."PasswordHash", "u"."UpdatedAt", "u"."UpdatedDate", "u"."UserName"
+FROM "Users" AS "u"
+WHERE "u"."Email" = @email
+LIMIT 1
+2026-01-10 09:34:09.005 +03:00 [INF] Handled LoginUserCommand with LoginResultDto { UserId = 00000000-0000-0000-0000-000000000000, AccessToken = , RefreshToken =  } in 1 ms
+2026-01-10 09:34:09.005 +03:00 [INF] Executed action method ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 5.7797ms.
+2026-01-10 09:34:09.005 +03:00 [INF] Executing OkObjectResult, writing value of type 'ShoppingProject.UseCases.Users.LoginResultDto'.
+2026-01-10 09:34:09.005 +03:00 [INF] Executed action ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web) in 6.1766ms
+2026-01-10 09:34:09.005 +03:00 [INF] Executed endpoint 'ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web)'
+2026-01-10 09:34:09.005 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 200 null application/json; charset=utf-8 15.4907ms
+2026-01-10 09:41:19.424 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 173
+2026-01-10 09:41:19.427 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-10 09:41:19.427 +03:00 [INF] The token request was successfully extracted: {
+  "grant_type": "password",
+  "username": "admin@test.com",
+  "password": "[redacted]",
+  "client_id": "shopping-admin",
+  "client_secret": "[redacted]",
+  "scope": "api openid profile",
+  "email": "test@example.com"
+}.
+2026-01-10 09:41:19.435 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 09:41:19.440 +03:00 [INF] The token request was successfully validated.
+2026-01-10 09:41:19.441 +03:00 [INF] Executing endpoint 'ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web)'
+2026-01-10 09:41:19.441 +03:00 [INF] Route matched with {action = "Token", controller = "Authorization"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Token(System.String, System.String) on controller ShoppingProject.Web.Controllers.AuthorizationController (ShoppingProject.Web).
+2026-01-10 09:41:19.441 +03:00 [INF] Executing action method ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web) - Validation state: "Valid"
+2026-01-10 09:41:19.442 +03:00 [INF] Handling LoginUserCommand
+2026-01-10 09:41:19.442 +03:00 [INF] Property Email : admin@test.com
+2026-01-10 09:41:19.442 +03:00 [INF] Property Password : Password123!
+2026-01-10 09:41:19.443 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@email='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "u"."Id", "u"."CreatedAt", "u"."CreatedDate", "u"."DisplayName", "u"."Email", "u"."IsActive", "u"."IsDeleted", "u"."PasswordHash", "u"."UpdatedAt", "u"."UpdatedDate", "u"."UserName"
+FROM "Users" AS "u"
+WHERE "u"."Email" = @email
+LIMIT 1
+2026-01-10 09:41:19.445 +03:00 [INF] Handled LoginUserCommand with LoginResultDto { UserId = 00000000-0000-0000-0000-000000000000, AccessToken = , RefreshToken =  } in 3 ms
+2026-01-10 09:41:19.445 +03:00 [INF] Executed action method ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 3.7467ms.
+2026-01-10 09:41:19.445 +03:00 [INF] Executing OkObjectResult, writing value of type 'ShoppingProject.UseCases.Users.LoginResultDto'.
+2026-01-10 09:41:19.446 +03:00 [INF] Executed action ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web) in 4.7045ms
+2026-01-10 09:41:19.446 +03:00 [INF] Executed endpoint 'ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web)'
+2026-01-10 09:41:19.446 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 200 null application/json; charset=utf-8 21.6985ms
+2026-01-10 09:41:20.332 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 173
+2026-01-10 09:41:20.333 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-10 09:41:20.333 +03:00 [INF] The token request was successfully extracted: {
+  "grant_type": "password",
+  "username": "admin@test.com",
+  "password": "[redacted]",
+  "client_id": "shopping-admin",
+  "client_secret": "[redacted]",
+  "scope": "api openid profile",
+  "email": "test@example.com"
+}.
+2026-01-10 09:41:20.334 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 09:41:20.336 +03:00 [INF] The token request was successfully validated.
+2026-01-10 09:41:20.336 +03:00 [INF] Executing endpoint 'ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web)'
+2026-01-10 09:41:20.336 +03:00 [INF] Route matched with {action = "Token", controller = "Authorization"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Token(System.String, System.String) on controller ShoppingProject.Web.Controllers.AuthorizationController (ShoppingProject.Web).
+2026-01-10 09:41:20.336 +03:00 [INF] Executing action method ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web) - Validation state: "Valid"
+2026-01-10 09:41:20.336 +03:00 [INF] Handling LoginUserCommand
+2026-01-10 09:41:20.336 +03:00 [INF] Property Email : admin@test.com
+2026-01-10 09:41:20.336 +03:00 [INF] Property Password : Password123!
+2026-01-10 09:41:20.337 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@email='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "u"."Id", "u"."CreatedAt", "u"."CreatedDate", "u"."DisplayName", "u"."Email", "u"."IsActive", "u"."IsDeleted", "u"."PasswordHash", "u"."UpdatedAt", "u"."UpdatedDate", "u"."UserName"
+FROM "Users" AS "u"
+WHERE "u"."Email" = @email
+LIMIT 1
+2026-01-10 09:41:20.339 +03:00 [INF] Handled LoginUserCommand with LoginResultDto { UserId = 00000000-0000-0000-0000-000000000000, AccessToken = , RefreshToken =  } in 2 ms
+2026-01-10 09:41:20.339 +03:00 [INF] Executed action method ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 2.4257ms.
+2026-01-10 09:41:20.339 +03:00 [INF] Executing OkObjectResult, writing value of type 'ShoppingProject.UseCases.Users.LoginResultDto'.
+2026-01-10 09:41:20.339 +03:00 [INF] Executed action ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web) in 2.7788ms
+2026-01-10 09:41:20.339 +03:00 [INF] Executed endpoint 'ShoppingProject.Web.Controllers.AuthorizationController.Token (ShoppingProject.Web)'
+2026-01-10 09:41:20.339 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 200 null application/json; charset=utf-8 6.6099ms
+2026-01-10 09:51:09.907 +03:00 [INF] Application is shutting down...
+2026-01-10 10:02:31.037 +03:00 [INF] Applying database migrations...
+2026-01-10 10:02:31.426 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-01-10 10:02:31.445 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2026-01-10 10:02:31.448 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2026-01-10 07:02:31.447558+00:00');
+SELECT changes();
+2026-01-10 10:02:31.473 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2026-01-10 10:02:31.478 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2026-01-10 10:02:31.480 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-01-10 10:02:31.483 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-01-10 10:02:31.484 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2026-01-10 10:02:31.485 +03:00 [INF] Database migrations applied successfully
+2026-01-10 10:02:31.486 +03:00 [INF] Seeding database...
+2026-01-10 10:02:31.597 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS "u")
+2026-01-10 10:02:31.600 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Clients" AS "c")
+2026-01-10 10:02:31.601 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Scopes" AS "s")
+2026-01-10 10:02:31.603 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Roles" AS "r")
+2026-01-10 10:02:31.644 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@name='?' (Size = 3)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ConcurrencyToken", "o"."Description", "o"."Descriptions", "o"."DisplayName", "o"."DisplayNames", "o"."Name", "o"."Properties", "o"."Resources"
+FROM "OpenIddictScopes" AS "o"
+WHERE "o"."Name" = @name
+LIMIT 1
+2026-01-10 10:02:31.674 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 10:02:31.692 +03:00 [INF] Database seeded successfully
+2026-01-10 10:02:31.698 +03:00 [INF] User profile is available. Using '/Users/fturkyilmaz/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-01-10 10:02:31.995 +03:00 [INF] Now listening on: https://localhost:57679
+2026-01-10 10:02:31.996 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-01-10 10:02:31.996 +03:00 [INF] Hosting environment: Development
+2026-01-10 10:02:31.996 +03:00 [INF] Content root path: /Users/fturkyilmaz/Documents/ShoppingProject/src/ShoppingProject.Web
+2026-01-10 10:02:32.052 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 173
+2026-01-10 10:02:32.081 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-10 10:02:32.088 +03:00 [INF] The token request was successfully extracted: {
+  "grant_type": "password",
+  "username": "admin@test.com",
+  "password": "[redacted]",
+  "client_id": "shopping-admin",
+  "client_secret": "[redacted]",
+  "scope": "api openid profile",
+  "email": "test@example.com"
+}.
+2026-01-10 10:02:32.119 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 10:02:32.129 +03:00 [INF] The token request was successfully validated.
+2026-01-10 10:02:32.145 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 93.091ms
+2026-01-10 10:02:32.147 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:02:33.570 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 173
+2026-01-10 10:02:33.575 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-10 10:02:33.576 +03:00 [INF] The token request was successfully extracted: {
+  "grant_type": "password",
+  "username": "admin@test.com",
+  "password": "[redacted]",
+  "client_id": "shopping-admin",
+  "client_secret": "[redacted]",
+  "scope": "api openid profile",
+  "email": "test@example.com"
+}.
+2026-01-10 10:02:33.587 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 10:02:33.592 +03:00 [INF] The token request was successfully validated.
+2026-01-10 10:02:33.594 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 23.428ms
+2026-01-10 10:02:33.594 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:02:34.739 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 173
+2026-01-10 10:02:34.743 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-10 10:02:34.745 +03:00 [INF] The token request was successfully extracted: {
+  "grant_type": "password",
+  "username": "admin@test.com",
+  "password": "[redacted]",
+  "client_id": "shopping-admin",
+  "client_secret": "[redacted]",
+  "scope": "api openid profile",
+  "email": "test@example.com"
+}.
+2026-01-10 10:02:34.749 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 10:02:34.754 +03:00 [INF] The token request was successfully validated.
+2026-01-10 10:02:34.756 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 499 null null 16.9352ms
+2026-01-10 10:02:34.756 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 499
+2026-01-10 10:07:14.983 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 173
+2026-01-10 10:07:14.984 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-10 10:07:14.985 +03:00 [INF] The token request was successfully extracted: {
+  "grant_type": "password",
+  "username": "admin@test.com",
+  "password": "[redacted]",
+  "client_id": "shopping-admin",
+  "client_secret": "[redacted]",
+  "scope": "api openid profile",
+  "email": "test@example.com"
+}.
+2026-01-10 10:07:14.986 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 10:07:14.990 +03:00 [INF] The token request was successfully validated.
+2026-01-10 10:07:14.991 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 7.6442ms
+2026-01-10 10:07:14.991 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:07:15.653 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 173
+2026-01-10 10:07:15.653 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-10 10:07:15.654 +03:00 [INF] The token request was successfully extracted: {
+  "grant_type": "password",
+  "username": "admin@test.com",
+  "password": "[redacted]",
+  "client_id": "shopping-admin",
+  "client_secret": "[redacted]",
+  "scope": "api openid profile",
+  "email": "test@example.com"
+}.
+2026-01-10 10:07:15.656 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 10:07:15.660 +03:00 [INF] The token request was successfully validated.
+2026-01-10 10:07:15.661 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 7.7055ms
+2026-01-10 10:07:15.661 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:08:37.767 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 173
+2026-01-10 10:08:37.768 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-10 10:08:37.768 +03:00 [INF] The token request was successfully extracted: {
+  "grant_type": "password",
+  "username": "admin@test.com",
+  "password": "[redacted]",
+  "client_id": "shopping-admin",
+  "client_secret": "[redacted]",
+  "scope": "api openid profile",
+  "email": "test@example.com"
+}.
+2026-01-10 10:08:37.770 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 10:08:37.774 +03:00 [INF] The token request was successfully validated.
+2026-01-10 10:08:37.775 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 8.2692ms
+2026-01-10 10:08:37.775 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:13:06.113 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 173
+2026-01-10 10:13:06.113 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-10 10:13:06.114 +03:00 [INF] The token request was successfully extracted: {
+  "grant_type": "password",
+  "username": "admin@test.com",
+  "password": "[redacted]",
+  "client_id": "shopping-admin",
+  "client_secret": "[redacted]",
+  "scope": "api openid profile",
+  "email": "test@example.com"
+}.
+2026-01-10 10:13:06.114 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 10:13:06.118 +03:00 [INF] The token request was successfully validated.
+2026-01-10 10:13:06.119 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 5.9755ms
+2026-01-10 10:13:06.119 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:13:06.985 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 173
+2026-01-10 10:13:06.990 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-10 10:13:06.990 +03:00 [INF] The token request was successfully extracted: {
+  "grant_type": "password",
+  "username": "admin@test.com",
+  "password": "[redacted]",
+  "client_id": "shopping-admin",
+  "client_secret": "[redacted]",
+  "scope": "api openid profile",
+  "email": "test@example.com"
+}.
+2026-01-10 10:13:06.992 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 10:13:06.997 +03:00 [INF] The token request was successfully validated.
+2026-01-10 10:13:06.998 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 12.2012ms
+2026-01-10 10:13:06.998 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:13:07.624 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 173
+2026-01-10 10:13:07.624 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-10 10:13:07.625 +03:00 [INF] The token request was successfully extracted: {
+  "grant_type": "password",
+  "username": "admin@test.com",
+  "password": "[redacted]",
+  "client_id": "shopping-admin",
+  "client_secret": "[redacted]",
+  "scope": "api openid profile",
+  "email": "test@example.com"
+}.
+2026-01-10 10:13:07.627 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 10:13:07.631 +03:00 [INF] The token request was successfully validated.
+2026-01-10 10:13:07.632 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 7.7041ms
+2026-01-10 10:13:07.632 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:13:17.996 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:13:17.997 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-10 10:13:17.997 +03:00 [INF] The token request was successfully extracted: {
+  "grant_type": "password",
+  "username": "admin@test.com",
+  "password": "[redacted]",
+  "client_id": "shopping-admin",
+  "client_secret": "[redacted]",
+  "scope": "api openid profile"
+}.
+2026-01-10 10:13:17.999 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 10:13:18.003 +03:00 [INF] The token request was successfully validated.
+2026-01-10 10:13:18.004 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 7.5766ms
+2026-01-10 10:13:18.004 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:13:18.866 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:13:18.866 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-10 10:13:18.867 +03:00 [INF] The token request was successfully extracted: {
+  "grant_type": "password",
+  "username": "admin@test.com",
+  "password": "[redacted]",
+  "client_id": "shopping-admin",
+  "client_secret": "[redacted]",
+  "scope": "api openid profile"
+}.
+2026-01-10 10:13:18.869 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 10:13:18.873 +03:00 [INF] The token request was successfully validated.
+2026-01-10 10:13:18.874 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 7.765ms
+2026-01-10 10:13:18.874 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:29:53.161 +03:00 [INF] Application is shutting down...
+2026-01-10 10:30:35.467 +03:00 [INF] Applying database migrations...
+2026-01-10 10:30:35.852 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-01-10 10:30:35.871 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2026-01-10 10:30:35.874 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2026-01-10 07:30:35.873569+00:00');
+SELECT changes();
+2026-01-10 10:30:35.900 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2026-01-10 10:30:35.905 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2026-01-10 10:30:35.907 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-01-10 10:30:35.911 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-01-10 10:30:35.911 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2026-01-10 10:30:35.913 +03:00 [INF] Database migrations applied successfully
+2026-01-10 10:30:35.914 +03:00 [INF] Seeding database...
+2026-01-10 10:30:36.019 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS "u")
+2026-01-10 10:30:36.022 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Clients" AS "c")
+2026-01-10 10:30:36.024 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Scopes" AS "s")
+2026-01-10 10:30:36.025 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Roles" AS "r")
+2026-01-10 10:30:36.068 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@name='?' (Size = 3)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ConcurrencyToken", "o"."Description", "o"."Descriptions", "o"."DisplayName", "o"."DisplayNames", "o"."Name", "o"."Properties", "o"."Resources"
+FROM "OpenIddictScopes" AS "o"
+WHERE "o"."Name" = @name
+LIMIT 1
+2026-01-10 10:30:36.098 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 10:30:36.116 +03:00 [INF] Database seeded successfully
+2026-01-10 10:30:36.123 +03:00 [INF] User profile is available. Using '/Users/fturkyilmaz/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-01-10 10:30:36.423 +03:00 [INF] Now listening on: https://localhost:57679
+2026-01-10 10:30:36.423 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-01-10 10:30:36.424 +03:00 [INF] Hosting environment: Development
+2026-01-10 10:30:36.424 +03:00 [INF] Content root path: /Users/fturkyilmaz/Documents/ShoppingProject/src/ShoppingProject.Web
+2026-01-10 10:30:50.354 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/connect/token - application/x-www-form-urlencoded 148
+2026-01-10 10:30:50.410 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/connect/token - 404 0 null 57.4705ms
+2026-01-10 10:30:50.413 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/connect/token, Response status code: 404
+2026-01-10 10:30:54.970 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:30:54.973 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-10 10:30:54.985 +03:00 [INF] The token request was successfully extracted: {
+  "grant_type": "password",
+  "username": "admin@test.com",
+  "password": "[redacted]",
+  "client_id": "shopping-admin",
+  "client_secret": "[redacted]",
+  "scope": "api openid profile"
+}.
+2026-01-10 10:30:55.032 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 10:30:55.044 +03:00 [INF] The token request was successfully validated.
+2026-01-10 10:30:55.051 +03:00 [INF] Handling LoginUserCommand
+2026-01-10 10:30:55.051 +03:00 [INF] Property Email : admin@test.com
+2026-01-10 10:30:55.051 +03:00 [INF] Property Password : Password123!
+2026-01-10 10:30:55.060 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@email='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "u"."Id", "u"."CreatedAt", "u"."CreatedDate", "u"."DisplayName", "u"."Email", "u"."IsActive", "u"."IsDeleted", "u"."PasswordHash", "u"."UpdatedAt", "u"."UpdatedDate", "u"."UserName"
+FROM "Users" AS "u"
+WHERE "u"."Email" = @email
+LIMIT 1
+2026-01-10 10:30:55.075 +03:00 [INF] Handled LoginUserCommand with LoginResultDto { UserId = b6bb2f75-82ed-4e92-ad49-a9a272feed38, UserName = admin, Email = admin@test.com, Roles = System.Collections.Generic.List`1[System.String] } in 23 ms
+2026-01-10 10:30:55.079 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 109.0859ms
+2026-01-10 10:30:55.079 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:30:57.638 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:30:57.646 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-10 10:30:57.646 +03:00 [INF] The token request was successfully extracted: {
+  "grant_type": "password",
+  "username": "admin@test.com",
+  "password": "[redacted]",
+  "client_id": "shopping-admin",
+  "client_secret": "[redacted]",
+  "scope": "api openid profile"
+}.
+2026-01-10 10:30:57.657 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 10:30:57.660 +03:00 [INF] The token request was successfully validated.
+2026-01-10 10:30:57.661 +03:00 [INF] Handling LoginUserCommand
+2026-01-10 10:30:57.661 +03:00 [INF] Property Email : admin@test.com
+2026-01-10 10:30:57.661 +03:00 [INF] Property Password : Password123!
+2026-01-10 10:30:57.661 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@email='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "u"."Id", "u"."CreatedAt", "u"."CreatedDate", "u"."DisplayName", "u"."Email", "u"."IsActive", "u"."IsDeleted", "u"."PasswordHash", "u"."UpdatedAt", "u"."UpdatedDate", "u"."UserName"
+FROM "Users" AS "u"
+WHERE "u"."Email" = @email
+LIMIT 1
+2026-01-10 10:30:57.664 +03:00 [INF] Handled LoginUserCommand with LoginResultDto { UserId = b6bb2f75-82ed-4e92-ad49-a9a272feed38, UserName = admin, Email = admin@test.com, Roles = System.Collections.Generic.List`1[System.String] } in 3 ms
+2026-01-10 10:30:57.667 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 29.447ms
+2026-01-10 10:30:57.667 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:30:58.032 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:30:58.032 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-10 10:30:58.033 +03:00 [INF] The token request was successfully extracted: {
+  "grant_type": "password",
+  "username": "admin@test.com",
+  "password": "[redacted]",
+  "client_id": "shopping-admin",
+  "client_secret": "[redacted]",
+  "scope": "api openid profile"
+}.
+2026-01-10 10:30:58.035 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 10:30:58.039 +03:00 [INF] The token request was successfully validated.
+2026-01-10 10:30:58.041 +03:00 [INF] Handling LoginUserCommand
+2026-01-10 10:30:58.041 +03:00 [INF] Property Email : admin@test.com
+2026-01-10 10:30:58.041 +03:00 [INF] Property Password : Password123!
+2026-01-10 10:30:58.041 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@email='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "u"."Id", "u"."CreatedAt", "u"."CreatedDate", "u"."DisplayName", "u"."Email", "u"."IsActive", "u"."IsDeleted", "u"."PasswordHash", "u"."UpdatedAt", "u"."UpdatedDate", "u"."UserName"
+FROM "Users" AS "u"
+WHERE "u"."Email" = @email
+LIMIT 1
+2026-01-10 10:30:58.043 +03:00 [INF] Handled LoginUserCommand with LoginResultDto { UserId = b6bb2f75-82ed-4e92-ad49-a9a272feed38, UserName = admin, Email = admin@test.com, Roles = System.Collections.Generic.List`1[System.String] } in 2 ms
+2026-01-10 10:30:58.043 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 11.3968ms
+2026-01-10 10:30:58.043 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:31:32.567 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:31:32.568 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-10 10:31:32.569 +03:00 [INF] The token request was successfully extracted: {
+  "grant_type": "password",
+  "username": "admin@test.com",
+  "password": "[redacted]",
+  "client_id": "shopping-admin",
+  "client_secret": "[redacted]",
+  "scope": "api openid profile"
+}.
+2026-01-10 10:31:32.571 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 10:31:32.575 +03:00 [INF] The token request was successfully validated.
+2026-01-10 10:31:32.575 +03:00 [INF] Handling LoginUserCommand
+2026-01-10 10:31:32.575 +03:00 [INF] Property Email : admin@test.com
+2026-01-10 10:31:32.575 +03:00 [INF] Property Password : Password123!
+2026-01-10 10:31:32.576 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@email='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "u"."Id", "u"."CreatedAt", "u"."CreatedDate", "u"."DisplayName", "u"."Email", "u"."IsActive", "u"."IsDeleted", "u"."PasswordHash", "u"."UpdatedAt", "u"."UpdatedDate", "u"."UserName"
+FROM "Users" AS "u"
+WHERE "u"."Email" = @email
+LIMIT 1
+2026-01-10 10:31:32.578 +03:00 [INF] Handled LoginUserCommand with LoginResultDto { UserId = b6bb2f75-82ed-4e92-ad49-a9a272feed38, UserName = admin, Email = admin@test.com, Roles = System.Collections.Generic.List`1[System.String] } in 2 ms
+2026-01-10 10:31:32.579 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 11.3728ms
+2026-01-10 10:31:32.579 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:34:27.254 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:34:27.255 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-10 10:34:27.255 +03:00 [INF] The token request was successfully extracted: {
+  "grant_type": "password",
+  "username": "admin@test.com",
+  "password": "[redacted]",
+  "client_id": "shopping-admin",
+  "client_secret": "[redacted]",
+  "scope": "api openid profile"
+}.
+2026-01-10 10:34:27.257 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 10:34:27.262 +03:00 [INF] The token request was successfully validated.
+2026-01-10 10:34:27.262 +03:00 [INF] Handling LoginUserCommand
+2026-01-10 10:34:27.262 +03:00 [INF] Property Email : admin@test.com
+2026-01-10 10:34:27.262 +03:00 [INF] Property Password : Password123!
+2026-01-10 10:34:27.262 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@email='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "u"."Id", "u"."CreatedAt", "u"."CreatedDate", "u"."DisplayName", "u"."Email", "u"."IsActive", "u"."IsDeleted", "u"."PasswordHash", "u"."UpdatedAt", "u"."UpdatedDate", "u"."UserName"
+FROM "Users" AS "u"
+WHERE "u"."Email" = @email
+LIMIT 1
+2026-01-10 10:34:27.266 +03:00 [INF] Handled LoginUserCommand with LoginResultDto { UserId = b6bb2f75-82ed-4e92-ad49-a9a272feed38, UserName = admin, Email = admin@test.com, Roles = System.Collections.Generic.List`1[System.String] } in 3 ms
+2026-01-10 10:34:27.267 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 12.9735ms
+2026-01-10 10:34:27.267 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:34:28.252 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:34:28.256 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-10 10:34:28.257 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 499 null null 4.5863ms
+2026-01-10 10:34:28.889 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:34:28.889 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-10 10:34:28.889 +03:00 [INF] The token request was successfully extracted: {
+  "grant_type": "password",
+  "username": "admin@test.com",
+  "password": "[redacted]",
+  "client_id": "shopping-admin",
+  "client_secret": "[redacted]",
+  "scope": "api openid profile"
+}.
+2026-01-10 10:34:28.890 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 10:34:28.892 +03:00 [INF] The token request was successfully validated.
+2026-01-10 10:34:28.892 +03:00 [INF] Handling LoginUserCommand
+2026-01-10 10:34:28.892 +03:00 [INF] Property Email : admin@test.com
+2026-01-10 10:34:28.892 +03:00 [INF] Property Password : Password123!
+2026-01-10 10:34:28.893 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@email='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "u"."Id", "u"."CreatedAt", "u"."CreatedDate", "u"."DisplayName", "u"."Email", "u"."IsActive", "u"."IsDeleted", "u"."PasswordHash", "u"."UpdatedAt", "u"."UpdatedDate", "u"."UserName"
+FROM "Users" AS "u"
+WHERE "u"."Email" = @email
+LIMIT 1
+2026-01-10 10:34:28.896 +03:00 [INF] Handled LoginUserCommand with LoginResultDto { UserId = b6bb2f75-82ed-4e92-ad49-a9a272feed38, UserName = admin, Email = admin@test.com, Roles = System.Collections.Generic.List`1[System.String] } in 3 ms
+2026-01-10 10:34:28.896 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 7.4655ms
+2026-01-10 10:34:28.896 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:34:36.421 +03:00 [INF] Application is shutting down...
+2026-01-10 10:34:38.845 +03:00 [INF] Applying database migrations...
+2026-01-10 10:34:39.200 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-01-10 10:34:39.217 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2026-01-10 10:34:39.220 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2026-01-10 07:34:39.219749+00:00');
+SELECT changes();
+2026-01-10 10:34:39.246 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2026-01-10 10:34:39.251 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2026-01-10 10:34:39.253 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-01-10 10:34:39.256 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-01-10 10:34:39.257 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2026-01-10 10:34:39.258 +03:00 [INF] Database migrations applied successfully
+2026-01-10 10:34:39.259 +03:00 [INF] Seeding database...
+2026-01-10 10:34:39.364 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS "u")
+2026-01-10 10:34:39.368 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Clients" AS "c")
+2026-01-10 10:34:39.369 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Scopes" AS "s")
+2026-01-10 10:34:39.370 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Roles" AS "r")
+2026-01-10 10:34:39.415 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@name='?' (Size = 3)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ConcurrencyToken", "o"."Description", "o"."Descriptions", "o"."DisplayName", "o"."DisplayNames", "o"."Name", "o"."Properties", "o"."Resources"
+FROM "OpenIddictScopes" AS "o"
+WHERE "o"."Name" = @name
+LIMIT 1
+2026-01-10 10:34:39.445 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-10 10:34:39.463 +03:00 [INF] Database seeded successfully
+2026-01-10 10:34:39.469 +03:00 [INF] User profile is available. Using '/Users/fturkyilmaz/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-01-10 10:34:39.732 +03:00 [INF] Now listening on: https://localhost:57679
+2026-01-10 10:34:39.732 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-01-10 10:34:39.732 +03:00 [INF] Hosting environment: Development
+2026-01-10 10:34:39.732 +03:00 [INF] Content root path: /Users/fturkyilmaz/Documents/ShoppingProject/src/ShoppingProject.Web
+2026-01-10 10:34:43.512 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:34:43.558 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 46.6162ms
+2026-01-10 10:34:43.561 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:38:09.759 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:38:09.762 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 3.7279ms
+2026-01-10 10:38:09.763 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:38:19.961 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:38:19.972 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 499 null null 10.7007ms
+2026-01-10 10:38:20.321 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:38:20.322 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 1.0864ms
+2026-01-10 10:38:20.322 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:38:21.098 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:38:21.098 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 0.5537ms
+2026-01-10 10:38:21.098 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:38:41.020 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:38:41.022 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 1.0915ms
+2026-01-10 10:38:41.022 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:38:42.121 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:38:42.126 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 4.9319ms
+2026-01-10 10:38:42.126 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:38:45.714 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/connect/token - application/x-www-form-urlencoded 148
+2026-01-10 10:38:45.715 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/connect/token - 404 0 null 0.85ms
+2026-01-10 10:38:45.715 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/connect/token, Response status code: 404
+2026-01-10 10:38:46.927 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/connect/token - application/x-www-form-urlencoded 148
+2026-01-10 10:38:46.928 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/connect/token - 404 0 null 0.9186ms
+2026-01-10 10:38:46.928 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/connect/token, Response status code: 404
+2026-01-10 10:40:54.611 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/connect/token - application/x-www-form-urlencoded 148
+2026-01-10 10:40:54.612 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/connect/token - 404 0 null 1.0805ms
+2026-01-10 10:40:54.612 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/connect/token, Response status code: 404
+2026-01-10 10:40:55.204 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/connect/token - application/x-www-form-urlencoded 148
+2026-01-10 10:40:55.205 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/connect/token - 404 0 null 0.9175ms
+2026-01-10 10:40:55.205 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/connect/token, Response status code: 404
+2026-01-10 10:40:55.540 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/connect/token - application/x-www-form-urlencoded 148
+2026-01-10 10:40:55.541 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/connect/token - 404 0 null 0.8572ms
+2026-01-10 10:40:55.541 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/connect/token, Response status code: 404
+2026-01-10 10:47:26.526 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:47:26.528 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 1.4146ms
+2026-01-10 10:47:26.528 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:47:27.731 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:47:27.735 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 4.8944ms
+2026-01-10 10:47:27.736 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:47:28.241 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:47:28.242 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 0.3682ms
+2026-01-10 10:47:28.242 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:47:45.990 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:47:45.991 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 1.0215ms
+2026-01-10 10:47:45.991 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:47:47.118 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:47:47.122 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 4.3914ms
+2026-01-10 10:47:47.123 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:47:47.732 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:47:47.733 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 0.7755ms
+2026-01-10 10:47:47.733 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:47:49.181 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:47:49.182 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 0.5893ms
+2026-01-10 10:47:49.182 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:47:49.849 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:47:49.850 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 0.7424ms
+2026-01-10 10:47:49.850 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:48:34.160 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:48:34.161 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 1.1385ms
+2026-01-10 10:48:34.161 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:48:42.673 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:48:42.678 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 4.4257ms
+2026-01-10 10:48:42.678 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:48:43.365 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:48:43.366 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 0.4418ms
+2026-01-10 10:48:43.366 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:51:45.471 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:51:45.471 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 0.6872ms
+2026-01-10 10:51:45.471 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:51:46.423 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 148
+2026-01-10 10:51:46.429 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 5.4636ms
+2026-01-10 10:51:46.429 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:51:57.858 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 123
+2026-01-10 10:51:57.859 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 0.6448ms
+2026-01-10 10:51:57.859 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:52:00.658 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 98
+2026-01-10 10:52:00.659 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 0.5773ms
+2026-01-10 10:52:00.659 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:52:03.342 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 72
+2026-01-10 10:52:03.345 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 2.4002ms
+2026-01-10 10:52:03.345 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:52:04.129 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 72
+2026-01-10 10:52:04.130 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 0.6478ms
+2026-01-10 10:52:04.130 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404
+2026-01-10 10:52:09.899 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/token - application/x-www-form-urlencoded 78
+2026-01-10 10:52:09.899 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/token - 404 0 null 0.6708ms
+2026-01-10 10:52:09.899 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:57679/auth/token, Response status code: 404

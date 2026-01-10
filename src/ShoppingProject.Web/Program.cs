@@ -40,11 +40,12 @@ builder.Services.AddAuthorization();
 
 
 var app = builder.Build();
-app.MapControllers();
+
 app.UseRouting(); 
-app.UseAuthentication(); 
-app.UseAuthorization(); 
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseCors();
+app.MapControllers();
 
 if (app.Environment.IsDevelopment())
 {
@@ -55,11 +56,8 @@ if (app.Environment.IsDevelopment())
         c.RoutePrefix = string.Empty;
     });
 
-    // Scalar UI default /scalar path
     app.MapScalarApiReference();
 }
-
-
 
 
 await app.UseAppMiddlewareAndSeedDatabase();

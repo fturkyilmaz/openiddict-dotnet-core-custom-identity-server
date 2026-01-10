@@ -3,6 +3,7 @@ using ShoppingProject.Core.UserAggregate;
 using ShoppingProject.UseCases.Users.Interfaces;
 using ShoppingProject.UseCases.Users.Specifications;
 using ShoppingProject.Core.Interfaces;
+using ShoppingProject.UseCases.Users.DTOs;
 
 namespace ShoppingProject.UseCases.Users
 {
@@ -33,57 +34,6 @@ namespace ShoppingProject.UseCases.Users
                 true,
                 true
             );
-        }
-    }
-
-
-    // Command: Login
-    public record LoginUserCommand(string Email, string Password) : IRequest<LoginResultDto>;
-
-    public record LoginResultDto(Guid UserId, string AccessToken, string RefreshToken);
-
-    public class LoginUserHandler : IRequestHandler<LoginUserCommand, LoginResultDto>
-    {
-        private readonly IRepository<ApplicationUser> _userRepository;
-        private readonly IPasswordHasher _passwordHasher;
-        private readonly ITokenService _tokenService;
-
-        public LoginUserHandler(
-            IRepository<ApplicationUser> userRepository,
-            IPasswordHasher passwordHasher,
-            ITokenService tokenService)
-        {
-            _userRepository = userRepository;
-            _passwordHasher = passwordHasher;
-            _tokenService = tokenService;
-        }
-
-        public async ValueTask<LoginResultDto> Handle(LoginUserCommand request, CancellationToken cancellationToken)
-        {
-            var user = await _userRepository.FirstOrDefaultAsync(
-                new UserByEmailSpec(request.Email), cancellationToken);
-
-            if (user is null)
-                throw new InvalidOperationException("User not found");
-
-            if (!_passwordHasher.VerifyHashedPassword(user.PasswordHash, request.Password))
-                throw new InvalidOperationException($"Invalid credentials , please try again {request.Email} {request.Password} {user.PasswordHash}");
-
-            var claims = new List<Claim>
-            {
-                new(OpenIddictConstants.Claims.Subject, user.Id.ToString()),
-                new(OpenIddictConstants.Claims.Email, user.Email),
-                new(OpenIddictConstants.Claims.Name, user.Email)
-            };
-
-            var identity = new ClaimsIdentity(
-                claims,
-                OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
-
-            var accessToken = await _tokenService.CreateAccessToken(user, cancellationToken);
-            var refreshToken = await _tokenService.CreateRefreshToken(user, cancellationToken);
-
-            return new LoginResultDto(user.Id, accessToken, refreshToken);
         }
     }
 
@@ -135,7 +85,7 @@ namespace ShoppingProject.UseCases.Users
             var newAccessToken = await _tokenService.CreateAccessToken(user, cancellationToken);
             var newRefreshToken = await _tokenService.CreateRefreshToken(user, cancellationToken);
 
-            return new LoginResultDto(user.Id, newAccessToken, newRefreshToken);
+            return new LoginResultDto(user.Id, user.UserName, user.Email, user.Roles.Select(r => r.Role.Name).ToList());
         }
     }
 
