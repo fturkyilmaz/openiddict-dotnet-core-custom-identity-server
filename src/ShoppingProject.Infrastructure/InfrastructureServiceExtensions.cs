@@ -43,6 +43,10 @@ public static class InfrastructureServiceExtensions
             .AddScoped<IPasswordHasher, PasswordHasher>()
             .AddScoped<IRevokeTokenService, RevokeTokenService>();
 
+
+            services.AddHttpContextAccessor(); 
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
+
     services.AddOpenIddict()
     .AddCore(options => { options.UseEntityFrameworkCore() .UseDbContext<AppDbContext>(); })
     .AddServer(options =>

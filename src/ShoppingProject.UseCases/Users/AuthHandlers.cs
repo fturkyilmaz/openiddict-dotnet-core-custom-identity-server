@@ -15,15 +15,21 @@ namespace ShoppingProject.UseCases.Users
     public class MeQueryHandler : IRequestHandler<MeQuery, MeDto>
     {
         private readonly IRepository<ApplicationUser> _userRepository;
+        private readonly ICurrentUserService _currentUser;
 
-        public MeQueryHandler(IRepository<ApplicationUser> userRepository)
+        public MeQueryHandler(IRepository<ApplicationUser> userRepository, ICurrentUserService currentUser)
         {
             _userRepository = userRepository;
+            _currentUser = currentUser;
         }
 
         public async ValueTask<MeDto> Handle(MeQuery request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.GetByIdAsync(Guid.Parse(request.UserId), cancellationToken);
+
+            if (!Guid.TryParse(_currentUser.UserId, out var guid)) throw new UnauthorizedAccessException("Kullanıcı bulunamadı.");
+
+            var user = await _userRepository.GetByIdAsync(guid, cancellationToken);
+            
             if (user == null)
                 throw new UnauthorizedAccessException("Kullanıcı bulunamadı.");
 

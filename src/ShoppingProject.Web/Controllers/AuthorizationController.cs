@@ -41,6 +41,32 @@ public class AuthorizationController : ControllerBase
     //     if (response == null) { return BadRequest(new { error = "No OpenIddict response available" }); } 
     //     return new ObjectResult(response) { StatusCode = response.StatusCode };
     // }
+    
+    // [HttpGet("me")]
+    // [Authorize]
+    // public async Task<IActionResult> Me()
+    // {
+    //     var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    //     var user = await _mediator.Send(new MeQuery(userId));
+    //     return Ok(user);
+    // }
+
+    [HttpGet("me")] 
+    [Authorize]
+    public async Task<IActionResult> Me() { 
+        var user = HttpContext.User; 
+
+        if (user?.Identity?.IsAuthenticated != true) 
+        { 
+            return Unauthorized(); 
+        } 
+
+        var userId =user.FindFirst(OpenIddictConstants.Claims.Subject)?.Value;
+        if (userId == null) { return BadRequest(new { error = "No user ID found" }); } 
+        var result = await _mediator.Send(new MeQuery(userId));
+
+    return Ok(result);
+     }
 
     [HttpPost("refresh")]
     [AllowAnonymous]
