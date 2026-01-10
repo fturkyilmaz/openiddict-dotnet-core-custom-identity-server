@@ -36,20 +36,24 @@ public static class InfrastructureServiceExtensions
 
     services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>))
             .AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>))
-            .AddScoped<PasswordGrantHandler>()
+            .AddScoped<IListContributorsQueryService, ListContributorsQueryService>()
+            .AddScoped<IDeleteContributorService, DeleteContributorService>()
+
             .AddScoped<ITokenService, TokenService>()
             .AddScoped<IPasswordHasher, PasswordHasher>()
-            .AddScoped<IRevokeTokenService, RevokeTokenSerice>();
+            .AddScoped<IRevokeTokenService, RevokeTokenService>();
 
     services.AddOpenIddict()
     .AddCore(options => { options.UseEntityFrameworkCore() .UseDbContext<AppDbContext>(); })
     .AddServer(options =>
     {
-        options.SetTokenEndpointUris("auth/token");
-        options.SetRevocationEndpointUris("auth/revoke");
-        options.AllowPasswordFlow();
-        options.AllowRefreshTokenFlow();
-        options.AllowClientCredentialsFlow();
+        options.SetTokenEndpointUris("connect/token")
+               .SetRevocationEndpointUris("connect/revoke")
+               .SetAuthorizationEndpointUris("connect/authorize");
+
+        options.AllowPasswordFlow()
+               .AllowRefreshTokenFlow()
+               .AllowClientCredentialsFlow();
 
 
         options.AcceptAnonymousClients();
@@ -60,9 +64,8 @@ public static class InfrastructureServiceExtensions
         options.SetIssuer("https://localhost:57679");
 
 
-        // options.UseAspNetCore()
-        //        .EnableTokenEndpointPassthrough()
-        //        .DisableTransportSecurityRequirement();
+        options.UseAspNetCore()
+              .EnableAuthorizationEndpointPassthrough();
         
        options.RegisterScopes(OpenIddictConstants.Scopes.OpenId, OpenIddictConstants.Scopes.Profile, OpenIddictConstants.Scopes.OfflineAccess);
 

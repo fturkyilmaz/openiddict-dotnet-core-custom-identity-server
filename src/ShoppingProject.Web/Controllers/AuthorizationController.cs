@@ -33,17 +33,14 @@ public class AuthorizationController : ControllerBase
         return NoContent();
     }
 
-    [HttpGet("me")]
-    [Authorize]
-    public async Task<IActionResult> Me()
-    {
-      var userId = User.FindFirstValue(OpenIddictConstants.Claims.Subject);
-        if (string.IsNullOrEmpty(userId))
-            return Unauthorized();
-
-        var result = await _mediator.Send(new MeQuery(userId));
-        return Ok(result);
-    }
+    // [HttpPost("token")]
+    // [AllowAnonymous]
+    // public async Task<IActionResult> Token()
+    // {
+    //     var response = HttpContext.GetOpenIddictServerResponse();
+    //     if (response == null) { return BadRequest(new { error = "No OpenIddict response available" }); } 
+    //     return new ObjectResult(response) { StatusCode = response.StatusCode };
+    // }
 
     [HttpPost("refresh")]
     [AllowAnonymous]

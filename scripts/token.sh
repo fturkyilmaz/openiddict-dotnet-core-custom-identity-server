@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Kullanıcı bilgileri
-USERNAME="testuser"
-PASSWORD="Pass123!"
+USERNAME="admin@test.com"
+PASSWORD="Password123!"
 SCOPE="openid profile offline_access"
 GRANT_TYPE="password"
 
 # Token endpoint
-TOKEN_URL="https://localhost:5001/connect/token"
+TOKEN_URL="https://localhost:57679/connect/token"
 
 # Token Response
 RESPONSE=$(curl -s -X POST $TOKEN_URL \
