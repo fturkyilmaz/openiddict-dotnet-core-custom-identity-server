@@ -1,0 +1,1 @@
+public record VerifyEmailCommand(string UserId, string VerificationCode) : IRequest<Unit>; 

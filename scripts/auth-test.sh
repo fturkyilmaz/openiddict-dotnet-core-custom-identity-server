@@ -23,7 +23,7 @@ echo "Using BASE_URL=$BASE_URL"
 echo "=== Register ==="
 curl $CURL_OPTS -s -X POST "$BASE_URL/register" \
   -H "Content-Type: application/json" \
-  -d '{"username":"testuser","email":"test@example.com","password":"Pass123!"}' | jq .
+  -d '{"username":"testuser2","email":"test22@example.com","password":"Pass123!"}' | jq .
 
 echo "=== Token ==="
 TOKEN_RESPONSE=$(curl $CURL_OPTS -s -X POST "$BASE_URL/token" \

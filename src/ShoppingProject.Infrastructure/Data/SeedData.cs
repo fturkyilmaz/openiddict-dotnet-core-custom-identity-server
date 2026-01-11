@@ -9,11 +9,7 @@ namespace ShoppingProject.Infrastructure.Data;
 
 public static class SeedData
 {
-    public const int NUMBER_OF_CONTRIBUTORS = 27;
     public const int NUMBER_OF_USERS = 10;
-
-    public static readonly Contributor Contributor1 = new(ContributorName.From("Furkan"));
-    public static readonly Contributor Contributor2 = new(ContributorName.From("Türkyılmaz"));
 
     public static async Task InitializeAsync(IServiceProvider provider)
     {
@@ -24,12 +20,7 @@ public static class SeedData
         var applicationManager = scope.ServiceProvider.GetRequiredService<IOpenIddictApplicationManager>();
         var scopeManager = scope.ServiceProvider.GetRequiredService<IOpenIddictScopeManager>();
 
-        if (!await dbContext.Contributors.AnyAsync())
-        {
-            await PopulateTestDataAsync(dbContext);
-        }
-
-        if (!dbContext.Users.Any())
+        if (!await dbContext.Users.AnyAsync())
         {
             var passwordHasher = new PasswordHasher();
             var hash = passwordHasher.HashPassword("Password123!");
@@ -111,11 +102,6 @@ public static class SeedData
         }
 
         await dbContext.SaveChangesAsync();
-    }
-
-    public static async Task PopulateTestDataAsync(AppDbContext dbContext)
-    {
-        dbContext.Contributors.AddRange([Contributor1, Contributor2]);
     }
 
   // public static async Task PopulateFakeUsersAsync(UserManager<ApplicationUser> userManager)

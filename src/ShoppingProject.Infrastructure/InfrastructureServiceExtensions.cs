@@ -6,6 +6,8 @@ using ShoppingProject.UseCases.Contributors.List;
 using ShoppingProject.Core.UserAggregate;
 using ShoppingProject.UseCases.Users.Interfaces;
 using ShoppingProject.Infrastructure.Auth;
+using OpenIddict.Server;
+using OpenIddict.Abstractions;
 
 namespace ShoppingProject.Infrastructure;
 public static class InfrastructureServiceExtensions
@@ -33,37 +35,49 @@ public static class InfrastructureServiceExtensions
     });
 
     services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>))
-           .AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>))
-           .AddScoped<IListContributorsQueryService, ListContributorsQueryService>()
-           .AddScoped<IDeleteContributorService, DeleteContributorService>();
-    
-    services.AddScoped<ITokenService, TokenService>(); 
-    services.AddScoped<IPasswordHasher, PasswordHasher>();
-    services.AddScoped<IRevokeTokenService, RevokeTokenService>();
+            .AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>))
+            .AddScoped<IListContributorsQueryService, ListContributorsQueryService>()
+            .AddScoped<IDeleteContributorService, DeleteContributorService>()
+
+            .AddScoped<ITokenService, TokenService>()
+            .AddScoped<IPasswordHasher, PasswordHasher>()
+            .AddScoped<IRevokeTokenService, RevokeTokenService>();
+
+
+            services.AddHttpContextAccessor(); 
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
 
     services.AddOpenIddict()
     .AddCore(options => { options.UseEntityFrameworkCore() .UseDbContext<AppDbContext>(); })
     .AddServer(options =>
     {
-        options.SetTokenEndpointUris("/auth/token");
-        options.SetRevocationEndpointUris("/auth/revoke");
-        options.AllowPasswordFlow();
-        options.AllowRefreshTokenFlow();
-        options.AllowClientCredentialsFlow();
+        options.SetTokenEndpointUris("connect/token")
+               .SetRevocationEndpointUris("connect/revoke")
+               .SetAuthorizationEndpointUris("connect/authorize")
+               .SetIntrospectionEndpointUris("/connect/introspect");
 
+        options.AllowPasswordFlow()
+               .AllowRefreshTokenFlow()
+               .AllowClientCredentialsFlow();
+
+        options.UseReferenceAccessTokens();
+        
         options.AcceptAnonymousClients();
 
         options.AddDevelopmentEncryptionCertificate()
                .AddDevelopmentSigningCertificate();
 
-        options.SetIssuer("ShoppingProject");
+        options.SetIssuer("https://localhost:57679");
 
 
         options.UseAspNetCore()
-               .EnableTokenEndpointPassthrough()
-               .DisableTransportSecurityRequirement(); // dev environment
+              .EnableAuthorizationEndpointPassthrough();
         
-        options.RegisterScopes("api", "openid", "profile");
+       options.RegisterScopes(OpenIddictConstants.Scopes.OpenId, OpenIddictConstants.Scopes.Profile, OpenIddictConstants.Scopes.OfflineAccess);
+
+        options.AddEventHandler<OpenIddictServerEvents.HandleTokenRequestContext>(
+          builder => builder.UseScopedHandler<PasswordGrantHandler>()
+        );
     })
     .AddValidation(options =>
     {
