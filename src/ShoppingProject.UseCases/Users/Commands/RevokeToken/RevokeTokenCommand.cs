@@ -1,0 +1,1 @@
+public record RevokeTokenCommand(string TokenId) : IRequest<Unit>;

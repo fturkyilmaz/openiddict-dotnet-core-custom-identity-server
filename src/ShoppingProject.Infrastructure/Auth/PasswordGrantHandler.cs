@@ -1,7 +1,7 @@
 
 using OpenIddict.Abstractions;
 using OpenIddict.Server;
-using ShoppingProject.UseCases.Users.Login;
+using ShoppingProject.UseCases.Users.Commands.Login;
 using System.Security.Claims;
 using OpenIddict.Server.AspNetCore;
 
@@ -24,7 +24,7 @@ public sealed class PasswordGrantHandler
         // if (!context.Request.IsPasswordGrantType())
         //     return;
 
-        var result = await _mediator.Send(new LoginUserCommand(
+        var result = await _mediator.Send(new LoginCommand(
             context.Request.Username!,
             context.Request.Password!
         ));

@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ShoppingProject.UseCases.Users;
-using ShoppingProject.UseCases.Users.Login;
+using ShoppingProject.UseCases.Users.Queries.Me;
+using ShoppingProject.UseCases.Users.Commands.Login;
+using ShoppingProject.UseCases.Users.Commands.Register;
+using ShoppingProject.UseCases.Users.Commands.RefreshToken;
+using ShoppingProject.UseCases.Users.Commands.TwoFactor;
 using System.Security.Claims; 
 using OpenIddict.Abstractions;
 using OpenIddict.Server.AspNetCore;
-
 
 namespace ShoppingProject.Web.Controllers;
 
@@ -19,7 +21,7 @@ public class AuthorizationController : ControllerBase
 
     [HttpPost("register")]
     [AllowAnonymous]
-    public async Task<IActionResult> Register([FromBody] RegisterUserCommand command)
+    public async Task<IActionResult> Register([FromBody] RegisterCommand command)
     {
         var id = await _mediator.Send(command);
         return Created("/auth/register", new { user_id = id, command.UserName, command.Email });
