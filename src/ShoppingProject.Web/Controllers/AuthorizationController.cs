@@ -76,12 +76,22 @@ public class AuthorizationController : ControllerBase
         return Ok(result);
     }
 
-    [HttpPost("logout-everywhere")] 
-    [Authorize] 
-    public async Task<IActionResult> LogoutEverywhere(string userId) 
-    { 
-        await _mediator.Send(new LogoutEverywhereCommand(userId)); 
-        return Ok(new { message = "Tüm cihazlardan başarıyla çıkış yapıldı." }); 
+    [HttpPost("logout-everywhere")]
+    [Authorize]
+    public async Task<IActionResult> LogoutEverywhere([FromForm] string userId)
+    {
+        if (string.IsNullOrEmpty(userId))
+            return BadRequest(new { error = "userId required" });
+
+        var tokenManager = HttpContext.RequestServices.GetRequiredService<IOpenIddictTokenManager>();
+
+        // Kullanıcının tüm tokenlarını bul ve revoke et
+        await foreach (var token in tokenManager.FindBySubjectAsync(userId))
+        {
+            await tokenManager.TryRevokeAsync(token);
+        }
+
+        return Ok(new { message = "All tokens revoked for user " + userId });
     }
 
     // Şifre değiştirme 

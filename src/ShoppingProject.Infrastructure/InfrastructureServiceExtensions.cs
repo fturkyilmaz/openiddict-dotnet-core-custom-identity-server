@@ -59,7 +59,8 @@ public static class InfrastructureServiceExtensions
                .AllowRefreshTokenFlow()
                .AllowClientCredentialsFlow();
 
-
+        options.UseReferenceAccessTokens();
+        
         options.AcceptAnonymousClients();
 
         options.AddDevelopmentEncryptionCertificate()

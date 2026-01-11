@@ -22,6 +22,17 @@ builder.Services.AddApiVersioning(options =>
     options.DefaultApiVersion = new ApiVersion(1, 0);
     options.ReportApiVersions = true;
 });
+// CORS Policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
 
 builder.Services.AddVersionedApiExplorer(options =>
 {
@@ -40,11 +51,10 @@ builder.Services.AddAuthorization();
 
 
 var app = builder.Build();
-
+app.UseCors("AllowAll");
 app.UseRouting(); 
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseCors();
 app.MapControllers();
 
 if (app.Environment.IsDevelopment())
