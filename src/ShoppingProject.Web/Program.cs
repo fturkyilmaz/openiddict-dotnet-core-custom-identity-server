@@ -22,6 +22,17 @@ builder.Services.AddApiVersioning(options =>
     options.DefaultApiVersion = new ApiVersion(1, 0);
     options.ReportApiVersions = true;
 });
+// CORS Policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
 
 builder.Services.AddVersionedApiExplorer(options =>
 {
@@ -32,17 +43,19 @@ builder.Services.AddVersionedApiExplorer(options =>
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme;
 });
 
+builder.Services.AddAuthorization();
 
 
 
 var app = builder.Build();
-app.MapControllers();
+app.UseCors("AllowAll");
 app.UseRouting(); 
-app.UseAuthentication(); 
-app.UseAuthorization(); 
-app.UseCors();
+app.UseAuthentication();
+app.UseAuthorization();
+app.MapControllers();
 
 if (app.Environment.IsDevelopment())
 {
@@ -53,11 +66,8 @@ if (app.Environment.IsDevelopment())
         c.RoutePrefix = string.Empty;
     });
 
-    // Scalar UI default /scalar path
     app.MapScalarApiReference();
 }
-
-
 
 
 await app.UseAppMiddlewareAndSeedDatabase();

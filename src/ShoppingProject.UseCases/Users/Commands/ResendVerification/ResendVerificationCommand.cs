@@ -1,0 +1,1 @@
+public record ResendVerificationCommand(string Email) : IRequest<Unit>;

@@ -1,0 +1,1 @@
+public record ChangePasswordCommand(string UserId, string CurrentPassword, string NewPassword) : IRequest<Unit>; 

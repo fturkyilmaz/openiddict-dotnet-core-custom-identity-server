@@ -240,7 +240,7 @@ namespace ShoppingProject.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contributors");
+                    b.ToTable("Contributor");
                 });
 
             modelBuilder.Entity("ShoppingProject.Core.OpenIdAggregate.Client", b =>
@@ -394,34 +394,6 @@ namespace ShoppingProject.Infrastructure.Data.Migrations
                     b.ToTable("Keys");
                 });
 
-            modelBuilder.Entity("ShoppingProject.Core.SecurityAggregate.Token", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("AccessToken")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("ExpiresAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("RefreshToken")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("RevokedAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Tokens");
-                });
-
             modelBuilder.Entity("ShoppingProject.Core.UserAggregate.ApplicationRole", b =>
                 {
                     b.Property<Guid>("Id")
@@ -468,10 +440,6 @@ namespace ShoppingProject.Infrastructure.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PasswordSalt")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -597,7 +565,7 @@ namespace ShoppingProject.Infrastructure.Data.Migrations
 
                             b1.HasKey("ContributorId");
 
-                            b1.ToTable("Contributors");
+                            b1.ToTable("Contributor");
 
                             b1.WithOwner()
                                 .HasForeignKey("ContributorId");

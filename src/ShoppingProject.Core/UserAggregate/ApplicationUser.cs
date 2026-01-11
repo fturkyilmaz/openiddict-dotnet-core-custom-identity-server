@@ -9,7 +9,6 @@ public class ApplicationUser : BaseEntity<Guid>, IAggregateRoot
     public string DisplayName { get; set; } = String.Empty;
     public string Email { get; set; } = default!;
     public string PasswordHash { get; set; } = default!;
-    public string PasswordSalt { get; set; } = default!;
     public bool IsActive { get; set; } = true;
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }

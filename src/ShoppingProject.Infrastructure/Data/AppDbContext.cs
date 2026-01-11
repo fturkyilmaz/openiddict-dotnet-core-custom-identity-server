@@ -10,8 +10,6 @@ namespace ShoppingProject.Infrastructure.Data;
 
 public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
-    public DbSet<Contributor> Contributors => Set<Contributor>();
-
     // UserAggregate
     public DbSet<ApplicationUser> Users => Set<ApplicationUser>();
     public DbSet<ApplicationRole> Roles => Set<ApplicationRole>();
@@ -19,7 +17,6 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<UserRole> UserRoles => Set<UserRole>();
 
     // SecurityAggregate
-    public DbSet<Token> Tokens => Set<Token>();
     public DbSet<Key> Keys => Set<Key>();
     public DbSet<AuditLog> AuditLogs => Set<AuditLog>();
 

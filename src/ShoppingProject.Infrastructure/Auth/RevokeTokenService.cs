@@ -20,5 +20,15 @@ namespace ShoppingProject.Infrastructure.Auth
         await _tokenManager.TryRevokeAsync(token, cancellationToken);
       }
     }
+
+    public async Task RevokeByUserIdAsync(Guid userId, CancellationToken cancellationToken)
+        {
+            await foreach (var token in _tokenManager.FindBySubjectAsync(
+                               userId.ToString(), cancellationToken))
+            {
+                await _tokenManager.TryRevokeAsync(token, cancellationToken);
+            }
+        }
+  
   }
 }
