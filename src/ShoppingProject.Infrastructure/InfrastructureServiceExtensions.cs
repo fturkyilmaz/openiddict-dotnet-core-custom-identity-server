@@ -53,7 +53,8 @@ public static class InfrastructureServiceExtensions
     {
         options.SetTokenEndpointUris("connect/token")
                .SetRevocationEndpointUris("connect/revoke")
-               .SetAuthorizationEndpointUris("connect/authorize");
+               .SetAuthorizationEndpointUris("connect/authorize")
+               .SetIntrospectionEndpointUris("/connect/introspect");
 
         options.AllowPasswordFlow()
                .AllowRefreshTokenFlow()

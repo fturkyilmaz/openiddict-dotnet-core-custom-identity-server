@@ -1,0 +1,746 @@
+2026-01-11 15:30:30.016 +03:00 [INF] Applying database migrations...
+2026-01-11 15:30:30.394 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-01-11 15:30:30.416 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2026-01-11 15:30:30.419 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2026-01-11 12:30:30.418452+00:00');
+SELECT changes();
+2026-01-11 15:30:30.442 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2026-01-11 15:30:30.447 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2026-01-11 15:30:30.449 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-01-11 15:30:30.452 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-01-11 15:30:30.452 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2026-01-11 15:30:30.454 +03:00 [INF] Database migrations applied successfully
+2026-01-11 15:30:30.455 +03:00 [INF] Seeding database...
+2026-01-11 15:30:30.553 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS "u")
+2026-01-11 15:30:30.557 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Clients" AS "c")
+2026-01-11 15:30:30.558 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Scopes" AS "s")
+2026-01-11 15:30:30.559 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Roles" AS "r")
+2026-01-11 15:30:30.604 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@name='?' (Size = 3)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ConcurrencyToken", "o"."Description", "o"."Descriptions", "o"."DisplayName", "o"."DisplayNames", "o"."Name", "o"."Properties", "o"."Resources"
+FROM "OpenIddictScopes" AS "o"
+WHERE "o"."Name" = @name
+LIMIT 1
+2026-01-11 15:30:30.632 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-11 15:30:30.673 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@name='?' (Size = 9)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ConcurrencyToken", "o"."Description", "o"."Descriptions", "o"."DisplayName", "o"."DisplayNames", "o"."Name", "o"."Properties", "o"."Resources"
+FROM "OpenIddictScopes" AS "o"
+WHERE "o"."Name" = @name
+LIMIT 1
+2026-01-11 15:30:30.702 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p8='?' (Size = 36), @p0='?' (Size = 36), @p9='?' (Size = 36), @p1='?', @p2='?', @p3='?' (Size = 17), @p4='?', @p5='?' (Size = 9), @p6='?', @p7='?' (Size = 7)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictScopes" SET "ConcurrencyToken" = @p0, "Description" = @p1, "Descriptions" = @p2, "DisplayName" = @p3, "DisplayNames" = @p4, "Name" = @p5, "Properties" = @p6, "Resources" = @p7
+WHERE "Id" = @p8 AND "ConcurrencyToken" = @p9
+RETURNING 1;
+2026-01-11 15:30:30.704 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@name='?' (Size = 7)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ConcurrencyToken", "o"."Description", "o"."Descriptions", "o"."DisplayName", "o"."DisplayNames", "o"."Name", "o"."Properties", "o"."Resources"
+FROM "OpenIddictScopes" AS "o"
+WHERE "o"."Name" = @name
+LIMIT 1
+2026-01-11 15:30:30.705 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p8='?' (Size = 36), @p0='?' (Size = 36), @p9='?' (Size = 36), @p1='?', @p2='?', @p3='?' (Size = 14), @p4='?', @p5='?' (Size = 7), @p6='?', @p7='?' (Size = 7)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictScopes" SET "ConcurrencyToken" = @p0, "Description" = @p1, "Descriptions" = @p2, "DisplayName" = @p3, "DisplayNames" = @p4, "Name" = @p5, "Properties" = @p6, "Resources" = @p7
+WHERE "Id" = @p8 AND "ConcurrencyToken" = @p9
+RETURNING 1;
+2026-01-11 15:30:30.707 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 11)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-11 15:30:30.720 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p15='?' (Size = 36), @p0='?', @p1='?' (Size = 11), @p2='?' (Size = 84), @p3='?' (Size = 12), @p4='?' (Size = 36), @p16='?' (Size = 36), @p5='?' (Size = 8), @p6='?' (Size = 9), @p7='?', @p8='?', @p9='?' (Size = 190), @p10='?', @p11='?', @p12='?' (Size = 55), @p13='?', @p14='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictApplications" SET "ApplicationType" = @p0, "ClientId" = @p1, "ClientSecret" = @p2, "ClientType" = @p3, "ConcurrencyToken" = @p4, "ConsentType" = @p5, "DisplayName" = @p6, "DisplayNames" = @p7, "JsonWebKeySet" = @p8, "Permissions" = @p9, "PostLogoutRedirectUris" = @p10, "Properties" = @p11, "RedirectUris" = @p12, "Requirements" = @p13, "Settings" = @p14
+WHERE "Id" = @p15 AND "ConcurrencyToken" = @p16
+RETURNING 1;
+2026-01-11 15:30:30.721 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 15)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-11 15:30:30.723 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p15='?' (Size = 36), @p0='?', @p1='?' (Size = 15), @p2='?' (Size = 84), @p3='?' (Size = 12), @p4='?' (Size = 36), @p16='?' (Size = 36), @p5='?' (Size = 8), @p6='?' (Size = 13), @p7='?', @p8='?', @p9='?' (Size = 188), @p10='?', @p11='?', @p12='?' (Size = 38), @p13='?', @p14='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictApplications" SET "ApplicationType" = @p0, "ClientId" = @p1, "ClientSecret" = @p2, "ClientType" = @p3, "ConcurrencyToken" = @p4, "ConsentType" = @p5, "DisplayName" = @p6, "DisplayNames" = @p7, "JsonWebKeySet" = @p8, "Permissions" = @p9, "PostLogoutRedirectUris" = @p10, "Properties" = @p11, "RedirectUris" = @p12, "Requirements" = @p13, "Settings" = @p14
+WHERE "Id" = @p15 AND "ConcurrencyToken" = @p16
+RETURNING 1;
+2026-01-11 15:30:30.723 +03:00 [INF] Database seeded successfully
+2026-01-11 15:30:30.729 +03:00 [INF] User profile is available. Using '/Users/fturkyilmaz/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-01-11 15:30:31.008 +03:00 [INF] Now listening on: https://localhost:57679
+2026-01-11 15:30:31.008 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-01-11 15:30:31.008 +03:00 [INF] Hosting environment: Development
+2026-01-11 15:30:31.008 +03:00 [INF] Content root path: /Users/fturkyilmaz/Documents/ShoppingProject/src/ShoppingProject.Web
+2026-01-11 15:30:39.648 +03:00 [INF] Application is shutting down...
+2026-01-11 15:37:25.717 +03:00 [INF] Applying database migrations...
+2026-01-11 15:37:26.195 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-01-11 15:37:26.215 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2026-01-11 15:37:26.219 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2026-01-11 12:37:26.218293+00:00');
+SELECT changes();
+2026-01-11 15:37:26.248 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2026-01-11 15:37:26.254 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2026-01-11 15:37:26.256 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-01-11 15:37:26.259 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-01-11 15:37:26.260 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2026-01-11 15:37:26.262 +03:00 [INF] Database migrations applied successfully
+2026-01-11 15:37:26.263 +03:00 [INF] Seeding database...
+2026-01-11 15:37:26.372 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS "u")
+2026-01-11 15:37:26.377 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Clients" AS "c")
+2026-01-11 15:37:26.381 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Scopes" AS "s")
+2026-01-11 15:37:26.382 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Roles" AS "r")
+2026-01-11 15:37:26.428 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@name='?' (Size = 3)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ConcurrencyToken", "o"."Description", "o"."Descriptions", "o"."DisplayName", "o"."DisplayNames", "o"."Name", "o"."Properties", "o"."Resources"
+FROM "OpenIddictScopes" AS "o"
+WHERE "o"."Name" = @name
+LIMIT 1
+2026-01-11 15:37:26.460 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-11 15:37:26.503 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@name='?' (Size = 9)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ConcurrencyToken", "o"."Description", "o"."Descriptions", "o"."DisplayName", "o"."DisplayNames", "o"."Name", "o"."Properties", "o"."Resources"
+FROM "OpenIddictScopes" AS "o"
+WHERE "o"."Name" = @name
+LIMIT 1
+2026-01-11 15:37:26.531 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p8='?' (Size = 36), @p0='?' (Size = 36), @p9='?' (Size = 36), @p1='?', @p2='?', @p3='?' (Size = 17), @p4='?', @p5='?' (Size = 9), @p6='?', @p7='?' (Size = 7)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictScopes" SET "ConcurrencyToken" = @p0, "Description" = @p1, "Descriptions" = @p2, "DisplayName" = @p3, "DisplayNames" = @p4, "Name" = @p5, "Properties" = @p6, "Resources" = @p7
+WHERE "Id" = @p8 AND "ConcurrencyToken" = @p9
+RETURNING 1;
+2026-01-11 15:37:26.534 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@name='?' (Size = 7)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ConcurrencyToken", "o"."Description", "o"."Descriptions", "o"."DisplayName", "o"."DisplayNames", "o"."Name", "o"."Properties", "o"."Resources"
+FROM "OpenIddictScopes" AS "o"
+WHERE "o"."Name" = @name
+LIMIT 1
+2026-01-11 15:37:26.535 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p8='?' (Size = 36), @p0='?' (Size = 36), @p9='?' (Size = 36), @p1='?', @p2='?', @p3='?' (Size = 14), @p4='?', @p5='?' (Size = 7), @p6='?', @p7='?' (Size = 7)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictScopes" SET "ConcurrencyToken" = @p0, "Description" = @p1, "Descriptions" = @p2, "DisplayName" = @p3, "DisplayNames" = @p4, "Name" = @p5, "Properties" = @p6, "Resources" = @p7
+WHERE "Id" = @p8 AND "ConcurrencyToken" = @p9
+RETURNING 1;
+2026-01-11 15:37:26.537 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 11)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-11 15:37:26.552 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p15='?' (Size = 36), @p0='?', @p1='?' (Size = 11), @p2='?' (Size = 84), @p3='?' (Size = 12), @p4='?' (Size = 36), @p16='?' (Size = 36), @p5='?' (Size = 8), @p6='?' (Size = 9), @p7='?', @p8='?', @p9='?' (Size = 190), @p10='?', @p11='?', @p12='?' (Size = 55), @p13='?', @p14='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictApplications" SET "ApplicationType" = @p0, "ClientId" = @p1, "ClientSecret" = @p2, "ClientType" = @p3, "ConcurrencyToken" = @p4, "ConsentType" = @p5, "DisplayName" = @p6, "DisplayNames" = @p7, "JsonWebKeySet" = @p8, "Permissions" = @p9, "PostLogoutRedirectUris" = @p10, "Properties" = @p11, "RedirectUris" = @p12, "Requirements" = @p13, "Settings" = @p14
+WHERE "Id" = @p15 AND "ConcurrencyToken" = @p16
+RETURNING 1;
+2026-01-11 15:37:26.554 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 15)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-11 15:37:26.556 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p15='?' (Size = 36), @p0='?', @p1='?' (Size = 15), @p2='?' (Size = 84), @p3='?' (Size = 12), @p4='?' (Size = 36), @p16='?' (Size = 36), @p5='?' (Size = 8), @p6='?' (Size = 13), @p7='?', @p8='?', @p9='?' (Size = 188), @p10='?', @p11='?', @p12='?' (Size = 38), @p13='?', @p14='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictApplications" SET "ApplicationType" = @p0, "ClientId" = @p1, "ClientSecret" = @p2, "ClientType" = @p3, "ConcurrencyToken" = @p4, "ConsentType" = @p5, "DisplayName" = @p6, "DisplayNames" = @p7, "JsonWebKeySet" = @p8, "Permissions" = @p9, "PostLogoutRedirectUris" = @p10, "Properties" = @p11, "RedirectUris" = @p12, "Requirements" = @p13, "Settings" = @p14
+WHERE "Id" = @p15 AND "ConcurrencyToken" = @p16
+RETURNING 1;
+2026-01-11 15:37:26.557 +03:00 [INF] Database seeded successfully
+2026-01-11 15:37:26.563 +03:00 [INF] User profile is available. Using '/Users/fturkyilmaz/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-01-11 15:37:26.882 +03:00 [INF] Now listening on: https://localhost:57679
+2026-01-11 15:37:26.883 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-01-11 15:37:26.883 +03:00 [INF] Hosting environment: Development
+2026-01-11 15:37:26.883 +03:00 [INF] Content root path: /Users/fturkyilmaz/Documents/ShoppingProject/src/ShoppingProject.Web
+2026-01-11 15:37:29.998 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/connect/token - application/x-www-form-urlencoded 105
+2026-01-11 15:37:30.030 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-11 15:37:30.038 +03:00 [INF] The token request was successfully extracted: {
+  "grant_type": "password",
+  "username": "admin@test.com",
+  "password": "[redacted]",
+  "scope": "openid profile offline_access"
+}.
+2026-01-11 15:37:30.050 +03:00 [INF] The token request was successfully validated.
+2026-01-11 15:37:30.057 +03:00 [INF] Handling LoginUserCommand
+2026-01-11 15:37:30.057 +03:00 [INF] Property Email : admin@test.com
+2026-01-11 15:37:30.057 +03:00 [INF] Property Password : Password123!
+2026-01-11 15:37:30.066 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@email='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "u"."Id", "u"."CreatedAt", "u"."CreatedDate", "u"."DisplayName", "u"."Email", "u"."IsActive", "u"."IsDeleted", "u"."PasswordHash", "u"."UpdatedAt", "u"."UpdatedDate", "u"."UserName"
+FROM "Users" AS "u"
+WHERE "u"."Email" = @email
+LIMIT 1
+2026-01-11 15:37:30.081 +03:00 [INF] Handled LoginUserCommand with LoginResultDto { UserId = b6bb2f75-82ed-4e92-ad49-a9a272feed38, UserName = admin, Email = admin@test.com, Roles = System.Collections.Generic.List`1[System.String] } in 23 ms
+2026-01-11 15:37:30.115 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 36), @p1='?', @p2='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?', @p5='?' (Size = 37), @p6='?' (Size = 5), @p7='?' (Size = 36), @p8='?' (Size = 6)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "OpenIddictAuthorizations" ("Id", "ApplicationId", "ConcurrencyToken", "CreationDate", "Properties", "Scopes", "Status", "Subject", "Type")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2026-01-11 15:37:30.120 +03:00 [INF] An ad hoc authorization was automatically created and associated with an unknown application: b82e770a-6f64-4b6a-93c0-dbed68fa6e99.
+2026-01-11 15:37:30.147 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 36), @p1='?', @p2='?' (Size = 36), @p3='?' (Size = 36), @p4='?' (DbType = DateTime), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?' (DbType = DateTime), @p9='?', @p10='?' (Size = 5), @p11='?' (Size = 36), @p12='?' (Size = 45)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "OpenIddictTokens" ("Id", "ApplicationId", "AuthorizationId", "ConcurrencyToken", "CreationDate", "ExpirationDate", "Payload", "Properties", "RedemptionDate", "ReferenceId", "Status", "Subject", "Type")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12);
+2026-01-11 15:37:30.199 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?' (Size = 1804), @p6='?', @p7='?' (DbType = DateTime), @p8='?' (Size = 44), @p9='?' (Size = 5), @p10='?' (Size = 36), @p11='?' (Size = 45)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:37:30.201 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 36), @p1='?', @p2='?' (Size = 36), @p3='?' (Size = 36), @p4='?' (DbType = DateTime), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?' (DbType = DateTime), @p9='?', @p10='?' (Size = 5), @p11='?' (Size = 36), @p12='?' (Size = 46)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "OpenIddictTokens" ("Id", "ApplicationId", "AuthorizationId", "ConcurrencyToken", "CreationDate", "ExpirationDate", "Payload", "Properties", "RedemptionDate", "ReferenceId", "Status", "Subject", "Type")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12);
+2026-01-11 15:37:30.224 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 36), @p1='?', @p2='?' (Size = 36), @p3='?' (Size = 36), @p4='?' (DbType = DateTime), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?' (DbType = DateTime), @p9='?', @p10='?' (Size = 5), @p11='?' (Size = 36), @p12='?' (Size = 41)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "OpenIddictTokens" ("Id", "ApplicationId", "AuthorizationId", "ConcurrencyToken", "CreationDate", "ExpirationDate", "Payload", "Properties", "RedemptionDate", "ReferenceId", "Status", "Subject", "Type")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12);
+2026-01-11 15:37:30.241 +03:00 [INF] The response was successfully returned as a JSON document: {
+  "access_token": "[redacted]",
+  "token_type": "Bearer",
+  "expires_in": 3600,
+  "id_token": "[redacted]",
+  "refresh_token": "[redacted]"
+}.
+2026-01-11 15:37:30.244 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/connect/token - 200 2793 application/json;charset=UTF-8 247.006ms
+2026-01-11 15:37:30.279 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/connect/introspect - application/x-www-form-urlencoded 49
+2026-01-11 15:37:30.281 +03:00 [INF] The request URI matched a server endpoint: "Introspection".
+2026-01-11 15:37:30.282 +03:00 [INF] The introspection request was successfully extracted: {
+  "token": "[redacted]",
+  "client_id": "introspect-client",
+  "client_secret": "[redacted]"
+}.
+2026-01-11 15:37:30.284 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 17)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-11 15:37:30.284 +03:00 [INF] The authentication demand was rejected because the client application was not found: 'introspect-client'.
+2026-01-11 15:37:30.286 +03:00 [INF] The response was successfully returned as a JSON document: {
+  "error": "invalid_client",
+  "error_description": "The specified 'client_id' is invalid.",
+  "error_uri": "https://documentation.openiddict.com/errors/ID2052"
+}.
+2026-01-11 15:37:30.287 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/connect/introspect - 401 164 application/json;charset=UTF-8 7.2855ms
+2026-01-11 15:37:39.195 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/connect/token - application/x-www-form-urlencoded 105
+2026-01-11 15:37:39.198 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-11 15:37:39.198 +03:00 [INF] The token request was successfully extracted: {
+  "grant_type": "password",
+  "username": "admin@test.com",
+  "password": "[redacted]",
+  "scope": "openid profile offline_access"
+}.
+2026-01-11 15:37:39.200 +03:00 [INF] The token request was successfully validated.
+2026-01-11 15:37:39.201 +03:00 [INF] Handling LoginUserCommand
+2026-01-11 15:37:39.201 +03:00 [INF] Property Email : admin@test.com
+2026-01-11 15:37:39.201 +03:00 [INF] Property Password : Password123!
+2026-01-11 15:37:39.203 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@email='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "u"."Id", "u"."CreatedAt", "u"."CreatedDate", "u"."DisplayName", "u"."Email", "u"."IsActive", "u"."IsDeleted", "u"."PasswordHash", "u"."UpdatedAt", "u"."UpdatedDate", "u"."UserName"
+FROM "Users" AS "u"
+WHERE "u"."Email" = @email
+LIMIT 1
+2026-01-11 15:37:39.205 +03:00 [INF] Handled LoginUserCommand with LoginResultDto { UserId = b6bb2f75-82ed-4e92-ad49-a9a272feed38, UserName = admin, Email = admin@test.com, Roles = System.Collections.Generic.List`1[System.String] } in 3 ms
+2026-01-11 15:37:39.208 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 36), @p1='?', @p2='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?', @p5='?' (Size = 37), @p6='?' (Size = 5), @p7='?' (Size = 36), @p8='?' (Size = 6)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "OpenIddictAuthorizations" ("Id", "ApplicationId", "ConcurrencyToken", "CreationDate", "Properties", "Scopes", "Status", "Subject", "Type")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2026-01-11 15:37:39.208 +03:00 [INF] An ad hoc authorization was automatically created and associated with an unknown application: cfbbe7d0-6633-4a3d-9a46-9dab2e273948.
+2026-01-11 15:37:39.210 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 36), @p1='?', @p2='?' (Size = 36), @p3='?' (Size = 36), @p4='?' (DbType = DateTime), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?' (DbType = DateTime), @p9='?', @p10='?' (Size = 5), @p11='?' (Size = 36), @p12='?' (Size = 45)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "OpenIddictTokens" ("Id", "ApplicationId", "AuthorizationId", "ConcurrencyToken", "CreationDate", "ExpirationDate", "Payload", "Properties", "RedemptionDate", "ReferenceId", "Status", "Subject", "Type")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12);
+2026-01-11 15:37:39.229 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?' (Size = 1804), @p6='?', @p7='?' (DbType = DateTime), @p8='?' (Size = 44), @p9='?' (Size = 5), @p10='?' (Size = 36), @p11='?' (Size = 45)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:37:39.230 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 36), @p1='?', @p2='?' (Size = 36), @p3='?' (Size = 36), @p4='?' (DbType = DateTime), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?' (DbType = DateTime), @p9='?', @p10='?' (Size = 5), @p11='?' (Size = 36), @p12='?' (Size = 46)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "OpenIddictTokens" ("Id", "ApplicationId", "AuthorizationId", "ConcurrencyToken", "CreationDate", "ExpirationDate", "Payload", "Properties", "RedemptionDate", "ReferenceId", "Status", "Subject", "Type")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12);
+2026-01-11 15:37:39.245 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 36), @p1='?', @p2='?' (Size = 36), @p3='?' (Size = 36), @p4='?' (DbType = DateTime), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?' (DbType = DateTime), @p9='?', @p10='?' (Size = 5), @p11='?' (Size = 36), @p12='?' (Size = 41)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "OpenIddictTokens" ("Id", "ApplicationId", "AuthorizationId", "ConcurrencyToken", "CreationDate", "ExpirationDate", "Payload", "Properties", "RedemptionDate", "ReferenceId", "Status", "Subject", "Type")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12);
+2026-01-11 15:37:39.259 +03:00 [INF] The response was successfully returned as a JSON document: {
+  "access_token": "[redacted]",
+  "token_type": "Bearer",
+  "expires_in": 3600,
+  "id_token": "[redacted]",
+  "refresh_token": "[redacted]"
+}.
+2026-01-11 15:37:39.259 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/connect/token - 200 2793 application/json;charset=UTF-8 64.1602ms
+2026-01-11 15:37:39.297 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/connect/introspect - application/x-www-form-urlencoded 49
+2026-01-11 15:37:39.297 +03:00 [INF] The request URI matched a server endpoint: "Introspection".
+2026-01-11 15:37:39.298 +03:00 [INF] The introspection request was successfully extracted: {
+  "token": "[redacted]",
+  "client_id": "introspect-client",
+  "client_secret": "[redacted]"
+}.
+2026-01-11 15:37:39.299 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 17)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-11 15:37:39.299 +03:00 [INF] The authentication demand was rejected because the client application was not found: 'introspect-client'.
+2026-01-11 15:37:39.299 +03:00 [INF] The response was successfully returned as a JSON document: {
+  "error": "invalid_client",
+  "error_description": "The specified 'client_id' is invalid.",
+  "error_uri": "https://documentation.openiddict.com/errors/ID2052"
+}.
+2026-01-11 15:37:39.299 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/connect/introspect - 401 164 application/json;charset=UTF-8 2.6844ms
+2026-01-11 15:38:27.544 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/connect/token - application/x-www-form-urlencoded 105
+2026-01-11 15:38:27.545 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-11 15:38:27.546 +03:00 [INF] The token request was successfully extracted: {
+  "grant_type": "password",
+  "username": "admin@test.com",
+  "password": "[redacted]",
+  "scope": "openid profile offline_access"
+}.
+2026-01-11 15:38:27.547 +03:00 [INF] The token request was successfully validated.
+2026-01-11 15:38:27.549 +03:00 [INF] Handling LoginUserCommand
+2026-01-11 15:38:27.549 +03:00 [INF] Property Email : admin@test.com
+2026-01-11 15:38:27.549 +03:00 [INF] Property Password : Password123!
+2026-01-11 15:38:27.550 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@email='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "u"."Id", "u"."CreatedAt", "u"."CreatedDate", "u"."DisplayName", "u"."Email", "u"."IsActive", "u"."IsDeleted", "u"."PasswordHash", "u"."UpdatedAt", "u"."UpdatedDate", "u"."UserName"
+FROM "Users" AS "u"
+WHERE "u"."Email" = @email
+LIMIT 1
+2026-01-11 15:38:27.552 +03:00 [INF] Handled LoginUserCommand with LoginResultDto { UserId = b6bb2f75-82ed-4e92-ad49-a9a272feed38, UserName = admin, Email = admin@test.com, Roles = System.Collections.Generic.List`1[System.String] } in 2 ms
+2026-01-11 15:38:27.556 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 36), @p1='?', @p2='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?', @p5='?' (Size = 37), @p6='?' (Size = 5), @p7='?' (Size = 36), @p8='?' (Size = 6)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "OpenIddictAuthorizations" ("Id", "ApplicationId", "ConcurrencyToken", "CreationDate", "Properties", "Scopes", "Status", "Subject", "Type")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2026-01-11 15:38:27.556 +03:00 [INF] An ad hoc authorization was automatically created and associated with an unknown application: 8d8b01b2-1ca8-4e6d-ae83-dabd9677c99e.
+2026-01-11 15:38:27.558 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 36), @p1='?', @p2='?' (Size = 36), @p3='?' (Size = 36), @p4='?' (DbType = DateTime), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?' (DbType = DateTime), @p9='?', @p10='?' (Size = 5), @p11='?' (Size = 36), @p12='?' (Size = 45)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "OpenIddictTokens" ("Id", "ApplicationId", "AuthorizationId", "ConcurrencyToken", "CreationDate", "ExpirationDate", "Payload", "Properties", "RedemptionDate", "ReferenceId", "Status", "Subject", "Type")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12);
+2026-01-11 15:38:27.581 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?' (Size = 1804), @p6='?', @p7='?' (DbType = DateTime), @p8='?' (Size = 44), @p9='?' (Size = 5), @p10='?' (Size = 36), @p11='?' (Size = 45)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:38:27.582 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 36), @p1='?', @p2='?' (Size = 36), @p3='?' (Size = 36), @p4='?' (DbType = DateTime), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?' (DbType = DateTime), @p9='?', @p10='?' (Size = 5), @p11='?' (Size = 36), @p12='?' (Size = 46)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "OpenIddictTokens" ("Id", "ApplicationId", "AuthorizationId", "ConcurrencyToken", "CreationDate", "ExpirationDate", "Payload", "Properties", "RedemptionDate", "ReferenceId", "Status", "Subject", "Type")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12);
+2026-01-11 15:38:27.597 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 36), @p1='?', @p2='?' (Size = 36), @p3='?' (Size = 36), @p4='?' (DbType = DateTime), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?' (DbType = DateTime), @p9='?', @p10='?' (Size = 5), @p11='?' (Size = 36), @p12='?' (Size = 41)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "OpenIddictTokens" ("Id", "ApplicationId", "AuthorizationId", "ConcurrencyToken", "CreationDate", "ExpirationDate", "Payload", "Properties", "RedemptionDate", "ReferenceId", "Status", "Subject", "Type")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12);
+2026-01-11 15:38:27.611 +03:00 [INF] The response was successfully returned as a JSON document: {
+  "access_token": "[redacted]",
+  "token_type": "Bearer",
+  "expires_in": 3599,
+  "id_token": "[redacted]",
+  "refresh_token": "[redacted]"
+}.
+2026-01-11 15:38:27.611 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/connect/token - 200 2793 application/json;charset=UTF-8 67.1439ms
+2026-01-11 15:38:27.650 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/connect/introspect - application/x-www-form-urlencoded 49
+2026-01-11 15:38:27.650 +03:00 [INF] The request URI matched a server endpoint: "Introspection".
+2026-01-11 15:38:27.651 +03:00 [INF] The introspection request was successfully extracted: {
+  "token": "[redacted]",
+  "client_id": "introspect-client",
+  "client_secret": "[redacted]"
+}.
+2026-01-11 15:38:27.652 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 17)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-11 15:38:27.652 +03:00 [INF] The authentication demand was rejected because the client application was not found: 'introspect-client'.
+2026-01-11 15:38:27.653 +03:00 [INF] The response was successfully returned as a JSON document: {
+  "error": "invalid_client",
+  "error_description": "The specified 'client_id' is invalid.",
+  "error_uri": "https://documentation.openiddict.com/errors/ID2052"
+}.
+2026-01-11 15:38:27.653 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/connect/introspect - 401 164 application/json;charset=UTF-8 3.2544ms
+2026-01-11 15:38:27.681 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/auth/me - null null
+2026-01-11 15:38:27.723 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 44)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationId", "o"."AuthorizationId", "o"."ConcurrencyToken", "o"."CreationDate", "o"."ExpirationDate", "o"."Payload", "o"."Properties", "o"."RedemptionDate", "o"."ReferenceId", "o"."Status", "o"."Subject", "o"."Type", "o0"."Id", "o0"."ApplicationType", "o0"."ClientId", "o0"."ClientSecret", "o0"."ClientType", "o0"."ConcurrencyToken", "o0"."ConsentType", "o0"."DisplayName", "o0"."DisplayNames", "o0"."JsonWebKeySet", "o0"."Permissions", "o0"."PostLogoutRedirectUris", "o0"."Properties", "o0"."RedirectUris", "o0"."Requirements", "o0"."Settings", "o1"."Id", "o1"."ApplicationId", "o1"."ConcurrencyToken", "o1"."CreationDate", "o1"."Properties", "o1"."Scopes", "o1"."Status", "o1"."Subject", "o1"."Type"
+FROM "OpenIddictTokens" AS "o"
+LEFT JOIN "OpenIddictApplications" AS "o0" ON "o"."ApplicationId" = "o0"."Id"
+LEFT JOIN "OpenIddictAuthorizations" AS "o1" ON "o"."AuthorizationId" = "o1"."Id"
+WHERE "o"."ReferenceId" = @identifier
+LIMIT 1
+2026-01-11 15:38:27.768 +03:00 [INF] Executing endpoint 'ShoppingProject.Web.Controllers.AuthorizationController.Me (ShoppingProject.Web)'
+2026-01-11 15:38:27.773 +03:00 [INF] Route matched with {action = "Me", controller = "Authorization"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller ShoppingProject.Web.Controllers.AuthorizationController (ShoppingProject.Web).
+2026-01-11 15:38:27.775 +03:00 [INF] Executing action method ShoppingProject.Web.Controllers.AuthorizationController.Me (ShoppingProject.Web) - Validation state: "Valid"
+2026-01-11 15:38:27.776 +03:00 [INF] Handling MeQuery
+2026-01-11 15:38:27.776 +03:00 [INF] Property UserId : b6bb2f75-82ed-4e92-ad49-a9a272feed38
+2026-01-11 15:38:27.780 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT "u"."Id", "u"."CreatedAt", "u"."CreatedDate", "u"."DisplayName", "u"."Email", "u"."IsActive", "u"."IsDeleted", "u"."PasswordHash", "u"."UpdatedAt", "u"."UpdatedDate", "u"."UserName"
+FROM "Users" AS "u"
+WHERE "u"."Id" = @p
+LIMIT 1
+2026-01-11 15:38:27.781 +03:00 [INF] Handled MeQuery with MeDto { Id = b6bb2f75-82ed-4e92-ad49-a9a272feed38, UserName = admin, Email = admin@test.com, EmailVerified = True, TwoFactorEnabled = True } in 4 ms
+2026-01-11 15:38:27.782 +03:00 [INF] Executed action method ShoppingProject.Web.Controllers.AuthorizationController.Me (ShoppingProject.Web), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 6.057ms.
+2026-01-11 15:38:27.784 +03:00 [INF] Executing OkObjectResult, writing value of type 'ShoppingProject.UseCases.Users.MeDto'.
+2026-01-11 15:38:27.791 +03:00 [INF] Executed action ShoppingProject.Web.Controllers.AuthorizationController.Me (ShoppingProject.Web) in 17.1708ms
+2026-01-11 15:38:27.791 +03:00 [INF] Executed endpoint 'ShoppingProject.Web.Controllers.AuthorizationController.Me (ShoppingProject.Web)'
+2026-01-11 15:38:27.791 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/auth/me - 200 null application/json; charset=utf-8 110.0238ms
+2026-01-11 15:38:27.825 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/logout-everywhere - application/x-www-form-urlencoded 43
+2026-01-11 15:38:27.828 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 44)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationId", "o"."AuthorizationId", "o"."ConcurrencyToken", "o"."CreationDate", "o"."ExpirationDate", "o"."Payload", "o"."Properties", "o"."RedemptionDate", "o"."ReferenceId", "o"."Status", "o"."Subject", "o"."Type", "o0"."Id", "o0"."ApplicationType", "o0"."ClientId", "o0"."ClientSecret", "o0"."ClientType", "o0"."ConcurrencyToken", "o0"."ConsentType", "o0"."DisplayName", "o0"."DisplayNames", "o0"."JsonWebKeySet", "o0"."Permissions", "o0"."PostLogoutRedirectUris", "o0"."Properties", "o0"."RedirectUris", "o0"."Requirements", "o0"."Settings", "o1"."Id", "o1"."ApplicationId", "o1"."ConcurrencyToken", "o1"."CreationDate", "o1"."Properties", "o1"."Scopes", "o1"."Status", "o1"."Subject", "o1"."Type"
+FROM "OpenIddictTokens" AS "o"
+LEFT JOIN "OpenIddictApplications" AS "o0" ON "o"."ApplicationId" = "o0"."Id"
+LEFT JOIN "OpenIddictAuthorizations" AS "o1" ON "o"."AuthorizationId" = "o1"."Id"
+WHERE "o"."ReferenceId" = @identifier
+LIMIT 1
+2026-01-11 15:38:27.845 +03:00 [INF] Executing endpoint 'ShoppingProject.Web.Controllers.AuthorizationController.LogoutEverywhere (ShoppingProject.Web)'
+2026-01-11 15:38:27.850 +03:00 [INF] Route matched with {action = "LogoutEverywhere", controller = "Authorization"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] LogoutEverywhere(System.String) on controller ShoppingProject.Web.Controllers.AuthorizationController (ShoppingProject.Web).
+2026-01-11 15:38:27.854 +03:00 [INF] Executing action method ShoppingProject.Web.Controllers.AuthorizationController.LogoutEverywhere (ShoppingProject.Web) - Validation state: "Valid"
+2026-01-11 15:38:27.865 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@subject='?' (Size = 36)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationId", "o"."AuthorizationId", "o"."ConcurrencyToken", "o"."CreationDate", "o"."ExpirationDate", "o"."Payload", "o"."Properties", "o"."RedemptionDate", "o"."ReferenceId", "o"."Status", "o"."Subject", "o"."Type", "o0"."Id", "o0"."ApplicationType", "o0"."ClientId", "o0"."ClientSecret", "o0"."ClientType", "o0"."ConcurrencyToken", "o0"."ConsentType", "o0"."DisplayName", "o0"."DisplayNames", "o0"."JsonWebKeySet", "o0"."Permissions", "o0"."PostLogoutRedirectUris", "o0"."Properties", "o0"."RedirectUris", "o0"."Requirements", "o0"."Settings", "o1"."Id", "o1"."ApplicationId", "o1"."ConcurrencyToken", "o1"."CreationDate", "o1"."Properties", "o1"."Scopes", "o1"."Status", "o1"."Subject", "o1"."Type"
+FROM "OpenIddictTokens" AS "o"
+LEFT JOIN "OpenIddictApplications" AS "o0" ON "o"."ApplicationId" = "o0"."Id"
+LEFT JOIN "OpenIddictAuthorizations" AS "o1" ON "o"."AuthorizationId" = "o1"."Id"
+WHERE "o"."Subject" = @subject
+2026-01-11 15:38:27.868 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?' (Size = 1804), @p6='?', @p7='?' (DbType = DateTime), @p8='?' (Size = 44), @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 45)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:38:27.869 +03:00 [INF] The token '556db551-632d-40d2-ad7a-4aeb688f3dc0' was successfully revoked.
+2026-01-11 15:38:27.869 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 46)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:38:27.869 +03:00 [INF] The token '7df267ad-c851-4fe0-ab5a-dc8d8e926503' was successfully revoked.
+2026-01-11 15:38:27.869 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 41)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:38:27.870 +03:00 [INF] The token 'e3083e9f-53d4-474c-8cbc-84da4da078e7' was successfully revoked.
+2026-01-11 15:38:27.870 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?' (Size = 1804), @p6='?', @p7='?' (DbType = DateTime), @p8='?' (Size = 44), @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 45)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:38:27.870 +03:00 [INF] The token '647d7d57-0ab5-40fe-bd3b-b0a4c18963fc' was successfully revoked.
+2026-01-11 15:38:27.871 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 46)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:38:27.871 +03:00 [INF] The token 'ec1e8b61-b510-4983-8b64-4a5263090de8' was successfully revoked.
+2026-01-11 15:38:27.871 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 41)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:38:27.871 +03:00 [INF] The token '60ed74a7-d861-46a1-9293-c8067333eef0' was successfully revoked.
+2026-01-11 15:38:27.871 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?' (Size = 1804), @p6='?', @p7='?' (DbType = DateTime), @p8='?' (Size = 44), @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 45)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:38:27.872 +03:00 [INF] The token 'd4d0acca-8767-4310-bb44-96e82661acdc' was successfully revoked.
+2026-01-11 15:38:27.872 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 46)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:38:27.872 +03:00 [INF] The token '732f9b00-ac52-4dab-91e4-81939858a1a4' was successfully revoked.
+2026-01-11 15:38:27.872 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 41)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:38:27.872 +03:00 [INF] The token '9f6a5307-2f5a-45a2-a052-21c1fda80c65' was successfully revoked.
+2026-01-11 15:38:27.873 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?' (Size = 1804), @p6='?', @p7='?' (DbType = DateTime), @p8='?' (Size = 44), @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 45)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:38:27.873 +03:00 [INF] The token '34fc02bd-4c31-4d13-9aa5-287de4dbd2f6' was successfully revoked.
+2026-01-11 15:38:27.873 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 46)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:38:27.873 +03:00 [INF] The token 'a04e7ce9-e8fb-44d7-b90e-4380a5befc1c' was successfully revoked.
+2026-01-11 15:38:27.873 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 41)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:38:27.873 +03:00 [INF] The token '6740eddd-256f-4fef-ae42-0e8fdb7663e7' was successfully revoked.
+2026-01-11 15:38:27.874 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?' (Size = 1804), @p6='?', @p7='?' (DbType = DateTime), @p8='?' (Size = 44), @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 45)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:38:27.874 +03:00 [INF] The token '9eb3c3bf-80fd-4bfd-a892-073a960a2954' was successfully revoked.
+2026-01-11 15:38:27.874 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 46)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:38:27.874 +03:00 [INF] The token '4dc3a1fb-d21b-47d8-80fa-5219f3130397' was successfully revoked.
+2026-01-11 15:38:27.874 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 41)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:38:27.875 +03:00 [INF] The token 'dfffe754-fe81-44cd-9441-0d4440223103' was successfully revoked.
+2026-01-11 15:38:27.875 +03:00 [INF] Executed action method ShoppingProject.Web.Controllers.AuthorizationController.LogoutEverywhere (ShoppingProject.Web), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 21.2704ms.
+2026-01-11 15:38:27.875 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`1[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-01-11 15:38:27.876 +03:00 [INF] Executed action ShoppingProject.Web.Controllers.AuthorizationController.LogoutEverywhere (ShoppingProject.Web) in 26.1243ms
+2026-01-11 15:38:27.876 +03:00 [INF] Executed endpoint 'ShoppingProject.Web.Controllers.AuthorizationController.LogoutEverywhere (ShoppingProject.Web)'
+2026-01-11 15:38:27.876 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/logout-everywhere - 200 null application/json; charset=utf-8 51.4824ms
+2026-01-11 15:38:27.906 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/connect/introspect - application/x-www-form-urlencoded 49
+2026-01-11 15:38:27.906 +03:00 [INF] The request URI matched a server endpoint: "Introspection".
+2026-01-11 15:38:27.907 +03:00 [INF] The introspection request was successfully extracted: {
+  "token": "[redacted]",
+  "client_id": "introspect-client",
+  "client_secret": "[redacted]"
+}.
+2026-01-11 15:38:27.907 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 17)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-11 15:38:27.907 +03:00 [INF] The authentication demand was rejected because the client application was not found: 'introspect-client'.
+2026-01-11 15:38:27.907 +03:00 [INF] The response was successfully returned as a JSON document: {
+  "error": "invalid_client",
+  "error_description": "The specified 'client_id' is invalid.",
+  "error_uri": "https://documentation.openiddict.com/errors/ID2052"
+}.
+2026-01-11 15:38:27.907 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/connect/introspect - 401 164 application/json;charset=UTF-8 1.3265ms
+2026-01-11 15:42:07.296 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/connect/token - application/x-www-form-urlencoded 105
+2026-01-11 15:42:07.297 +03:00 [INF] The request URI matched a server endpoint: "Token".
+2026-01-11 15:42:07.297 +03:00 [INF] The token request was successfully extracted: {
+  "grant_type": "password",
+  "username": "admin@test.com",
+  "password": "[redacted]",
+  "scope": "openid profile offline_access"
+}.
+2026-01-11 15:42:07.298 +03:00 [INF] The token request was successfully validated.
+2026-01-11 15:42:07.298 +03:00 [INF] Handling LoginUserCommand
+2026-01-11 15:42:07.298 +03:00 [INF] Property Email : admin@test.com
+2026-01-11 15:42:07.298 +03:00 [INF] Property Password : Password123!
+2026-01-11 15:42:07.299 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@email='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT "u"."Id", "u"."CreatedAt", "u"."CreatedDate", "u"."DisplayName", "u"."Email", "u"."IsActive", "u"."IsDeleted", "u"."PasswordHash", "u"."UpdatedAt", "u"."UpdatedDate", "u"."UserName"
+FROM "Users" AS "u"
+WHERE "u"."Email" = @email
+LIMIT 1
+2026-01-11 15:42:07.302 +03:00 [INF] Handled LoginUserCommand with LoginResultDto { UserId = b6bb2f75-82ed-4e92-ad49-a9a272feed38, UserName = admin, Email = admin@test.com, Roles = System.Collections.Generic.List`1[System.String] } in 4 ms
+2026-01-11 15:42:07.303 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 36), @p1='?', @p2='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?', @p5='?' (Size = 37), @p6='?' (Size = 5), @p7='?' (Size = 36), @p8='?' (Size = 6)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "OpenIddictAuthorizations" ("Id", "ApplicationId", "ConcurrencyToken", "CreationDate", "Properties", "Scopes", "Status", "Subject", "Type")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2026-01-11 15:42:07.303 +03:00 [INF] An ad hoc authorization was automatically created and associated with an unknown application: f60ce58b-3ab4-4874-8199-9b5cba3eb980.
+2026-01-11 15:42:07.304 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 36), @p1='?', @p2='?' (Size = 36), @p3='?' (Size = 36), @p4='?' (DbType = DateTime), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?' (DbType = DateTime), @p9='?', @p10='?' (Size = 5), @p11='?' (Size = 36), @p12='?' (Size = 45)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "OpenIddictTokens" ("Id", "ApplicationId", "AuthorizationId", "ConcurrencyToken", "CreationDate", "ExpirationDate", "Payload", "Properties", "RedemptionDate", "ReferenceId", "Status", "Subject", "Type")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12);
+2026-01-11 15:42:07.327 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?' (Size = 1804), @p6='?', @p7='?' (DbType = DateTime), @p8='?' (Size = 44), @p9='?' (Size = 5), @p10='?' (Size = 36), @p11='?' (Size = 45)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:42:07.328 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 36), @p1='?', @p2='?' (Size = 36), @p3='?' (Size = 36), @p4='?' (DbType = DateTime), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?' (DbType = DateTime), @p9='?', @p10='?' (Size = 5), @p11='?' (Size = 36), @p12='?' (Size = 46)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "OpenIddictTokens" ("Id", "ApplicationId", "AuthorizationId", "ConcurrencyToken", "CreationDate", "ExpirationDate", "Payload", "Properties", "RedemptionDate", "ReferenceId", "Status", "Subject", "Type")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12);
+2026-01-11 15:42:07.343 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 36), @p1='?', @p2='?' (Size = 36), @p3='?' (Size = 36), @p4='?' (DbType = DateTime), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?' (DbType = DateTime), @p9='?', @p10='?' (Size = 5), @p11='?' (Size = 36), @p12='?' (Size = 41)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "OpenIddictTokens" ("Id", "ApplicationId", "AuthorizationId", "ConcurrencyToken", "CreationDate", "ExpirationDate", "Payload", "Properties", "RedemptionDate", "ReferenceId", "Status", "Subject", "Type")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12);
+2026-01-11 15:42:07.356 +03:00 [INF] The response was successfully returned as a JSON document: {
+  "access_token": "[redacted]",
+  "token_type": "Bearer",
+  "expires_in": 3600,
+  "id_token": "[redacted]",
+  "refresh_token": "[redacted]"
+}.
+2026-01-11 15:42:07.356 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/connect/token - 200 2793 application/json;charset=UTF-8 59.7847ms
+2026-01-11 15:42:07.398 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/connect/introspect - application/x-www-form-urlencoded 49
+2026-01-11 15:42:07.398 +03:00 [INF] The request URI matched a server endpoint: "Introspection".
+2026-01-11 15:42:07.398 +03:00 [INF] The introspection request was successfully extracted: {
+  "token": "[redacted]",
+  "client_id": "open-id-api",
+  "client_secret": "[redacted]"
+}.
+2026-01-11 15:42:07.399 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 11)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-11 15:42:07.408 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 44)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationId", "o"."AuthorizationId", "o"."ConcurrencyToken", "o"."CreationDate", "o"."ExpirationDate", "o"."Payload", "o"."Properties", "o"."RedemptionDate", "o"."ReferenceId", "o"."Status", "o"."Subject", "o"."Type", "o0"."Id", "o0"."ApplicationType", "o0"."ClientId", "o0"."ClientSecret", "o0"."ClientType", "o0"."ConcurrencyToken", "o0"."ConsentType", "o0"."DisplayName", "o0"."DisplayNames", "o0"."JsonWebKeySet", "o0"."Permissions", "o0"."PostLogoutRedirectUris", "o0"."Properties", "o0"."RedirectUris", "o0"."Requirements", "o0"."Settings", "o1"."Id", "o1"."ApplicationId", "o1"."ConcurrencyToken", "o1"."CreationDate", "o1"."Properties", "o1"."Scopes", "o1"."Status", "o1"."Subject", "o1"."Type"
+FROM "OpenIddictTokens" AS "o"
+LEFT JOIN "OpenIddictApplications" AS "o0" ON "o"."ApplicationId" = "o0"."Id"
+LEFT JOIN "OpenIddictAuthorizations" AS "o1" ON "o"."AuthorizationId" = "o1"."Id"
+WHERE "o"."ReferenceId" = @identifier
+LIMIT 1
+2026-01-11 15:42:07.432 +03:00 [INF] The introspection request was successfully validated.
+2026-01-11 15:42:07.435 +03:00 [INF] Potentially sensitive application claims were excluded from the introspection response as the client 'open-id-api' was not explicitly listed as an audience.
+2026-01-11 15:42:07.435 +03:00 [INF] The response was successfully returned as a JSON document: {
+  "active": true,
+  "iss": "https://localhost:57679/",
+  "sub": "b6bb2f75-82ed-4e92-ad49-a9a272feed38",
+  "jti": "6c01ee99-e50a-49c0-be94-12968942e970",
+  "token_type": "Bearer",
+  "token_usage": "access_token",
+  "iat": 1768135327,
+  "nbf": 1768135327,
+  "exp": 1768138927,
+  "aud": "api"
+}.
+2026-01-11 15:42:07.435 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/connect/introspect - 200 293 application/json;charset=UTF-8 37.2231ms
+2026-01-11 15:42:07.464 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/auth/me - null null
+2026-01-11 15:42:07.467 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 44)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationId", "o"."AuthorizationId", "o"."ConcurrencyToken", "o"."CreationDate", "o"."ExpirationDate", "o"."Payload", "o"."Properties", "o"."RedemptionDate", "o"."ReferenceId", "o"."Status", "o"."Subject", "o"."Type", "o0"."Id", "o0"."ApplicationType", "o0"."ClientId", "o0"."ClientSecret", "o0"."ClientType", "o0"."ConcurrencyToken", "o0"."ConsentType", "o0"."DisplayName", "o0"."DisplayNames", "o0"."JsonWebKeySet", "o0"."Permissions", "o0"."PostLogoutRedirectUris", "o0"."Properties", "o0"."RedirectUris", "o0"."Requirements", "o0"."Settings", "o1"."Id", "o1"."ApplicationId", "o1"."ConcurrencyToken", "o1"."CreationDate", "o1"."Properties", "o1"."Scopes", "o1"."Status", "o1"."Subject", "o1"."Type"
+FROM "OpenIddictTokens" AS "o"
+LEFT JOIN "OpenIddictApplications" AS "o0" ON "o"."ApplicationId" = "o0"."Id"
+LEFT JOIN "OpenIddictAuthorizations" AS "o1" ON "o"."AuthorizationId" = "o1"."Id"
+WHERE "o"."ReferenceId" = @identifier
+LIMIT 1
+2026-01-11 15:42:07.482 +03:00 [INF] Executing endpoint 'ShoppingProject.Web.Controllers.AuthorizationController.Me (ShoppingProject.Web)'
+2026-01-11 15:42:07.482 +03:00 [INF] Route matched with {action = "Me", controller = "Authorization"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller ShoppingProject.Web.Controllers.AuthorizationController (ShoppingProject.Web).
+2026-01-11 15:42:07.482 +03:00 [INF] Executing action method ShoppingProject.Web.Controllers.AuthorizationController.Me (ShoppingProject.Web) - Validation state: "Valid"
+2026-01-11 15:42:07.482 +03:00 [INF] Handling MeQuery
+2026-01-11 15:42:07.483 +03:00 [INF] Property UserId : b6bb2f75-82ed-4e92-ad49-a9a272feed38
+2026-01-11 15:42:07.483 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT "u"."Id", "u"."CreatedAt", "u"."CreatedDate", "u"."DisplayName", "u"."Email", "u"."IsActive", "u"."IsDeleted", "u"."PasswordHash", "u"."UpdatedAt", "u"."UpdatedDate", "u"."UserName"
+FROM "Users" AS "u"
+WHERE "u"."Id" = @p
+LIMIT 1
+2026-01-11 15:42:07.483 +03:00 [INF] Handled MeQuery with MeDto { Id = b6bb2f75-82ed-4e92-ad49-a9a272feed38, UserName = admin, Email = admin@test.com, EmailVerified = True, TwoFactorEnabled = True } in 0 ms
+2026-01-11 15:42:07.483 +03:00 [INF] Executed action method ShoppingProject.Web.Controllers.AuthorizationController.Me (ShoppingProject.Web), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 1.0442ms.
+2026-01-11 15:42:07.483 +03:00 [INF] Executing OkObjectResult, writing value of type 'ShoppingProject.UseCases.Users.MeDto'.
+2026-01-11 15:42:07.484 +03:00 [INF] Executed action ShoppingProject.Web.Controllers.AuthorizationController.Me (ShoppingProject.Web) in 1.3822ms
+2026-01-11 15:42:07.484 +03:00 [INF] Executed endpoint 'ShoppingProject.Web.Controllers.AuthorizationController.Me (ShoppingProject.Web)'
+2026-01-11 15:42:07.484 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/auth/me - 200 null application/json; charset=utf-8 20.2063ms
+2026-01-11 15:42:07.509 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/auth/logout-everywhere - application/x-www-form-urlencoded 43
+2026-01-11 15:42:07.510 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 44)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationId", "o"."AuthorizationId", "o"."ConcurrencyToken", "o"."CreationDate", "o"."ExpirationDate", "o"."Payload", "o"."Properties", "o"."RedemptionDate", "o"."ReferenceId", "o"."Status", "o"."Subject", "o"."Type", "o0"."Id", "o0"."ApplicationType", "o0"."ClientId", "o0"."ClientSecret", "o0"."ClientType", "o0"."ConcurrencyToken", "o0"."ConsentType", "o0"."DisplayName", "o0"."DisplayNames", "o0"."JsonWebKeySet", "o0"."Permissions", "o0"."PostLogoutRedirectUris", "o0"."Properties", "o0"."RedirectUris", "o0"."Requirements", "o0"."Settings", "o1"."Id", "o1"."ApplicationId", "o1"."ConcurrencyToken", "o1"."CreationDate", "o1"."Properties", "o1"."Scopes", "o1"."Status", "o1"."Subject", "o1"."Type"
+FROM "OpenIddictTokens" AS "o"
+LEFT JOIN "OpenIddictApplications" AS "o0" ON "o"."ApplicationId" = "o0"."Id"
+LEFT JOIN "OpenIddictAuthorizations" AS "o1" ON "o"."AuthorizationId" = "o1"."Id"
+WHERE "o"."ReferenceId" = @identifier
+LIMIT 1
+2026-01-11 15:42:07.524 +03:00 [INF] Executing endpoint 'ShoppingProject.Web.Controllers.AuthorizationController.LogoutEverywhere (ShoppingProject.Web)'
+2026-01-11 15:42:07.524 +03:00 [INF] Route matched with {action = "LogoutEverywhere", controller = "Authorization"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] LogoutEverywhere(System.String) on controller ShoppingProject.Web.Controllers.AuthorizationController (ShoppingProject.Web).
+2026-01-11 15:42:07.525 +03:00 [INF] Executing action method ShoppingProject.Web.Controllers.AuthorizationController.LogoutEverywhere (ShoppingProject.Web) - Validation state: "Valid"
+2026-01-11 15:42:07.525 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@subject='?' (Size = 36)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationId", "o"."AuthorizationId", "o"."ConcurrencyToken", "o"."CreationDate", "o"."ExpirationDate", "o"."Payload", "o"."Properties", "o"."RedemptionDate", "o"."ReferenceId", "o"."Status", "o"."Subject", "o"."Type", "o0"."Id", "o0"."ApplicationType", "o0"."ClientId", "o0"."ClientSecret", "o0"."ClientType", "o0"."ConcurrencyToken", "o0"."ConsentType", "o0"."DisplayName", "o0"."DisplayNames", "o0"."JsonWebKeySet", "o0"."Permissions", "o0"."PostLogoutRedirectUris", "o0"."Properties", "o0"."RedirectUris", "o0"."Requirements", "o0"."Settings", "o1"."Id", "o1"."ApplicationId", "o1"."ConcurrencyToken", "o1"."CreationDate", "o1"."Properties", "o1"."Scopes", "o1"."Status", "o1"."Subject", "o1"."Type"
+FROM "OpenIddictTokens" AS "o"
+LEFT JOIN "OpenIddictApplications" AS "o0" ON "o"."ApplicationId" = "o0"."Id"
+LEFT JOIN "OpenIddictAuthorizations" AS "o1" ON "o"."AuthorizationId" = "o1"."Id"
+WHERE "o"."Subject" = @subject
+2026-01-11 15:42:07.526 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?' (Size = 1804), @p6='?', @p7='?' (DbType = DateTime), @p8='?' (Size = 44), @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 45)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:42:07.527 +03:00 [INF] The token '556db551-632d-40d2-ad7a-4aeb688f3dc0' was successfully revoked.
+2026-01-11 15:42:07.527 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 46)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:42:07.527 +03:00 [INF] The token '7df267ad-c851-4fe0-ab5a-dc8d8e926503' was successfully revoked.
+2026-01-11 15:42:07.528 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 41)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:42:07.528 +03:00 [INF] The token 'e3083e9f-53d4-474c-8cbc-84da4da078e7' was successfully revoked.
+2026-01-11 15:42:07.528 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?' (Size = 1804), @p6='?', @p7='?' (DbType = DateTime), @p8='?' (Size = 44), @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 45)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:42:07.528 +03:00 [INF] The token '647d7d57-0ab5-40fe-bd3b-b0a4c18963fc' was successfully revoked.
+2026-01-11 15:42:07.528 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 46)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:42:07.529 +03:00 [INF] The token 'ec1e8b61-b510-4983-8b64-4a5263090de8' was successfully revoked.
+2026-01-11 15:42:07.529 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 41)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:42:07.529 +03:00 [INF] The token '60ed74a7-d861-46a1-9293-c8067333eef0' was successfully revoked.
+2026-01-11 15:42:07.529 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?' (Size = 1804), @p6='?', @p7='?' (DbType = DateTime), @p8='?' (Size = 44), @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 45)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:42:07.530 +03:00 [INF] The token 'd4d0acca-8767-4310-bb44-96e82661acdc' was successfully revoked.
+2026-01-11 15:42:07.530 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 46)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:42:07.530 +03:00 [INF] The token '732f9b00-ac52-4dab-91e4-81939858a1a4' was successfully revoked.
+2026-01-11 15:42:07.530 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 41)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:42:07.530 +03:00 [INF] The token '9f6a5307-2f5a-45a2-a052-21c1fda80c65' was successfully revoked.
+2026-01-11 15:42:07.531 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?' (Size = 1804), @p6='?', @p7='?' (DbType = DateTime), @p8='?' (Size = 44), @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 45)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:42:07.531 +03:00 [INF] The token '34fc02bd-4c31-4d13-9aa5-287de4dbd2f6' was successfully revoked.
+2026-01-11 15:42:07.531 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 46)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:42:07.531 +03:00 [INF] The token 'a04e7ce9-e8fb-44d7-b90e-4380a5befc1c' was successfully revoked.
+2026-01-11 15:42:07.531 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 41)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:42:07.531 +03:00 [INF] The token '6740eddd-256f-4fef-ae42-0e8fdb7663e7' was successfully revoked.
+2026-01-11 15:42:07.532 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?' (Size = 1804), @p6='?', @p7='?' (DbType = DateTime), @p8='?' (Size = 44), @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 45)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:42:07.532 +03:00 [INF] The token '9eb3c3bf-80fd-4bfd-a892-073a960a2954' was successfully revoked.
+2026-01-11 15:42:07.532 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 46)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:42:07.532 +03:00 [INF] The token '4dc3a1fb-d21b-47d8-80fa-5219f3130397' was successfully revoked.
+2026-01-11 15:42:07.532 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 41)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:42:07.532 +03:00 [INF] The token 'dfffe754-fe81-44cd-9441-0d4440223103' was successfully revoked.
+2026-01-11 15:42:07.533 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?' (Size = 1804), @p6='?', @p7='?' (DbType = DateTime), @p8='?' (Size = 44), @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 45)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:42:07.533 +03:00 [INF] The token 'af4415c1-28e3-4834-95bf-31ee8db35e02' was successfully revoked.
+2026-01-11 15:42:07.533 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 46)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:42:07.533 +03:00 [INF] The token '00f5971b-580a-44e1-9daf-c868b0b31f52' was successfully revoked.
+2026-01-11 15:42:07.533 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p12='?' (Size = 36), @p0='?', @p1='?' (Size = 36), @p2='?' (Size = 36), @p13='?' (Size = 36), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?' (Size = 7), @p10='?' (Size = 36), @p11='?' (Size = 41)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "OpenIddictTokens" SET "ApplicationId" = @p0, "AuthorizationId" = @p1, "ConcurrencyToken" = @p2, "CreationDate" = @p3, "ExpirationDate" = @p4, "Payload" = @p5, "Properties" = @p6, "RedemptionDate" = @p7, "ReferenceId" = @p8, "Status" = @p9, "Subject" = @p10, "Type" = @p11
+WHERE "Id" = @p12 AND "ConcurrencyToken" = @p13
+RETURNING 1;
+2026-01-11 15:42:07.534 +03:00 [INF] The token '7f370559-f4ac-45b3-8f72-8409a2e67d10' was successfully revoked.
+2026-01-11 15:42:07.534 +03:00 [INF] Executed action method ShoppingProject.Web.Controllers.AuthorizationController.LogoutEverywhere (ShoppingProject.Web), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 9.238ms.
+2026-01-11 15:42:07.534 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`1[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-01-11 15:42:07.534 +03:00 [INF] Executed action ShoppingProject.Web.Controllers.AuthorizationController.LogoutEverywhere (ShoppingProject.Web) in 9.9707ms
+2026-01-11 15:42:07.534 +03:00 [INF] Executed endpoint 'ShoppingProject.Web.Controllers.AuthorizationController.LogoutEverywhere (ShoppingProject.Web)'
+2026-01-11 15:42:07.534 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/auth/logout-everywhere - 200 null application/json; charset=utf-8 25.286ms
+2026-01-11 15:42:07.559 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/connect/introspect - application/x-www-form-urlencoded 49
+2026-01-11 15:42:07.559 +03:00 [INF] The request URI matched a server endpoint: "Introspection".
+2026-01-11 15:42:07.559 +03:00 [INF] The introspection request was successfully extracted: {
+  "token": "[redacted]",
+  "client_id": "open-id-api",
+  "client_secret": "[redacted]"
+}.
+2026-01-11 15:42:07.560 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 11)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationType", "o"."ClientId", "o"."ClientSecret", "o"."ClientType", "o"."ConcurrencyToken", "o"."ConsentType", "o"."DisplayName", "o"."DisplayNames", "o"."JsonWebKeySet", "o"."Permissions", "o"."PostLogoutRedirectUris", "o"."Properties", "o"."RedirectUris", "o"."Requirements", "o"."Settings"
+FROM "OpenIddictApplications" AS "o"
+WHERE "o"."ClientId" = @identifier
+LIMIT 1
+2026-01-11 15:42:07.562 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@identifier='?' (Size = 44)], CommandType='"Text"', CommandTimeout='30']
+SELECT "o"."Id", "o"."ApplicationId", "o"."AuthorizationId", "o"."ConcurrencyToken", "o"."CreationDate", "o"."ExpirationDate", "o"."Payload", "o"."Properties", "o"."RedemptionDate", "o"."ReferenceId", "o"."Status", "o"."Subject", "o"."Type", "o0"."Id", "o0"."ApplicationType", "o0"."ClientId", "o0"."ClientSecret", "o0"."ClientType", "o0"."ConcurrencyToken", "o0"."ConsentType", "o0"."DisplayName", "o0"."DisplayNames", "o0"."JsonWebKeySet", "o0"."Permissions", "o0"."PostLogoutRedirectUris", "o0"."Properties", "o0"."RedirectUris", "o0"."Requirements", "o0"."Settings", "o1"."Id", "o1"."ApplicationId", "o1"."ConcurrencyToken", "o1"."CreationDate", "o1"."Properties", "o1"."Scopes", "o1"."Status", "o1"."Subject", "o1"."Type"
+FROM "OpenIddictTokens" AS "o"
+LEFT JOIN "OpenIddictApplications" AS "o0" ON "o"."ApplicationId" = "o0"."Id"
+LEFT JOIN "OpenIddictAuthorizations" AS "o1" ON "o"."AuthorizationId" = "o1"."Id"
+WHERE "o"."ReferenceId" = @identifier
+LIMIT 1
+2026-01-11 15:42:07.577 +03:00 [INF] The token 'af4415c1-28e3-4834-95bf-31ee8db35e02' was no longer valid.
+2026-01-11 15:42:07.577 +03:00 [INF] The response was successfully returned as a JSON document: {
+  "active": false
+}.
+2026-01-11 15:42:07.577 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/connect/introspect - 200 21 application/json;charset=UTF-8 18.0153ms
