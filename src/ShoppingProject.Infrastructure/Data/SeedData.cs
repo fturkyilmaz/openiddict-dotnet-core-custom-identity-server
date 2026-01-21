@@ -10,11 +10,13 @@ namespace ShoppingProject.Infrastructure.Data;
 public static class SeedData
 {
     public const int NUMBER_OF_USERS = 10;
+    private static Guid adminUserId;
 
     public static async Task InitializeAsync(IServiceProvider provider)
     {
         using var scope = provider.CreateScope();
         var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
 
        // OpenIddict Manager
         var applicationManager = scope.ServiceProvider.GetRequiredService<IOpenIddictApplicationManager>();
@@ -33,7 +35,7 @@ public static class SeedData
                 DisplayName = "Administrator",
                 PasswordHash = hash
             });
-        }
+        }else { adminUserId = await dbContext.Users.Where(u => u.UserName == "admin").Select(u => u.Id).FirstAsync(); }
 
         if (!dbContext.Clients.Any())
         {
@@ -101,7 +103,11 @@ public static class SeedData
             });
         }
 
-        await dbContext.SaveChangesAsync();
+     var adminRoleId = await dbContext.Roles .Where(r => r.Name == "Admin") .Select(r => r.Id) .FirstAsync(); 
+     var alreadyAssigned = await dbContext.UserRoles .AnyAsync(ur => ur.UserId == adminUserId && ur.RoleId == adminRoleId && ur.IsDeleted == false); 
+     if (!alreadyAssigned) { dbContext.UserRoles.Add(new UserRole { Id = Guid.NewGuid(), UserId = adminUserId, RoleId = adminRoleId, IsDeleted = false }); }
+
+      await dbContext.SaveChangesAsync();
     }
 
   // public static async Task PopulateFakeUsersAsync(UserManager<ApplicationUser> userManager)

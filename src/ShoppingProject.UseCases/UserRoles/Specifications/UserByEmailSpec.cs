@@ -1,7 +1,7 @@
-﻿using Ardalis.Specification;
+using Ardalis.Specification;
 using ShoppingProject.Core.UserAggregate;
 
-namespace ShoppingProject.UseCases.UserRoles.Specifications
+namespace ShoppingProject.UseCases.Users.Specifications
 {
     public class UserByEmailSpec : Specification<ApplicationUser>
     {
