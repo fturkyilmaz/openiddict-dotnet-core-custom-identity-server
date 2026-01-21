@@ -103,7 +103,7 @@ public static class SeedData
             });
         }
 
-     var adminRoleId = await dbContext.Roles .Where(r => r.Name == "Admin") .Select(r => r.Id) .FirstAsync(); 
+     var adminRoleId = await dbContext.Roles.Where(r => r.Name == "Admin").Select(r => r.Id) .FirstAsync(); 
      var alreadyAssigned = await dbContext.UserRoles .AnyAsync(ur => ur.UserId == adminUserId && ur.RoleId == adminRoleId && ur.IsDeleted == false); 
      if (!alreadyAssigned) { dbContext.UserRoles.Add(new UserRole { Id = Guid.NewGuid(), UserId = adminUserId, RoleId = adminRoleId, IsDeleted = false }); }
 

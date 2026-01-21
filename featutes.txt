@@ -1,5 +1,6 @@
 ## Grant types and endpoints
 
+https://docs.openiddictcomponents.com/adminui/Users/Searching_for_users/
 # Gelecekte Lazım Olacak Auth Endpointleri
 
 ## 🔑 Kullanıcı Güvenliği ve Yönetimi

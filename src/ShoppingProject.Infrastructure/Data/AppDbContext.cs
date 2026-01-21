@@ -35,24 +35,6 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
-        // User ↔ UserRole ilişkisi
-        modelBuilder.Entity<UserRole>()
-            .HasOne(ur => ur.User)
-            .WithMany(u => u.Roles)
-            .HasForeignKey(ur => ur.UserId);
-
-        // Role ↔ UserRole ilişkisi
-        modelBuilder.Entity<UserRole>()
-            .HasOne(ur => ur.Role)
-            .WithMany()
-            .HasForeignKey(ur => ur.RoleId);
-
-        // Claim ↔ User ilişkisi
-        modelBuilder.Entity<UserClaim>()
-            .HasOne(uc => uc.User)
-            .WithMany(u => u.Claims)
-            .HasForeignKey(uc => uc.UserId);
     }
 
 

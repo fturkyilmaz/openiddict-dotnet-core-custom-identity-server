@@ -7,7 +7,9 @@ namespace ShoppingProject.UseCases.UserRoles.Specifications
     {
         public UserByEmailSpec(string email)
         {
-            Query.Where(u => u.Email == email);
+            Query.Where(u => u.Email == email)
+            .Include(u => u.Roles)
+            .ThenInclude(ur => ur.Role);
         }
     }
 }
