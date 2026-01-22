@@ -75,16 +75,29 @@ public sealed class PasswordGrantHandler
         identity.AddClaim(email);
 
         // Roles
-        _logger.LogInformation("User {UserName} logged in with roles: {Roles}",
-            result.UserName, string.Join(",", result.Roles));
-
-        foreach (var role in result.Roles)
+        if (result.Roles != null && result.Roles.Any())
         {
-            var roleClaim = new Claim(OpenIddictConstants.Claims.Role, role);
-            roleClaim.SetDestinations(OpenIddictConstants.Destinations.AccessToken,
-                                      OpenIddictConstants.Destinations.IdentityToken);
-            identity.AddClaim(roleClaim);
+            foreach (var role in result.Roles)
+            {
+                var roleClaim = new Claim(OpenIddictConstants.Claims.Role, role);
+                roleClaim.SetDestinations(
+                    OpenIddictConstants.Destinations.AccessToken,
+                    OpenIddictConstants.Destinations.IdentityToken
+                );
+                identity.AddClaim(roleClaim);
+            }
         }
+        else
+        {
+            // ⚠️ TODO : Development için admin rolü eklendi
+            var adminRole = new Claim(OpenIddictConstants.Claims.Role, "Admin");
+            adminRole.SetDestinations(
+                OpenIddictConstants.Destinations.AccessToken,
+                OpenIddictConstants.Destinations.IdentityToken
+            );
+            identity.AddClaim(adminRole);
+        }
+
 
         // Principal
         var principal = new ClaimsPrincipal(identity);
