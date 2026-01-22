@@ -68,8 +68,6 @@ public static class InfrastructureServiceExtensions
                .AddDevelopmentSigningCertificate();
 
         options.SetIssuer("https://localhost:57679");
-
-
         options.UseAspNetCore()
               .EnableAuthorizationEndpointPassthrough();
         
@@ -81,7 +79,6 @@ public static class InfrastructureServiceExtensions
     })
     .AddValidation(options =>
     {
-        // Token doğrulama için local server 
         options.UseLocalServer();
         options.UseAspNetCore();
     });
