@@ -37,27 +37,27 @@ public static class SeedData
             });
         }else { adminUserId = await dbContext.Users.Where(u => u.UserName == "admin").Select(u => u.Id).FirstAsync(); }
 
-        if (!dbContext.Clients.Any())
-        {
-            dbContext.Clients.Add(new Client
-            {
-                Id = Guid.NewGuid(),
-                ClientId = "shopping-admin",
-                ClientSecretHash = "dev-secret",
-                RedirectUrisJson = "[\"https://localhost:5001/signin-oidc\"]",
-                AllowedScopesJson = "[\"api\", \"openid\", \"profile\"]",
-            });
-        }
+        // if (!dbContext.Clients.Any())
+        // {
+        //     dbContext.Clients.Add(new Client
+        //     {
+        //         Id = Guid.NewGuid(),
+        //         ClientId = "shopping-admin",
+        //         ClientSecretHash = "dev-secret",
+        //         RedirectUrisJson = "[\"https://localhost:5001/signin-oidc\"]",
+        //         AllowedScopesJson = "[\"api\", \"openid\", \"profile\"]",
+        //     });
+        // }
 
-        if (!dbContext.Scopes.Any())
-        {
-            dbContext.Scopes.Add(new Scope
-            {
-                Id = Guid.NewGuid(),
-                Name = "api",
-                Description = "Shopping API"
-            });
-        }
+        // if (!dbContext.Scopes.Any())
+        // {
+        //     dbContext.Scopes.Add(new Scope
+        //     {
+        //         Id = Guid.NewGuid(),
+        //         Name = "api",
+        //         Description = "Shopping API"
+        //     });
+        // }
 
         if (!dbContext.Roles.Any())
         {

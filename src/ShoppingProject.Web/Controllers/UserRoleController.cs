@@ -10,11 +10,11 @@ namespace ShoppingProject.WebApi.Controllers;
 [ApiController]
 [Route("api/v{version:apiVersion}/user-roles")]
 [ApiVersion("1.0")]
-public class UseRoleController : ControllerBase
+public class UserRoleController : ControllerBase
 {
     private readonly AppDbContext _db;
 
-    public UseRoleController(AppDbContext db) => _db = db;
+    public UserRoleController(AppDbContext db) => _db = db;
 
     [HttpGet]
     [Authorize(Roles = "Admin")]
@@ -60,6 +60,20 @@ public class UseRoleController : ControllerBase
         return Ok(new { message = "Role assigned successfully", userRole });
     }
 
+    [HttpPut("{id}")]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> Update(Guid id, [FromBody] string roleName)
+    {
+        var role = await _db.UserRoles.FirstOrDefaultAsync(r => r.Id == id && !r.IsDeleted);
+        if (role is null) return NotFound();
+
+        role.RoleId = id;
+        role.UpdatedDate = DateTime.UtcNow;
+
+        await _db.SaveChangesAsync();
+        return Ok(role);
+    }
+
     [HttpDelete]    
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete([FromBody] UserRoleDto userRoleDto)
@@ -77,4 +91,27 @@ public class UseRoleController : ControllerBase
 
         return Ok(new { message = "Role removed successfully", userRole });
     }
+
+    [HttpGet("by-user/{userId}")]
+    public async Task<IActionResult> GetByUser(Guid userId)
+    {
+        var roles = await _db.UserRoles
+            .Where(ur => ur.UserId == userId && !ur.IsDeleted)
+            .Select(ur => ur.RoleId)
+            .ToListAsync();
+
+        return Ok(roles);
+    }
+
+    [HttpGet("by-role/{roleId}")]
+    public async Task<IActionResult> GetByRole(Guid roleId)
+    {
+        var users = await _db.UserRoles
+            .Where(ur => ur.RoleId == roleId && !ur.IsDeleted)
+            .Select(ur => ur.UserId)
+            .ToListAsync();
+
+        return Ok(users);
+    }
+
 }

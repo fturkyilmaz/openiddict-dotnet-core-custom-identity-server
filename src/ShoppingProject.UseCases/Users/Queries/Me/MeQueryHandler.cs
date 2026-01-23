@@ -20,7 +20,6 @@ public class MeQueryHandler : IRequestHandler<MeQuery, MeDto>
 
     public async ValueTask<MeDto> Handle(MeQuery request, CancellationToken cancellationToken)
     {
-
         if (!Guid.TryParse(_currentUser.UserId, out var guid)) throw new UnauthorizedAccessException("Kullanıcı bulunamadı.");
 
         var user = await _userRepository.GetByIdAsync(guid, cancellationToken);

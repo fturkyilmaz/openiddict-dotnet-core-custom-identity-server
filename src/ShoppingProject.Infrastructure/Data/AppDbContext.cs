@@ -20,11 +20,6 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<Key> Keys => Set<Key>();
     public DbSet<AuditLog> AuditLogs => Set<AuditLog>();
 
-    // OpenIdAggregate
-    public DbSet<Client> Clients => Set<Client>();
-    public DbSet<Scope> Scopes => Set<Scope>();
-    public DbSet<ClientScope> ClientScopes => Set<ClientScope>();
-
     // OpenIddict
     public DbSet<OpenIddictEntityFrameworkCoreApplication> OpenIddictApplications => Set<OpenIddictEntityFrameworkCoreApplication>();
     public DbSet<OpenIddictEntityFrameworkCoreAuthorization> OpenIddictAuthorizations => Set<OpenIddictEntityFrameworkCoreAuthorization>();
