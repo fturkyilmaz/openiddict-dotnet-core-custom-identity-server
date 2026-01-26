@@ -2,6 +2,7 @@ using OpenIddict.Abstractions;
 using OpenIddict.Server;
 using OpenIddict.Server.AspNetCore;
 using ShoppingProject.UseCases.Users.Commands.Login;
+using ShoppingProject.UseCases.Users.Interfaces;
 using System.Security.Claims;
 
 namespace ShoppingProject.Infrastructure.Auth;
@@ -11,7 +12,6 @@ public sealed class PasswordGrantHandler
 {
     private readonly IMediator _mediator;
     private readonly ILogger<PasswordGrantHandler> _logger;
-
     public PasswordGrantHandler(IMediator mediator, ILogger<PasswordGrantHandler> logger)
     {
         _mediator = mediator;
@@ -34,7 +34,7 @@ public sealed class PasswordGrantHandler
             return;
         }
 
-        // Kullanıcı doğrulama (LoginCommand içinde şifre kontrolü yapılmalı)
+        // Authorization
         var result = await _mediator.Send(new LoginCommand(
             context.Request.Username!,
             context.Request.Password!
@@ -98,20 +98,48 @@ public sealed class PasswordGrantHandler
             identity.AddClaim(adminRole);
         }
 
-
         // Principal
         var principal = new ClaimsPrincipal(identity);
 
-        // Scope ve resource (sabit ve güvenli)
-        principal.SetScopes(OpenIddictConstants.Scopes.OpenId,
-                            OpenIddictConstants.Scopes.Email,
-                            OpenIddictConstants.Scopes.Profile,
-                            OpenIddictConstants.Scopes.OfflineAccess,
-                            "api");
+        // Set base scopes
+        var requestedScopes = context.Request.GetScopes();
+        var allowedScopes = new List<string>
+        {
+            OpenIddictConstants.Scopes.OpenId,
+            OpenIddictConstants.Scopes.Email,
+            OpenIddictConstants.Scopes.Profile,
+            OpenIddictConstants.Scopes.OfflineAccess
+        };
+
+        // Add requested scopes if they're allowed
+        var scopeAllowList = new[] { "api.users.read", "api.users.write", "api.admin", "clientapi", "postman" };
+        allowedScopes.AddRange(requestedScopes.Where(s => scopeAllowList.Contains(s)));
+
+        principal.SetScopes(allowedScopes);
+
+        // Set audience based on scopes
+        var audiences = new List<string>();
+        if (requestedScopes.Contains("api.admin"))
+        {
+            audiences.Add("shopping-admin");
+        }
+        if (requestedScopes.Any(s => s.StartsWith("api.")) || requestedScopes.Contains("clientapi") || requestedScopes.Contains("postman"))
+        {
+            audiences.Add("shopping-api");
+        }
+
+        if (audiences.Any())
+        {
+            principal.SetAudiences(audiences);
+        }
+        else
+        {
+            principal.SetAudiences("shopping-api");
+        }
 
         principal.SetResources("api");
 
-        // OpenIddict’e teslim et—JWT üretimi burada yapılır
+        // OpenIddict JWT process
         context.SignIn(principal);
     }
 }

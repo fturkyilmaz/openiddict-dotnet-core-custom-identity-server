@@ -1,4 +1,4 @@
-﻿using ShoppingProject.Web.Configurations;
+using ShoppingProject.Web.Configurations;
 using Microsoft.AspNetCore.Mvc;
 using Scalar.AspNetCore;
 using OpenIddict.Validation.AspNetCore;
@@ -46,7 +46,7 @@ builder.Services.AddAuthentication(options =>
     options.DefaultChallengeScheme = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme;
 });
 
-builder.Services.AddAuthorization();
+builder.Services.AddAuthorizationConfigs();
 
 
 

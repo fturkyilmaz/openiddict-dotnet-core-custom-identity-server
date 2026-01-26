@@ -1,4 +1,5 @@
 using OpenIddict.Abstractions;
+using ShoppingProject.Core.UserAggregate;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace ShoppingProject.Infrastructure.Data
@@ -10,9 +11,7 @@ namespace ShoppingProject.Infrastructure.Data
             using var scope = provider.CreateScope();
 
             await PopulateScopes(scope);
-
             await PopulateClientApp(scope);
-
             await PopulateServiceApp(scope);
         }
 
@@ -33,6 +32,24 @@ namespace ShoppingProject.Infrastructure.Data
                     Name = "postman",
                     DisplayName = "Postman Access",
                     Resources = { "api" }
+                },
+                new OpenIddictScopeDescriptor
+                {
+                    Name = "api.users.read",
+                    DisplayName = "Read User Data",
+                    Resources = { "shopping-api" }
+                },
+                new OpenIddictScopeDescriptor
+                {
+                    Name = "api.users.write",
+                    DisplayName = "Write User Data",
+                    Resources = { "shopping-api" }
+                },
+                new OpenIddictScopeDescriptor
+                {
+                    Name = "api.admin",
+                    DisplayName = "Admin Access",
+                    Resources = { "shopping-admin", "shopping-api" }
                 }
             };
 
@@ -79,7 +96,8 @@ namespace ShoppingProject.Infrastructure.Data
                         Permissions.Scopes.Profile,
                         Permissions.Scopes.Email,
                         Permissions.Prefixes.Scope + "clientapi",
-
+                        Permissions.Prefixes.Scope + "api.users.read",
+                        Permissions.Prefixes.Scope + "api.users.write"
                     }
             };
 
@@ -95,7 +113,7 @@ namespace ShoppingProject.Infrastructure.Data
             }
         }
 
-        private static async ValueTask PopulateServiceApp(IServiceScope scopeService )
+        private static async ValueTask PopulateServiceApp(IServiceScope scopeService)
         {
             var appManager = scopeService.ServiceProvider.GetRequiredService<IOpenIddictApplicationManager>();
 
@@ -122,7 +140,10 @@ namespace ShoppingProject.Infrastructure.Data
 
                         Permissions.Scopes.Profile,
                         Permissions.Scopes.Email,
-                        Permissions.Prefixes.Scope + "postman"
+                        Permissions.Prefixes.Scope + "postman",
+                        Permissions.Prefixes.Scope + "api.users.read",
+                        Permissions.Prefixes.Scope + "api.users.write",
+                        Permissions.Prefixes.Scope + "api.admin"
                     }
             };
 
