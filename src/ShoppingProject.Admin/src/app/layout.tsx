@@ -8,6 +8,9 @@ import { fontVars } from "@/lib/fonts/registry";
 import { PREFERENCE_DEFAULTS } from "@/lib/preferences/preferences-config";
 import { ThemeBootScript } from "@/scripts/theme-boot";
 import { PreferencesStoreProvider } from "@/stores/preferences/preferences-provider";
+import { AuthProvider } from "@/lib/auth-context";
+import { QueryProvider } from "@/lib/query-provider";
+import { I18nProvider } from "@/i18n";
 
 import "./globals.css";
 
@@ -43,8 +46,14 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
           navbarStyle={navbar_style}
           font={font}
         >
-          {children}
-          <Toaster />
+          <I18nProvider>
+            <AuthProvider>
+              <QueryProvider>
+                {children}
+                <Toaster />
+              </QueryProvider>
+            </AuthProvider>
+          </I18nProvider>
         </PreferencesStoreProvider>
       </body>
     </html>

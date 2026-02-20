@@ -1,0 +1,29 @@
+{
+    "common": {
+        "language": "Language",
+        "english": "English",
+        "turkish": "Turkish"
+    },
+    "auth": {
+        "login": "Login",
+        "logout": "Log out",
+        "register": "Register",
+        "email": "Email",
+        "password": "Password",
+        "username": "Username",
+        "confirmPassword": "Confirm Password",
+        "forgotPassword": "Forgot password?",
+        "noAccount": "Don't have an account?",
+        "hasAccount": "Already have an account?",
+        "signUp": "Sign up",
+        "signIn": "Sign in",
+        "loggingIn": "Logging in...",
+        "rememberMe": "Remember me for 30 days"
+    },
+    "nav": {
+        "dashboard": "Dashboard",
+        "users": "Users",
+        "roles": "Roles",
+        "settings": "Settings"
+    }
+}

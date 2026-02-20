@@ -1,0 +1,29 @@
+{
+    "common": {
+        "language": "Dil",
+        "english": "İngilizce",
+        "turkish": "Türkçe"
+    },
+    "auth": {
+        "login": "Giriş Yap",
+        "logout": "Çıkış Yap",
+        "register": "Kayıt Ol",
+        "email": "E-posta",
+        "password": "Şifre",
+        "username": "Kullanıcı Adı",
+        "confirmPassword": "Şifreyi Doğrula",
+        "forgotPassword": "Şifremi unuttum?",
+        "noAccount": "Hesabınız yok mu?",
+        "hasAccount": "Zaten hesabınız var mı?",
+        "signUp": "Kayıt Ol",
+        "signIn": "Giriş Yap",
+        "loggingIn": "Giriş yapılıyor...",
+        "rememberMe": "Beni 30 gün hatırla"
+    },
+    "nav": {
+        "dashboard": "Panel",
+        "users": "Kullanıcılar",
+        "roles": "Roller",
+        "settings": "Ayarlar"
+    }
+}

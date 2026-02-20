@@ -4,36 +4,43 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
+import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { authApi } from "@/lib/api";
+import { useI18n } from "@/i18n";
 
 const FormSchema = z.object({
-  email: z.string().email({ message: "Please enter a valid email address." }),
-  password: z.string().min(6, { message: "Password must be at least 6 characters." }),
+  username: z.string().min(1, { message: "Username is required" }),
+  password: z.string().min(1, { message: "Password is required" }),
   remember: z.boolean().optional(),
 });
 
 export function LoginForm() {
+  const router = useRouter();
+  const { t } = useI18n();
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      username: "admin@test.com",
+      password: "Password123!",
       remember: false,
     },
   });
 
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
-    toast("You submitted the following values", {
-      description: (
-        <pre className="mt-2 w-[320px] rounded-md bg-neutral-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
+    try {
+      await authApi.login(data.username, data.password);
+      toast.success("Login successful!");
+      router.push("/dashboard");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Login failed");
+    }
   };
 
   return (
@@ -41,12 +48,12 @@ export function LoginForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <FormField
           control={form.control}
-          name="email"
+          name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email Address</FormLabel>
+              <FormLabel>{t("auth.username")}</FormLabel>
               <FormControl>
-                <Input id="email" type="email" placeholder="you@example.com" autoComplete="email" {...field} />
+                <Input id="username" type="text" placeholder="admin" autoComplete="username" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -57,7 +64,7 @@ export function LoginForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>{t("auth.password")}</FormLabel>
               <FormControl>
                 <Input
                   id="password"
@@ -84,14 +91,14 @@ export function LoginForm() {
                   className="size-4"
                 />
               </FormControl>
-              <FormLabel htmlFor="login-remember" className="ml-1 font-medium text-muted-foreground text-sm">
-                Remember me for 30 days
-              </FormLabel>
+              <Label htmlFor="login-remember" className="ml-1 font-medium text-muted-foreground text-sm">
+                {t("auth.rememberMe") || "Remember me for 30 days"}
+              </Label>
             </FormItem>
           )}
         />
-        <Button className="w-full" type="submit">
-          Login
+        <Button className="w-full" type="submit" disabled={form.formState.isSubmitting}>
+          {form.formState.isSubmitting ? t("auth.loggingIn") || "Logging in..." : t("auth.login")}
         </Button>
       </form>
     </Form>

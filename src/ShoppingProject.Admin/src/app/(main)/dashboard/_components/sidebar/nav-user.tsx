@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "@/components/ui/sidebar";
 import { getInitials } from "@/lib/utils";
+import { useAuth } from "@/lib/auth-context";
+import { useI18n } from "@/i18n";
 
 export function NavUser({
   user,
@@ -25,6 +27,8 @@ export function NavUser({
   };
 }) {
   const { isMobile } = useSidebar();
+  const { logout } = useAuth();
+  const { t } = useI18n();
 
   return (
     <SidebarMenu>
@@ -80,9 +84,9 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={logout}>
               <LogOut />
-              Log out
+              {t("auth.logout")}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
