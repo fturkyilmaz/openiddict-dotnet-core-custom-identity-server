@@ -23,18 +23,6 @@ public class UsersController : ControllerBase
         _db = db;
     }
     
-
-    [HttpGet]
-    [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> GetAll()
-    {
-        var users = await _db.Users
-            .Select(u => new { u.Id, u.UserName, u.Email, u.DisplayName })
-            .ToListAsync();
-
-        return Ok(users);
-    }
-
     [HttpGet]
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> SearchUsers(

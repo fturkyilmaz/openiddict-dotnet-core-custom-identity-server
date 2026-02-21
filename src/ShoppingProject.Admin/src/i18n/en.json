@@ -1,29 +1,55 @@
 {
-    "common": {
-        "language": "Language",
-        "english": "English",
-        "turkish": "Turkish"
-    },
-    "auth": {
-        "login": "Login",
-        "logout": "Log out",
-        "register": "Register",
-        "email": "Email",
-        "password": "Password",
-        "username": "Username",
-        "confirmPassword": "Confirm Password",
-        "forgotPassword": "Forgot password?",
-        "noAccount": "Don't have an account?",
-        "hasAccount": "Already have an account?",
-        "signUp": "Sign up",
-        "signIn": "Sign in",
-        "loggingIn": "Logging in...",
-        "rememberMe": "Remember me for 30 days"
-    },
-    "nav": {
-        "dashboard": "Dashboard",
-        "users": "Users",
-        "roles": "Roles",
-        "settings": "Settings"
-    }
+  "common": {
+    "language": "Language",
+    "english": "English",
+    "turkish": "Turkish"
+  },
+  "auth": {
+    "login": "Login",
+    "logout": "Log out",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "username": "Username",
+    "confirmPassword": "Confirm Password",
+    "forgotPassword": "Forgot password?",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "signUp": "Sign up",
+    "signIn": "Sign in",
+    "loggingIn": "Logging in...",
+    "rememberMe": "Remember me for 30 days"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "users": "Users",
+    "roles": "Roles",
+    "settings": "Settings",
+    "default": "Default",
+    "crm": "CRM",
+    "finance": "Finance",
+    "comingSoon": "Coming Soon"
+  },
+  "preferences": {
+    "title": "Preferences",
+    "description": "Customize your dashboard layout preferences.",
+    "note": "*Preferences use cookies by default. You can switch between cookies, localStorage, or no storage in code.",
+    "themePreset": "Theme Preset",
+    "fonts": "Fonts",
+    "selectFont": "Select font",
+    "themeMode": "Theme Mode",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "pageLayout": "Page Layout",
+    "centered": "Centered",
+    "fullWidth": "Full Width",
+    "navbarBehavior": "Navbar Behavior",
+    "floating": "Floating",
+    "sticky": "Sticky",
+    "sidebarVariant": "Sidebar Variant",
+    "sidebarCollapsible": "Sidebar Collapsible",
+    "icon": "Icon",
+    "dock": "Dock"
+  }
 }

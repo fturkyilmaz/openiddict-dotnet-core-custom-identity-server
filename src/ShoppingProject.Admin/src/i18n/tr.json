@@ -1,29 +1,55 @@
 {
-    "common": {
-        "language": "Dil",
-        "english": "İngilizce",
-        "turkish": "Türkçe"
-    },
-    "auth": {
-        "login": "Giriş Yap",
-        "logout": "Çıkış Yap",
-        "register": "Kayıt Ol",
-        "email": "E-posta",
-        "password": "Şifre",
-        "username": "Kullanıcı Adı",
-        "confirmPassword": "Şifreyi Doğrula",
-        "forgotPassword": "Şifremi unuttum?",
-        "noAccount": "Hesabınız yok mu?",
-        "hasAccount": "Zaten hesabınız var mı?",
-        "signUp": "Kayıt Ol",
-        "signIn": "Giriş Yap",
-        "loggingIn": "Giriş yapılıyor...",
-        "rememberMe": "Beni 30 gün hatırla"
-    },
-    "nav": {
-        "dashboard": "Panel",
-        "users": "Kullanıcılar",
-        "roles": "Roller",
-        "settings": "Ayarlar"
-    }
+  "common": {
+    "language": "Dil",
+    "english": "İngilizce",
+    "turkish": "Türkçe"
+  },
+  "auth": {
+    "login": "Giriş Yap",
+    "logout": "Çıkış Yap",
+    "register": "Kayıt Ol",
+    "email": "E-posta",
+    "password": "Şifre",
+    "username": "Kullanıcı Adı",
+    "confirmPassword": "Şifreyi Doğrula",
+    "forgotPassword": "Şifremi unuttum?",
+    "noAccount": "Hesabınız yok mu?",
+    "hasAccount": "Zaten hesabınız var mı?",
+    "signUp": "Kayıt Ol",
+    "signIn": "Giriş Yap",
+    "loggingIn": "Giriş yapılıyor...",
+    "rememberMe": "Beni 30 gün hatırla"
+  },
+  "nav": {
+    "dashboard": "Panel",
+    "users": "Kullanıcılar",
+    "roles": "Roller",
+    "settings": "Ayarlar",
+    "default": "Varsayılan",
+    "crm": "CRM",
+    "finance": "Finans",
+    "comingSoon": "Çok Yakında"
+  },
+  "preferences": {
+    "title": "Tercihler",
+    "description": "Panel düzen tercihlerinizi özelleştirin.",
+    "note": "*Tercihler varsayılan olarak çerezleri kullanır. Kodda çerezler, localStorage veya depolama olmadan arasında geçiş yapabilirsiniz.",
+    "themePreset": "Tema Ön Ayarı",
+    "fonts": "Yazı Tipleri",
+    "selectFont": "Yazı tipi seçin",
+    "themeMode": "Tema Modu",
+    "light": "Açık",
+    "dark": "Koyu",
+    "system": "Sistem",
+    "pageLayout": "Sayfa Düzeni",
+    "centered": "Ortalanmış",
+    "fullWidth": "Tam Genişlik",
+    "navbarBehavior": "Navigasyon Davranışı",
+    "floating": "Yüzen",
+    "sticky": "Yapışkan",
+    "sidebarVariant": "Kenar Çubuğu Tipi",
+    "sidebarCollapsible": "Kenar Çubuğu Daraltılabilir",
+    "icon": "Simge",
+    "dock": "Dock"
+  }
 }

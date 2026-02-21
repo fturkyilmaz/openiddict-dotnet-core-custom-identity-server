@@ -21,8 +21,10 @@ import { persistPreference } from "@/lib/preferences/preferences-storage";
 import { THEME_PRESET_OPTIONS, type ThemeMode, type ThemePreset } from "@/lib/preferences/theme";
 import { applyThemePreset } from "@/lib/preferences/theme-utils";
 import { usePreferencesStore } from "@/stores/preferences/preferences-provider";
+import { useI18n } from "@/i18n";
 
 export function LayoutControls() {
+  const { t } = useI18n();
   const themeMode = usePreferencesStore((s) => s.themeMode);
   const resolvedThemeMode = usePreferencesStore((s) => s.resolvedThemeMode);
   const setThemeMode = usePreferencesStore((s) => s.setThemeMode);
@@ -106,15 +108,13 @@ export function LayoutControls() {
       <PopoverContent align="end">
         <div className="flex flex-col gap-5">
           <div className="space-y-1.5">
-            <h4 className="font-medium text-sm leading-none">Preferences</h4>
-            <p className="text-muted-foreground text-xs">Customize your dashboard layout preferences.</p>
-            <p className="font-medium text-muted-foreground text-xs">
-              *Preferences use cookies by default. You can switch between cookies, localStorage, or no storage in code.
-            </p>
+            <h4 className="font-medium text-sm leading-none">{t("preferences.title")}</h4>
+            <p className="text-muted-foreground text-xs">{t("preferences.description")}</p>
+            <p className="font-medium text-muted-foreground text-xs">{t("preferences.note")}</p>
           </div>
           <div className="space-y-3 **:data-[slot=toggle-group]:w-full **:data-[slot=toggle-group-item]:flex-1 **:data-[slot=toggle-group-item]:text-xs">
             <div className="space-y-1">
-              <Label className="font-medium text-xs">Theme Preset</Label>
+              <Label className="font-medium text-xs">{t("preferences.themePreset")}</Label>
               <Select value={themePreset} onValueChange={onThemePresetChange}>
                 <SelectTrigger size="sm" className="w-full text-xs">
                   <SelectValue placeholder="Preset" />
@@ -137,10 +137,10 @@ export function LayoutControls() {
             </div>
 
             <div className="space-y-1">
-              <Label className="font-medium text-xs">Fonts</Label>
+              <Label className="font-medium text-xs">{t("preferences.fonts")}</Label>
               <Select value={font} onValueChange={onFontChange}>
                 <SelectTrigger size="sm" className="w-full text-xs">
-                  <SelectValue placeholder="Select font" />
+                  <SelectValue placeholder={t("preferences.selectFont")} />
                 </SelectTrigger>
                 <SelectContent>
                   {fontOptions.map((font) => (
@@ -153,7 +153,7 @@ export function LayoutControls() {
             </div>
 
             <div className="space-y-1">
-              <Label className="font-medium text-xs">Theme Mode</Label>
+              <Label className="font-medium text-xs">{t("preferences.themeMode")}</Label>
               <ToggleGroup
                 size="sm"
                 variant="outline"
@@ -162,19 +162,19 @@ export function LayoutControls() {
                 onValueChange={onThemeModeChange}
               >
                 <ToggleGroupItem value="light" aria-label="Toggle light">
-                  Light
+                  {t("preferences.light")}
                 </ToggleGroupItem>
                 <ToggleGroupItem value="dark" aria-label="Toggle dark">
-                  Dark
+                  {t("preferences.dark")}
                 </ToggleGroupItem>
                 <ToggleGroupItem value="system" aria-label="Toggle system">
-                  System
+                  {t("preferences.system")}
                 </ToggleGroupItem>
               </ToggleGroup>
             </div>
 
             <div className="space-y-1">
-              <Label className="font-medium text-xs">Page Layout</Label>
+              <Label className="font-medium text-xs">{t("preferences.pageLayout")}</Label>
               <ToggleGroup
                 size="sm"
                 variant="outline"
@@ -183,16 +183,16 @@ export function LayoutControls() {
                 onValueChange={onContentLayoutChange}
               >
                 <ToggleGroupItem value="centered" aria-label="Toggle centered">
-                  Centered
+                  {t("preferences.centered")}
                 </ToggleGroupItem>
                 <ToggleGroupItem value="full-width" aria-label="Toggle full-width">
-                  Full Width
+                  {t("preferences.fullWidth")}
                 </ToggleGroupItem>
               </ToggleGroup>
             </div>
 
             <div className="space-y-1">
-              <Label className="font-medium text-xs">Navbar Behavior</Label>
+              <Label className="font-medium text-xs">{t("preferences.navbarBehavior")}</Label>
               <ToggleGroup
                 size="sm"
                 variant="outline"
@@ -201,7 +201,7 @@ export function LayoutControls() {
                 onValueChange={onNavbarStyleChange}
               >
                 <ToggleGroupItem value="sticky" aria-label="Toggle sticky">
-                  Sticky
+                  {t("preferences.sticky")}
                 </ToggleGroupItem>
                 <ToggleGroupItem value="scroll" aria-label="Toggle scroll">
                   Scroll
@@ -210,7 +210,7 @@ export function LayoutControls() {
             </div>
 
             <div className="space-y-1">
-              <Label className="font-medium text-xs">Sidebar Style</Label>
+              <Label className="font-medium text-xs">{t("preferences.sidebarVariant")}</Label>
               <ToggleGroup
                 size="sm"
                 variant="outline"
@@ -231,7 +231,7 @@ export function LayoutControls() {
             </div>
 
             <div className="space-y-1">
-              <Label className="font-medium text-xs">Sidebar Collapse Mode</Label>
+              <Label className="font-medium text-xs">{t("preferences.sidebarCollapsible")}</Label>
               <ToggleGroup
                 size="sm"
                 variant="outline"
@@ -240,7 +240,7 @@ export function LayoutControls() {
                 onValueChange={onSidebarCollapseModeChange}
               >
                 <ToggleGroupItem value="icon" aria-label="Toggle icon">
-                  Icon
+                  {t("preferences.icon")}
                 </ToggleGroupItem>
                 <ToggleGroupItem value="offcanvas" aria-label="Toggle offcanvas">
                   OffCanvas

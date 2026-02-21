@@ -1,10 +1,4 @@
-import {
-  Banknote,
-  ChartBar,
-  Fingerprint,
-  LayoutDashboard,
-  type LucideIcon,
-} from "lucide-react";
+import { Banknote, ChartBar, Fingerprint, LayoutDashboard, Users, type LucideIcon } from "lucide-react";
 
 export interface NavSubItem {
   title: string;
@@ -58,6 +52,11 @@ export const sidebarItems: NavGroup[] = [
     label: "Pages",
     items: [
       {
+        title: "Users",
+        url: "/dashboard/users",
+        icon: Users,
+      },
+      {
         title: "Authentication",
         url: "/auth",
         icon: Fingerprint,
@@ -69,5 +68,5 @@ export const sidebarItems: NavGroup[] = [
         ],
       },
     ],
-  }
+  },
 ];

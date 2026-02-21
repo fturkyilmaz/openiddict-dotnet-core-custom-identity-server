@@ -50,7 +50,7 @@ export function proxy(req: NextRequest) {
       headers: {
         ...Object.fromEntries(req.headers.entries()),
         // Forward authorization header
-        "Authorization": req.headers.get("Authorization") || "",
+        Authorization: req.headers.get("Authorization") || "",
       },
       body: req.method !== "GET" && req.method !== "HEAD" ? req.body : undefined,
       redirect: "manual",
