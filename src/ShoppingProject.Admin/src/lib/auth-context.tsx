@@ -1,7 +1,8 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { authApi, User } from "@/lib/api";
+import { createContext, useContext, useEffect, ReactNode } from "react";
+import { useAuthStore } from "@/stores/auth/auth-store";
+import { User } from "@/lib/api";
 
 interface AuthContextType {
   user: User | null;
@@ -15,35 +16,26 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const { user, isLoading, isAuthenticated, login: zustandLogin, logout: zustandLogout, initialize } = useAuthStore();
 
   useEffect(() => {
-    // Check for existing session on mount
-    const storedUser = authApi.getStoredUser();
-    if (storedUser) {
-      setUser(storedUser);
-    }
-    setIsLoading(false);
-  }, []);
+    // Initialize auth state from secure storage on mount
+    initialize();
+  }, [initialize]);
 
   const login = async (username: string, password: string) => {
-    await authApi.login(username, password);
-    const user = await authApi.getCurrentUser();
-    setUser(user);
+    await zustandLogin(username, password);
   };
 
   const register = async (username: string, email: string, password: string, displayName?: string) => {
+    const { authApi } = await import("@/lib/api");
     await authApi.register(username, email, password, displayName);
     // After registration, login automatically
-    await authApi.login(username, password);
-    const user = await authApi.getCurrentUser();
-    setUser(user);
+    await zustandLogin(username, password);
   };
 
   const logout = () => {
-    authApi.logout();
-    setUser(null);
+    zustandLogout();
   };
 
   return (
@@ -54,7 +46,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         login,
         register,
         logout,
-        isAuthenticated: !!user,
+        isAuthenticated,
       }}
     >
       {children}

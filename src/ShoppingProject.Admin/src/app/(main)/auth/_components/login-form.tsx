@@ -12,6 +12,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { authApi } from "@/lib/api";
+import { useAuth } from "@/lib/auth-context";
 import { useI18n } from "@/i18n";
 
 const FormSchema = z.object({
@@ -23,6 +24,7 @@ const FormSchema = z.object({
 export function LoginForm() {
   const router = useRouter();
   const { t } = useI18n();
+  const { login } = useAuth();
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -35,7 +37,7 @@ export function LoginForm() {
 
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
     try {
-      await authApi.login(data.username, data.password);
+      await login(data.username, data.password);
       toast.success("Login successful!");
       router.push("/dashboard");
     } catch (error) {

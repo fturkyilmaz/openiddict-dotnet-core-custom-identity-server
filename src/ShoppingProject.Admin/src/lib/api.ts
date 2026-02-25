@@ -45,7 +45,9 @@ export interface User {
   id: string;
   userName: string;
   email: string;
-  displayName: string;
+  emailVerified: boolean;
+  twoFactorEnabled: boolean;
+  displayName?: string;
   roles?: string[];
 }
 

@@ -15,9 +15,9 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { APP_CONFIG } from "@/config/app-config";
-import { rootUser } from "@/data/users";
 import { sidebarItems } from "@/navigation/sidebar/sidebar-items";
 import { usePreferencesStore } from "@/stores/preferences/preferences-provider";
+import { useAuth } from "@/lib/auth-context";
 
 import { NavMain } from "./nav-main";
 import { NavUser } from "./nav-user";
@@ -68,6 +68,19 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     })),
   );
 
+  const { user, isLoading } = useAuth();
+
+  // Transform user from auth context to nav-user format
+  const navUser = isLoading
+    ? { name: "Loading...", email: "", avatar: "" }
+    : user
+      ? {
+          name: user.displayName || user.userName,
+          email: user.email,
+          avatar: "",
+        }
+      : { name: "Guest", email: "", avatar: "" };
+
   const variant = isSynced ? sidebarVariant : props.variant;
   const collapsible = isSynced ? sidebarCollapsible : props.collapsible;
 
@@ -91,7 +104,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         {/* <NavSecondary items={data.navSecondary} className="mt-auto" /> */}
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={rootUser} />
+        <NavUser user={navUser} />
       </SidebarFooter>
     </Sidebar>
   );
