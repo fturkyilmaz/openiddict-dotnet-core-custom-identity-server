@@ -203,5 +203,3 @@ feat(auth): add full OpenId flow with PKCE, client credentials, refresh, revoke,
 - Updated OpenIddict server configuration and validation events
 - Enhanced audit logging for token issuance and revocation
 ```
-
-İstersen bu akış için Swagger’daki “Authorize” butonunu da yapılandırıp client credentials ve userinfo testlerini dokümante edeyim. Ayrıca frontend SPA için PKCE helper ve consent modal komponeni çıkartabilirim.
